@@ -1,4 +1,6 @@
-export const socketEvent = {
+import Vue from 'vue'
+
+const socketEvent = {
   account: {
     login: 'LOGIN',
   },
@@ -14,4 +16,8 @@ export const socketEvent = {
     requireFriend: 'REQUIRE_FRIEND',
     acceptFriend: 'ACCEPT_FRIEND',
   },
+}
+
+export default ({ app }, inject) => {
+  inject('socketEvent', Vue.observable(socketEvent))
 }

@@ -22,12 +22,20 @@
 
 <script>
 import BasePageVue from '~/components/BasePage.vue'
-import socket from '~/plugins/socket.io'
-import { socketEvent } from '~/static/js/socket.event'
 export default {
-  name: 'IndexPage',
+  name: 'test',
   extends: BasePageVue,
+  data() {
+    return {}
+  },
   mounted() {
+    var _this = this
+    _this.socket = this.$nuxtSocket({
+      name: 'main', // select "main" socket from nuxt.config.js - we could also skip this because "main" is the default socket
+    })
+    this.logger('Console log thông qua this.logger', _this.socket)
+
+    //
     let userId = prompt('Chọn userId từ 1-3 thay cho login', 0)
 
     var form = document.getElementById('form')
@@ -42,9 +50,9 @@ export default {
         target: activeContact.dataset.target,
       }
       if (input.value) {
-        socket.emit(socketEvent.chat.typingStart, payload)
+        _this.socket.emit(_this.$socketEvent.chat.typingStart, payload)
       } else {
-        socket.emit(socketEvent.chat.typingEnd, payload)
+        _this.socket.emit(_this.$socketEvent.chat.typingEnd, payload)
       }
     })
 
@@ -59,7 +67,7 @@ export default {
           msg: input.value,
           target: activeContact.dataset.target,
         }
-        socket.emit(socketEvent.chat.sendMessages, payload)
+        _this.socket.emit(_this.$socketEvent.chat.sendMessages, payload)
 
         // side effect
         input.value = ''
@@ -68,12 +76,12 @@ export default {
     })
 
     // Socket event listener
-    socket.on('connect', () => {
-      // displayMessages(`Your socketID: ${socket.id}`)
-      socket.emit(socketEvent.account.login, userId)
+    _this.socket.on('connect', () => {
+      // displayMessages(`Your socketID: ${_this.socket.id}`)
+      _this.socket.emit(_this.$socketEvent.account.login, userId)
     })
 
-    socket.on(socketEvent.chat.typingStart, function (payload) {
+    _this.socket.on(_this.$socketEvent.chat.typingStart, function (payload) {
       let typingContact = null
       if (payload.target == 'USER')
         typingContact = document.querySelector(
@@ -85,7 +93,7 @@ export default {
         )
       typingContact.classList.add('typing')
     })
-    socket.on(socketEvent.chat.typingEnd, function (payload) {
+    _this.socket.on(_this.$socketEvent.chat.typingEnd, function (payload) {
       let typingContact = null
       if (payload.target == 'USER')
         typingContact = document.querySelector(
@@ -98,9 +106,12 @@ export default {
       typingContact.classList.remove('typing')
     })
 
-    socket.on(socketEvent.chat.receiveMessages, function (payload) {
-      if (isMessagesCanDisplay(payload)) displayMessages(payload.msg, 'guest')
-    })
+    _this.socket.on(
+      _this.$socketEvent.chat.receiveMessages,
+      function (payload) {
+        if (isMessagesCanDisplay(payload)) displayMessages(payload.msg, 'guest')
+      }
+    )
 
     function isMessagesCanDisplay(payload) {
       const activeContact = document.querySelector('.contacts>li.active')

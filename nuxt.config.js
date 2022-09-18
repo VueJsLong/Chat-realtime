@@ -25,10 +25,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/mixins',
-    // '~/plugins/axios',
-  ],
+  plugins: ['~/plugins/mixins', '~/plugins/socket.event.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -41,12 +38,26 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-socket-io',
+    'nuxt-socket-io',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.API_URL,
+  },
+
+  // socket.io configuration
+  io: {
+    // we could have multiple sockets that we identify with names
+    // one of these sockets may have set "default" to true
+    sockets: [
+      {
+        default: true, // make this the default socket
+        name: 'main', // give it a name that we can later use to choose this socket in the .vue file
+        url: process.env.WS_URL, // URL wherever your socket IO server runs
+      },
+    ],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
