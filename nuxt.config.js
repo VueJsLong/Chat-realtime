@@ -35,9 +35,9 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
+    'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    'nuxt-socket-io',
+    '@nuxtjs/auth-next',
     'nuxt-socket-io',
   ],
 
@@ -45,6 +45,48 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.API_URL,
+  },
+
+  auth: {
+    redirect: {
+      login: '/auth/login',
+    },
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'data.access_token',
+          global: true,
+          // required: true,
+          // type: 'Bearer'
+        },
+        refreshToken: {
+          property: 'data.refresh_token',
+          data: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 7,
+        },
+        user: {
+          property: false,
+          autoFetch: true,
+        },
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+          },
+          refresh: {
+            url: '/auth/refresh',
+            method: 'post',
+          },
+          user: {
+            url: '/auth/profile',
+            method: 'get',
+          },
+          logout: { url: '/auth/logout', method: 'post' },
+        },
+        // autoLogout: false
+      },
+    },
   },
 
   // socket.io configuration
@@ -62,4 +104,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  router: {
+    middleware: ['auth'],
+  },
 }
