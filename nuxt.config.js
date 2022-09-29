@@ -66,7 +66,7 @@ export default {
           maxAge: 60 * 60 * 24 * 7,
         },
         user: {
-          property: false,
+          property: 'data.username',
           autoFetch: true,
         },
         endpoints: {
