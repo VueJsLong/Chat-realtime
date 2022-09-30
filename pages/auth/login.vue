@@ -28,15 +28,25 @@
         </b-form-group>
 
         <b-button type="submit" variant="primary">Login</b-button>
-        <div>
-          <b-button variant="outline-secondary" @click="loginWithGoogle"
-            >Continue with Google
-            <img width="30" src="~/static/img/google.svg" />
-          </b-button>
-          <b-button variant="outline-secondary" @click="loginWithFacebook"
-            >Continue with Facebook
-            <img width="30" src="~/static/img/facebook.svg"
-          /></b-button>
+        <div class="row g-2">
+          <div class="col-12 col-md-6">
+            <b-button
+              class="btn-sm w-100 h-100"
+              variant="outline-secondary"
+              @click="loginWithGoogle"
+              >Continue with Google
+              <img width="30" src="~/static/img/google.svg" />
+            </b-button>
+          </div>
+          <div class="col-12 col-md-6">
+            <b-button
+              class="btn-sm w-100 h-100"
+              variant="outline-secondary"
+              @click="loginWithFacebook"
+              >Continue with Facebook
+              <img width="30" src="~/static/img/facebook.svg"
+            /></b-button>
+          </div>
         </div>
         <div>
           <b-button variant="outline-danger" @click="toggleForm"
@@ -109,15 +119,25 @@
         </b-form-group>
 
         <b-button type="submit" variant="primary">Register</b-button>
-        <div>
-          <b-button variant="outline-secondary" @click="loginWithGoogle"
-            >Continue with Google
-            <img width="30" src="~/static/img/google.svg" />
-          </b-button>
-          <b-button variant="outline-secondary" @click="loginWithFacebook"
-            >Continue with Facebook
-            <img width="30" src="~/static/img/facebook.svg" />
-          </b-button>
+        <div class="row g-2">
+          <div class="col-12 col-md-6">
+            <b-button
+              class="btn-sm w-100 h-100"
+              variant="outline-secondary"
+              @click="loginWithGoogle"
+              >Continue with Google
+              <img width="30" src="~/static/img/google.svg" />
+            </b-button>
+          </div>
+          <div class="col-12 col-md-6">
+            <b-button
+              class="btn-sm w-100 h-100"
+              variant="outline-secondary"
+              @click="loginWithFacebook"
+              >Continue with Facebook
+              <img width="30" src="~/static/img/facebook.svg" />
+            </b-button>
+          </div>
         </div>
         <div>
           <b-button variant="outline-danger" @click="toggleForm"
@@ -207,24 +227,4 @@ export default {
 }
 </script>
 
-<style>
-#login-page {
-  width: 100vw;
-  height: 100vh;
-  background: url('~/static/img/login-background.png');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#login-page .form-section {
-  background-color: #fff;
-  padding: 32px;
-  border-radius: 16px;
-  -webkit-box-shadow: 5px 11px 20px 8px rgba(51, 51, 51, 0.85);
-  box-shadow: 5px 11px 20px 8px rgba(51, 51, 51, 0.85);
-  min-width: 25%;
-  min-height: 50%;
-}
-</style>
+<style></style>

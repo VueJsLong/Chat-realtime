@@ -1,14 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 body {
   margin: 0;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/*  */
 #form {
   width: 100%;
   background: rgba(0, 0, 0, 0.15);
@@ -118,4 +138,92 @@ li.active {
 
 li.typing::after {
   content: " ...";
+}
+
+/* login page */
+
+#login-page {
+  width: 100vw;
+  height: 100vh;
+  background: url('/img/login-background.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-page .form-section {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  -webkit-box-shadow: 5px 11px 20px 8px rgba(51, 51, 51, 0.85);
+  box-shadow: 5px 11px 20px 8px rgba(51, 51, 51, 0.85);
+  min-width: 25%;
+  min-height: 50%;
+}
+
+#login-page .form-section form {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#login-page .form-section form>div,
+#login-page .form-section form>button {
+  margin-bottom: 8px;
+}
+
+/* otp page */
+#otp-page {
+  width: 100vw;
+  height: 100vh;
+  background: url('/img/email-sent.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#otp-page .form-section {
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  -webkit-box-shadow: 5px 11px 20px 8px rgba(165, 113, 113, 0.85);
+  box-shadow: 5px 11px 20px 8px rgba(159, 159, 159, 0.85);
+  min-width: 25%;
+  min-height: 50%;
+}
+
+.otp-container {
+  display: flex;
+  flex-flow: column;
+  align-items: space-around;
+  justify-content: space-around;
+  min-height: 300px;
+}
+
+.otp-container .userInput {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.otp-container input {
+  margin: 8px;
+  height: 35px;
+  width: 60px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: arimo;
+  font-size: 1.2rem;
+  background: #eef2f3;
+  border: 2px #999 solid;
+}
+
+.otp-container h1 {
+  text-align: center;
+  color: #333;
 }

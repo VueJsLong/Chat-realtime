@@ -10,6 +10,11 @@ if (!Vue.__my_mixin__) {
       logger(...args) {
         console.log(...args)
       },
+      goBack() {
+        if (window) {
+          window.history.back()
+        }
+      },
     },
   })
 }
