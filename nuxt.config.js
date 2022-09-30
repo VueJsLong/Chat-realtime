@@ -2,6 +2,10 @@ export default {
   env: {
     wsUrl: process.env.WS_URL || 'http://localhost:4000',
     apiUrl: process.env.API_URL || 'http://localhost:4000',
+    googleLoginUrl:
+      process.env.GOOGLE_LOGIN_URL || 'http://localhost:4000/auth/google',
+    facebookLoginUrl:
+      process.env.FACEBOOK_LOGIN_URL || 'http://localhost:4000/auth/facebook',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -50,6 +54,7 @@ export default {
   auth: {
     redirect: {
       login: '/auth/login',
+      logout: '/auth/login',
     },
     strategies: {
       local: {

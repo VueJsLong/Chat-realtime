@@ -29,11 +29,11 @@
 
         <b-button type="submit" variant="primary">Login</b-button>
         <div>
-          <b-button variant="outline-secondary"
+          <b-button variant="outline-secondary" @click="loginWithGoogle"
             >Continue with Google
             <img width="30" src="~/static/img/google.svg" />
           </b-button>
-          <b-button variant="outline-secondary"
+          <b-button variant="outline-secondary" @click="loginWithFacebook"
             >Continue with Facebook
             <img width="30" src="~/static/img/facebook.svg"
           /></b-button>
@@ -110,11 +110,11 @@
 
         <b-button type="submit" variant="primary">Register</b-button>
         <div>
-          <b-button variant="outline-secondary"
+          <b-button variant="outline-secondary" @click="loginWithGoogle"
             >Continue with Google
             <img width="30" src="~/static/img/google.svg" />
           </b-button>
-          <b-button variant="outline-secondary"
+          <b-button variant="outline-secondary" @click="loginWithFacebook"
             >Continue with Facebook
             <img width="30" src="~/static/img/facebook.svg" />
           </b-button>
@@ -159,10 +159,23 @@ export default {
     if (this.$auth.loggedIn) {
       this.$router.push({ path: '/' })
     }
+
+    let query = this.$route.query
+    if (query.access_token && query.refresh_token) {
+      this.loginWithToken(query.access_token, query.refresh_token)
+    } else if (query.error) {
+      alert(query.error)
+    }
   },
   methods: {
     toggleForm() {
       this.showLoginForm = !this.showLoginForm
+    },
+    loginWithGoogle() {
+      window.location.href = process.env.googleLoginUrl
+    },
+    loginWithFacebook() {
+      window.location.href = process.env.facebookLoginUrl
     },
     async login() {
       try {
@@ -171,6 +184,16 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    loginWithToken(access_token, refresh_token) {
+      console.log('loginWithToken: ', access_token, refresh_token)
+      this.$auth
+        .setStrategy('local')
+        .then(() =>
+          this.$auth
+            .setUserToken(access_token, refresh_token)
+            .then(() => this.$router.push({ path: '/' }))
+        )
     },
     async register() {
       try {

@@ -1,8 +1,10 @@
 <template>
   <div>
     <footer>footer</footer>
+    <p>{{ $auth.user }}</p>
     <button @click="testAxios">Test Axios</button>
     <p>{{ axiosResponse }}</p>
+    <button @click="logout">Logout</button>
   </div>
 </template>
 
@@ -16,6 +18,9 @@ export default {
   methods: {
     testAxios() {
       this.$axios.get('/').then((res) => (this.axiosResponse = res.data))
+    },
+    async logout() {
+      await this.$auth.logout('local')
     },
   },
 }
