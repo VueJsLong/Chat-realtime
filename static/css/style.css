@@ -142,18 +142,15 @@ li.typing::after {
 
 /* login page */
 
-#login-page {
+.page-middle-form {
   width: 100vw;
   height: 100vh;
-  background: url('/img/login-background.png');
-  background-size: cover;
-  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#login-page .form-section {
+.page-middle-form .form-section {
   background-color: #fff;
   padding: 32px;
   border-radius: 16px;
@@ -163,38 +160,36 @@ li.typing::after {
   min-height: 50%;
 }
 
-#login-page .form-section form {
+.page-middle-form .form-section form {
   min-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-#login-page .form-section form>div,
-#login-page .form-section form>button {
+.page-middle-form .form-section div,
+.page-middle-form .form-section button {
   margin-bottom: 8px;
+}
+
+#login-page {
+
+  background: url('/img/login-background.png');
+  background-size: cover;
+  background-position: center;
+
 }
 
 /* otp page */
 #otp-page {
-  width: 100vw;
-  height: 100vh;
-  background: url('/img/email-sent.jpg');
+  background: url('/img/email-sent-background.jpg');
   background-size: cover;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #otp-page .form-section {
-  background-color: #fff;
-  padding: 32px;
-  border-radius: 16px;
   -webkit-box-shadow: 5px 11px 20px 8px rgba(165, 113, 113, 0.85);
   box-shadow: 5px 11px 20px 8px rgba(159, 159, 159, 0.85);
-  min-width: 25%;
-  min-height: 50%;
 }
 
 .otp-container {
@@ -226,4 +221,11 @@ li.typing::after {
 .otp-container h1 {
   text-align: center;
   color: #333;
+}
+
+/* reset-password-page */
+#reset-password-page {
+  background: url('/img/reset-password-background.jpg');
+  background-size: cover;
+  background-position: center;
 }

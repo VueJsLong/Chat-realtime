@@ -1,5 +1,5 @@
 <template>
-  <div id="otp-page">
+  <div id="otp-page" class="page-middle-form">
     <section class="form-section">
       <div class="otp-container">
         <h1>Please check mail box to get OTP</h1>
