@@ -119,4 +119,6 @@ export default {
   router: {
     middleware: ['auth'],
   },
+
+  loading: '~/components/Loading.vue',
 }

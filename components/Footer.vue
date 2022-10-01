@@ -5,6 +5,7 @@
     <button @click="testAxios">Test Axios</button>
     <p>{{ axiosResponse }}</p>
     <button @click="logout">Logout</button>
+    <button @click="toggleLoading">Toggle Loading</button>
   </div>
 </template>
 
@@ -21,6 +22,10 @@ export default {
     },
     async logout() {
       await this.$auth.logout('local')
+    },
+    toggleLoading() {
+      let currentLoadingState = this.$store.getters.getLoading
+      this.$store.dispatch('setLoading', !currentLoadingState)
     },
   },
 }
