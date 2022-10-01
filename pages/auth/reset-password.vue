@@ -29,9 +29,11 @@
         <div class="text-center">
           <img src="/img/email-sent-icon.png" alt="" width="200" />
         </div>
-        <b-button type="button" variant="primary" @click="goBack"
-          >Go back</b-button
-        >
+        <nuxt-link to="/auth/login">
+          <b-button type="button" variant="primary" class="w-100"
+            >Back to login page</b-button
+          >
+        </nuxt-link>
       </b-form>
 
       <!-- Reset password form -->
@@ -64,7 +66,20 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Reset password</b-button>
+        <b-button type="submit" variant="primary">Save password</b-button>
+      </b-form>
+
+      <!-- Reset password done form -->
+      <b-form v-show="isShow(listForm.resetPasswordDoneForm)">
+        <h1>Your password has been saved</h1>
+        <div class="text-center">
+          <img src="/img/done.png" alt="" width="200" />
+        </div>
+        <nuxt-link to="/auth/login">
+          <b-button type="button" variant="primary" class="w-100"
+            >Back to login page</b-button
+          >
+        </nuxt-link>
       </b-form>
     </section>
   </div>
@@ -84,13 +99,14 @@ export default {
         emailEnterForm: 'email-enter-form',
         emailSentForm: 'email-sent-form',
         resetPasswordForm: 'reset-password-form',
+        resetPasswordDoneForm: 'reset-password-done-form',
       },
       currentForm: 'email-enter-form',
     }
   },
   mounted() {
     let query = this.$route.query
-    if (query.mail && query.verify_token) {
+    if (query.email && query.verify_token) {
       this.setCurrentForm(this.listForm.resetPasswordForm)
     }
   },
@@ -105,7 +121,9 @@ export default {
     sendResetEmail() {
       this.setCurrentForm(this.listForm.emailSentForm)
     },
-    resetPassword() {},
+    resetPassword() {
+      this.setCurrentForm(this.listForm.resetPasswordDoneForm)
+    },
   },
 }
 </script>
