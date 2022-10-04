@@ -3,7 +3,7 @@
     <section class="form-section">
       <!-- login -->
       <b-form @submit.prevent="login">
-        <h1>Login and experience</h1>
+        <h1>Login and connect your friend</h1>
         <b-form-group
           id="input-group-1"
           label="Email address:"

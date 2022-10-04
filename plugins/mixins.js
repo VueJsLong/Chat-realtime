@@ -7,6 +7,17 @@ if (!Vue.__my_mixin__) {
 
   Vue.mixin({
     methods: {
+      axiosLoadError(p) {
+        p.catch((error) => {
+          if (error.response) {
+            alert(error.response.data?.messages)
+          } else if (error.request) {
+            alert(error.request)
+          } else {
+            alert(error.message)
+          }
+        })
+      },
       logger(...args) {
         console.log(...args)
       },

@@ -21,6 +21,9 @@
           ></b-form-input>
         </b-form-group>
         <b-button type="submit" variant="primary">Send mail</b-button>
+        <nuxt-link to="/auth/login" class="text-center"
+          >Back to login page</nuxt-link
+        >
       </b-form>
 
       <!-- Email sent form -->
