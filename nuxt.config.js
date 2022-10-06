@@ -35,7 +35,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/mixins', '~/plugins/socket.event.js'],
+  plugins: [
+    '~/plugins/mixins',
+    '~/plugins/socket.event.js',
+    './plugins/vee-validate.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -49,11 +53,28 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     'nuxt-socket-io',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          {
+            code: 'vi',
+            file: 'vi.js',
+          },
+          {
+            code: 'en',
+            file: 'en.js',
+          },
+        ],
+        lazy: true,
+        langDir: 'language/',
+        defaultLocale: 'vi',
+        detectBrowserLanguage: false,
+      },
+    ],
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.API_URL,
   },
 
@@ -68,8 +89,6 @@ export default {
         token: {
           property: 'data.access_token',
           global: true,
-          // required: true,
-          // type: 'Bearer'
         },
         refreshToken: {
           property: 'data.refresh_token',
@@ -114,7 +133,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['vee-validate'],
+  },
 
   router: {
     middleware: ['auth'],

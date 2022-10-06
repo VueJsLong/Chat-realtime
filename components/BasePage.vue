@@ -7,6 +7,12 @@ export default {
       socket: {},
     }
   },
+  mounted() {
+    this.$store.dispatch('setLoading', true)
+    setTimeout(() => {
+      this.$store.dispatch('setLoading', false)
+    }, 500)
+  },
 }
 </script>
 
