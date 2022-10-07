@@ -3,7 +3,7 @@
     <section class="form-section">
       <!-- login -->
       <b-form @submit.prevent="login">
-        <h1>Login and connect your friend</h1>
+        <h1 class="text-center">Login and connect your friend</h1>
         <b-form-group
           id="input-group-1"
           label="Email address:"
@@ -103,12 +103,14 @@ export default {
       window.location.href = process.env.facebookLoginUrl
     },
     async login() {
-      try {
-        let response = await this.$auth.loginWith('local', { data: this.form })
-        console.log(response)
-      } catch (err) {
-        console.log(err)
-      }
+      this.toggleProcessing()
+      const responsePromise = this.$auth
+        .loginWith('local', { data: this.form })
+        .then((res) => {
+          this.logger(res.data)
+        })
+        .finally(() => this.toggleProcessing())
+      this.axiosLoadError(responsePromise)
     },
     loginWithToken(access_token, refresh_token) {
       console.log('loginWithToken: ', access_token, refresh_token)

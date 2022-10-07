@@ -198,7 +198,7 @@
           </div>
         </div>
         <div class="text-center">
-          <a href="#" @click.prevent="reSendOTP"
+          <a href="#" @click.prevent="register"
             >Hasn't received otp yet? Receive again.</a
           >
         </div>

@@ -6,7 +6,7 @@
         @submit.prevent="sendResetEmail"
         v-show="isShow(listForm.emailEnterForm)"
       >
-        <h1>Enter your email to get reset link</h1>
+        <h1 class="text-center">Enter your email to get reset link</h1>
         <b-form-group
           id="input-group-1"
           label="Email address:"
@@ -20,7 +20,9 @@
             required
           ></b-form-input>
         </b-form-group>
-        <b-button type="submit" variant="primary">Send mail</b-button>
+        <b-button type="submit" :disabled="isProcessing" variant="primary"
+          >Send mail</b-button
+        >
         <nuxt-link to="/auth/login" class="text-center"
           >Back to login page</nuxt-link
         >
@@ -28,12 +30,21 @@
 
       <!-- Email sent form -->
       <b-form v-show="isShow(listForm.emailSentForm)">
-        <h1>Please check your mail box</h1>
+        <h1 class="text-center">Please check your mail box</h1>
         <div class="text-center">
           <img src="/img/email-sent-icon.png" alt="" width="200" />
         </div>
+        <div class="text-center">
+          <a href="#" @click.prevent="sendResetEmail"
+            >Hasn't received reset password email? Receive again.</a
+          >
+        </div>
         <nuxt-link to="/auth/login">
-          <b-button type="button" variant="primary" class="w-100"
+          <b-button
+            type="button"
+            :disabled="isProcessing"
+            variant="primary"
+            class="w-100"
             >Back to login page</b-button
           >
         </nuxt-link>
@@ -44,7 +55,8 @@
         @submit.prevent="resetPassword"
         v-show="isShow(listForm.resetPasswordForm)"
       >
-        <h1>Enter your new password</h1>
+        <h1 class="text-center">Enter your new password</h1>
+        <h4 class="text-center">{{ $route.query.email }}</h4>
         <b-form-group id="input-group-2" label="Password:" label-for="input-2">
           <b-form-input
             id="input-2"
@@ -69,17 +81,23 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Save password</b-button>
+        <b-button type="submit" :disabled="isProcessing" variant="primary"
+          >Save password</b-button
+        >
       </b-form>
 
       <!-- Reset password done form -->
       <b-form v-show="isShow(listForm.resetPasswordDoneForm)">
-        <h1>Your password has been saved</h1>
+        <h1 class="text-center">Your password has been saved</h1>
         <div class="text-center">
           <img src="/img/done.png" alt="" width="200" />
         </div>
         <nuxt-link to="/auth/login">
-          <b-button type="button" variant="primary" class="w-100"
+          <b-button
+            type="button"
+            :disabled="isProcessing"
+            variant="primary"
+            class="w-100"
             >Back to login page</b-button
           >
         </nuxt-link>
@@ -95,6 +113,7 @@ export default {
   data() {
     return {
       form: {
+        email: null,
         password: null,
         rePassword: null,
       },
@@ -121,11 +140,33 @@ export default {
     setCurrentForm(form) {
       this.currentForm = form
     },
-    sendResetEmail() {
-      this.setCurrentForm(this.listForm.emailSentForm)
+    async sendResetEmail() {
+      this.toggleProcessing()
+      const responsePromise = this.$axios
+        .post('/mail/reset-password', { email: this.form.email })
+        .then((res) => {
+          this.logger(res.data)
+          this.setCurrentForm(this.listForm.emailSentForm)
+        })
+        .finally(() => this.toggleProcessing())
+      this.axiosLoadError(responsePromise)
     },
-    resetPassword() {
-      this.setCurrentForm(this.listForm.resetPasswordDoneForm)
+    async resetPassword() {
+      this.toggleProcessing()
+      let query = this.$route.query
+      const payload = {
+        ...this.form,
+        email: query.email,
+        verify_token: query.verify_token,
+      }
+      const responsePromise = this.$axios
+        .post('/auth/reset-password', payload)
+        .then((res) => {
+          this.logger(res.data)
+          this.setCurrentForm(this.listForm.resetPasswordDoneForm)
+        })
+        .finally(() => this.toggleProcessing())
+      this.axiosLoadError(responsePromise)
     },
   },
 }
