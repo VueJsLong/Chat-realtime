@@ -21,11 +21,29 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '/css/style.css' },
+      { rel: 'stylesheet', href: '/css/common.css' },
+      { rel: 'stylesheet', href: '/css/login-page.css' },
+      { rel: 'stylesheet', href: '/css/common.css' },
+      { rel: 'stylesheet', href: '/css/login-page.css' },
+      // { rel: 'stylesheet', href: '/css/setting-page.css' },
+      { rel: 'stylesheet', href: '/css/message-page.css' },
+      { rel: 'stylesheet', href: '/css/override.css' },
+      {
+        rel: 'stylesheet',
+        href: '/lib/uicons-regular-straight.css',
+      },
+      {
+        rel: 'stylesheet',
+        href: '/lib/uicons-regular-rounded.css',
+      },
     ],
     script: [
       {
-        src: '/js/jquery-3.6.1.min.js',
+        src: '/lib/jquery-3.6.1.min.js',
+        type: 'text/javascript',
+      },
+      {
+        src: '/js/main.js',
         type: 'text/javascript',
       },
     ],

@@ -1,194 +1,624 @@
 <template>
-  <div id="app">
-    <div id="contact-area">
-      <ul class="contacts">
-        <li data-id="1" data-target="USER">User 1</li>
-        <li data-id="2" data-target="USER">User 2</li>
-        <li data-id="3" data-target="USER">User 3</li>
-      </ul>
-      <ul class="contacts">
-        <li data-id="1" data-target="GROUP">Group 1</li>
-        <li data-id="2" data-target="GROUP">Group 2</li>
-      </ul>
+  <div class="message-page mess">
+    <Header></Header>
+    <div class="toolbar">
+      <div class="search">
+        <input type="text" placeholder="Tìm kiếm" />
+        <button class="search-btn m-icon-btn">
+          <i class="fi fi-rr-search input-search-icon"></i>
+        </button>
+      </div>
+      <div class="groups">
+        <div class="option">
+          <p>Groups</p>
+          <ul>
+            <li class="option-click">
+              <div>
+                <img src="/img/option.png" alt="" />
+                <ul class="menu">
+                  <li><a href="/">Cài đặt</a></li>
+                  <li><a href="/">Tùy chọn</a></li>
+                  <li><a href="/">Xóa</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="group-contacts ctm-scroll-y">
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 1</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 2</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Name 3</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recents">
+        <div class="option">
+          <p>Recents</p>
+          <ul>
+            <li class="option-click">
+              <img src="/img/option.png" alt="" />
+              <ul class="menu">
+                <li><a href="/">Cài đặt</a></li>
+                <li><a href="/">Tùy chọn</a></li>
+                <li><a href="/">Xóa</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="recent-contacts ctm-scroll-y">
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Reunion</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Reunion</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <p>Friends Reunion</p>
+              <p>Hi Guys, Wassup!</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Reunion</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <p>Friends Reunion</p>
+              <p>Hi Guys, Wassup!</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Reunion</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <p>Friends Reunion</p>
+              <p>Hi Guys, Wassup!</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Reunion</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <p>Friends Reunion</p>
+              <p>Hi Guys, Wassup!</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends">Friends Reunion</div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <p>Friends Reunion</p>
+              <p>Hi Guys, Wassup!</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="message-area">
-      <ul id="messages"></ul>
-      <form id="form" action="">
-        <input id="input" autocomplete="off" /><button>Send</button>
-      </form>
+    <div class="chat">
+      <div class="chat-box">
+        <div class="chat-box__header">
+          <div class="item">
+            <img src="/img/Ellipse 2.png" alt="" />
+            <div class="content">
+              <div class="friends-message"></div>
+              <div>Hi Guys, Wassup!</div>
+            </div>
+          </div>
+          <div class="icon-message">
+            <button class="m-icon-btn">
+              <i class="fi fi-rr-info"></i>
+            </button>
+          </div>
+        </div>
+        <div class="chat-box__content ctm-scroll-y">
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content"
+              >msg Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+              dolor velit voluptas cupiditate, maxime dignissimos? Voluptates
+              repellendus eligendi inventore, ipsa vel ipsum nobis ipsam
+              repellat illo debitis incidunt! Ex, fugiat.
+              <div class="chat-message__context-menu">
+                <div class="chat-context-menu__item">
+                  <button class="m-icon-btn">
+                    <i class="fi fi-rr-undo"></i>
+                  </button>
+                  <span class="context-menu-item__tooltip">Trả lời</span>
+                </div>
+                <div class="chat-context-menu__item">
+                  <button class="m-icon-btn">
+                    <i class="fi fi-rs-inbox-out"></i>
+                  </button>
+                  <span class="context-menu-item__tooltip">Chuyển tiếp</span>
+                </div>
+                <div class="chat-context-menu__item">
+                  <button class="m-icon-btn">
+                    <i class="fi fi-rr-menu-dots-vertical"></i>
+                  </button>
+                  <span class="context-menu-item__tooltip">Xem thêm</span>
+                  <div class="chat-context-menu__child-item">
+                    <div class="chat-context-menu__item">
+                      <button class="m-icon-btn">
+                        <i class="fi fi-rr-world"></i>
+                      </button>
+                      <span class="context-menu-item__tooltip">Dịch</span>
+                    </div>
+                    <div class="chat-context-menu__item">
+                      <button class="m-icon-btn">
+                        <i class="fi fi-rr-trash"></i>
+                      </button>
+                      <span class="context-menu-item__tooltip">Thu hồi</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content"
+              >msg
+              <div class="chat-message__context-menu">
+                <div class="chat-context-menu__item">
+                  <button class="m-icon-btn">
+                    <i class="fi fi-rr-undo"></i>
+                  </button>
+                  <span class="context-menu-item__tooltip">Trả lời</span>
+                </div>
+                <div class="chat-context-menu__item">
+                  <button class="m-icon-btn">
+                    <i class="fi fi-rs-inbox-out"></i>
+                  </button>
+                  <span class="context-menu-item__tooltip">Chuyển tiếp</span>
+                </div>
+                <div class="chat-context-menu__item">
+                  <button class="m-icon-btn">
+                    <i class="fi fi-rr-menu-dots-vertical"></i>
+                  </button>
+                  <span class="context-menu-item__tooltip">Xem thêm</span>
+                  <div class="chat-context-menu__child-item">
+                    <div class="chat-context-menu__item">
+                      <button class="m-icon-btn">
+                        <i class="fi fi-rr-world"></i>
+                      </button>
+                      <span class="context-menu-item__tooltip">Dịch</span>
+                    </div>
+                    <div class="chat-context-menu__item">
+                      <button class="m-icon-btn">
+                        <i class="fi fi-rr-trash"></i>
+                      </button>
+                      <span class="context-menu-item__tooltip">Thu hồi</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content"
+              >msg Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Quia voluptates iste dolore voluptate laboriosam commodi, eum
+              alias facere. Deleniti natus, quia consequatur laboriosam debitis
+              pariatur neque eius dolor nam voluptatibus?</span
+            >
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content"
+              >msg Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Praesentium nesciunt quibusdam aliquam ducimus eius maiores odio
+              veniam minima, esse ullam velit? Qui ut doloribus numquam dolor
+              officia itaque est quibusdam.</span
+            >
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message guest">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+          <div class="chat-content__message host">
+            <img
+              class="chat-message__thumbnail"
+              src="/img/Ellipse 2.png"
+              alt="thumbnail"
+            />
+            <span class="chat-message__content">msg</span>
+          </div>
+        </div>
+        <div class="chat-box__footer">
+          <textarea
+            type="text"
+            class="chat-box__input ctm-scroll-y"
+            placeholder="Aa"
+          ></textarea>
+          <div class="chat-box-footer__icon">
+            <button class="m-icon-btn">
+              <i class="fi fi-rs-paper-plane"></i>
+            </button>
+            <button class="m-icon-btn">
+              <i class="fi fi-rr-picture"></i>
+            </button>
+            <button class="m-icon-btn">
+              <i class="fi fi-rr-microphone"></i>
+            </button>
+            <button class="m-icon-btn">
+              <i class="fi fi-rr-smile"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-introduction">
+      <h2>Chào mừng bạn đến với ứng dụng chat của chúng tôi</h2>
     </div>
   </div>
 </template>
 
 <script>
-import BasePageVue from '~/components/BasePage.vue'
+import Header from '~/components/Header.vue'
 export default {
-  name: 'test',
-  extends: BasePageVue,
-  data() {
-    return {}
-  },
-  mounted() {
-    var _this = this
-    _this.socket = this.$nuxtSocket({
-      name: 'main', // select "main" socket from nuxt.config.js - we could also skip this because "main" is the default socket
-    })
-    this.logger('Console log thông qua this.logger', _this.socket)
-
-    //
-    let userId = prompt('Chọn userId từ 1-3 thay cho login', 0)
-
-    var form = document.getElementById('form')
-    var input = document.getElementById('input')
-
-    // send typing event
-    input.addEventListener('keyup', function (e) {
-      const activeContact = document.querySelector('.contacts>li.active')
-      const payload = {
-        from: userId,
-        to: activeContact.dataset.id,
-        target: activeContact.dataset.target,
-      }
-      if (input.value) {
-        _this.socket.emit(_this.$socketEvent.chat.typingStart, payload)
-      } else {
-        _this.socket.emit(_this.$socketEvent.chat.typingEnd, payload)
-      }
-    })
-
-    // send messages
-    form.addEventListener('submit', function (e) {
-      e.preventDefault()
-      if (input.value) {
-        const activeContact = document.querySelector('.contacts>li.active')
-        const payload = {
-          from: userId,
-          to: activeContact.dataset.id,
-          msg: input.value,
-          target: activeContact.dataset.target,
-        }
-        _this.socket.emit(_this.$socketEvent.chat.sendMessages, payload)
-
-        // side effect
-        input.value = ''
-        displayMessages(payload.msg, 'host')
-      }
-    })
-
-    // Socket event listener
-    _this.socket.on('connect', () => {
-      // displayMessages(`Your socketID: ${_this.socket.id}`)
-      _this.socket.emit(_this.$socketEvent.account.login, userId)
-    })
-
-    _this.socket.on(_this.$socketEvent.chat.typingStart, function (payload) {
-      let typingContact = null
-      if (payload.target == 'USER')
-        typingContact = document.querySelector(
-          `.contacts>li[data-id="${payload.from}"][data-target="${payload.target}"]`
-        )
-      else
-        typingContact = document.querySelector(
-          `.contacts>li[data-id="${payload.to}"][data-target="${payload.target}"]`
-        )
-      typingContact.classList.add('typing')
-    })
-    _this.socket.on(_this.$socketEvent.chat.typingEnd, function (payload) {
-      let typingContact = null
-      if (payload.target == 'USER')
-        typingContact = document.querySelector(
-          `.contacts>li[data-id="${payload.from}"][data-target="${payload.target}"]`
-        )
-      else
-        typingContact = document.querySelector(
-          `.contacts>li[data-id="${payload.to}"][data-target="${payload.target}"]`
-        )
-      typingContact.classList.remove('typing')
-    })
-
-    _this.socket.on(
-      _this.$socketEvent.chat.receiveMessages,
-      function (payload) {
-        if (isMessagesCanDisplay(payload)) displayMessages(payload.msg, 'guest')
-      }
-    )
-
-    function isMessagesCanDisplay(payload) {
-      const activeContact = document.querySelector('.contacts>li.active')
-      if (payload.from == userId) return false
-      if (payload.target == 'USER') {
-        if (
-          activeContact.dataset.id != payload.from ||
-          activeContact.dataset.target != payload.target
-        )
-          return false
-      } else {
-        if (
-          activeContact.dataset.id != payload.to ||
-          activeContact.dataset.target != payload.target
-        )
-          return false
-      }
-
-      return true
-    }
-
-    // UI code
-    const cloudContact = document.querySelector(
-      `.contacts>li[data-id="${userId}"][data-target="USER"]`
-    )
-    cloudContact.textContent = `Cloud ${userId}`
-    cloudContact.classList.add('active')
-
-    let contacts = document.querySelectorAll('.contacts>li')
-    Array.from(contacts).forEach((contact) => {
-      contact.onclick = () => {
-        const activeContact = document.querySelector('.contacts>li.active')
-        activeContact.classList.remove('active')
-        contact.classList.add('active')
-
-        changeContact()
-      }
-    })
-
-    function changeContact() {
-      const messagesBox = document.getElementById('messages')
-      messagesBox.innerHTML = ''
-
-      // fetch messages
-      const activeContact = document.querySelector('.contacts>li.active')
-
-      const payload = {
-        from: userId,
-        to: activeContact.dataset.id,
-        target: activeContact.dataset.target,
-      }
-
-      fetch(process.env.apiUrl + '/messages', {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => displayConversation(data.payload))
-    }
-
-    function displayConversation(msgs) {
-      msgs.forEach((msg) => {
-        if (msg.from == userId) displayMessages(msg.content, 'host')
-        else displayMessages(msg.content, 'guest')
-      })
-    }
-
-    function displayMessages(msg, agent = 'host') {
-      var item = document.createElement('li')
-      item.classList.add(agent)
-      item.textContent = msg
-      messages.appendChild(item)
-      window.scrollTo(0, document.body.scrollHeight)
-    }
-  },
+  components: { Header },
+  layout: 'bodyOnly',
+  mounted() {},
+  methods: {},
 }
 </script>
+
+<style></style>

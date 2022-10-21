@@ -1,0 +1,189 @@
+.setting {
+  display: grid;
+  grid-template-areas:
+    "navbar  search search "
+    "navbar  profile account"
+    "navbar profile  account";
+  grid-template-rows: 70px auto;
+  grid-template-columns: 100px auto;
+  gap: 1rem;
+  height: 94vh;
+}
+
+.header {
+  grid-area: navbar;
+}
+
+.search {
+  grid-area: search;
+}
+
+.Profile-Settings {
+  grid-area: profile;
+}
+
+.Account-Settings {
+  grid-area: account;
+}
+
+.Profile-Settings,
+.Account-Settings {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.Profile-Settings-setup {
+  padding: 1.5rem;
+}
+
+.Profile-Settings-setup ul {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Profile-Settings-setup ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Profile-Settings-setup img {
+  width: 25px;
+}
+
+.modal-content {
+  position: fixed;
+  width: 350px;
+  border-radius: 5px;
+  bottom: 5vh;
+  top: 50%;
+  left: 50%;
+  margin-top: -45vh;
+  /* Negative half of height. */
+  margin-left: -175px;
+  /* Negative half of width. */
+  background: #e5e7eb;
+  box-shadow: yellowgreen;
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.5s;
+  animation-name: zoom;
+  animation-duration: 0.5s;
+  overflow: auto;
+}
+
+.update {
+  z-index: 1000001;
+}
+
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: fade 0.5s linear;
+}
+
+.profile-introduct {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+.profile-assets/image {
+  background-color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.profile-infor {
+  padding: 1rem;
+  background-color: #ffffff;
+}
+
+.profile-infor-detail div {
+  display: flex;
+  column-gap: 20px;
+  line-height: 2rem;
+}
+
+.profile-infor-detail div p {
+  width: 100px;
+}
+
+.profile-change {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 5rem;
+  background-color: #ffffff;
+}
+
+@-webkit-keyframes top {
+  from {
+    -webkit-transform: translateY(-100%);
+  }
+
+  to {
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes top {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.zoom-modal {
+  display: block;
+}
