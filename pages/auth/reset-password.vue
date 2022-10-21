@@ -107,9 +107,11 @@
 </template>
 
 <script>
+import BasePageVue from '~/components/BasePage.vue'
 export default {
   auth: 'guest',
   layout: 'bodyOnly',
+  extends: BasePageVue,
   data() {
     return {
       form: {
@@ -145,7 +147,7 @@ export default {
       const responsePromise = this.$axios
         .post('/mail/reset-password', { email: this.form.email })
         .then((res) => {
-          this.logger(res.data)
+          this.log(res.data)
           this.setCurrentForm(this.listForm.emailSentForm)
         })
         .finally(() => this.toggleProcessing())
@@ -162,7 +164,7 @@ export default {
       const responsePromise = this.$axios
         .post('/auth/reset-password', payload)
         .then((res) => {
-          this.logger(res.data)
+          this.log(res.data)
           this.setCurrentForm(this.listForm.resetPasswordDoneForm)
         })
         .finally(() => this.toggleProcessing())

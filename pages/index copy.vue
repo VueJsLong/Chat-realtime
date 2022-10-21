@@ -33,7 +33,7 @@ export default {
     _this.socket = this.$nuxtSocket({
       name: 'main', // select "main" socket from nuxt.config.js - we could also skip this because "main" is the default socket
     })
-    this.logger('Console log thông qua this.logger', _this.socket)
+    this.log('Console log thông qua this.log', _this.socket)
 
     //
     let userId = prompt('Chọn userId từ 1-3 thay cho login', 0)

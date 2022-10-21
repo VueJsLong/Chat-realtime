@@ -10,8 +10,8 @@
 export default {
   methods: {
     refresh() {
-      this.logger('Auth', this.$auth)
-      this.logger('Auth user', this.$auth.user)
+      this.log('Auth', this.$auth)
+      this.log('Auth user', this.$auth.user)
       this.$auth.refreshTokens()
     },
   },

@@ -70,8 +70,10 @@
 </template>
 
 <script>
+import BasePageVue from '~/components/BasePage.vue'
 export default {
   layout: 'bodyOnly',
+  extends: BasePageVue,
   data() {
     return {
       form: {
@@ -107,7 +109,7 @@ export default {
       const responsePromise = this.$auth
         .loginWith('local', { data: this.form })
         .then((res) => {
-          this.logger(res.data)
+          this.log(res.data)
         })
         .finally(() => this.toggleProcessing())
       this.axiosLoadError(responsePromise)

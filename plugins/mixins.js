@@ -6,18 +6,7 @@ if (!Vue.__my_mixin__) {
   Vue.__my_mixin__ = true
 
   Vue.mixin({
-    data() {
-      return {
-        isProcessing: false,
-      }
-    },
     methods: {
-      toggleProcessing() {
-        this.isProcessing = !this.isProcessing
-      },
-      setProcessing(newState) {
-        this.isProcessing = newState
-      },
       axiosLoadError(p, callback = () => {}) {
         p.catch((error) => {
           if (error.response) {
@@ -30,7 +19,7 @@ if (!Vue.__my_mixin__) {
           callback()
         })
       },
-      logger(...args) {
+      log(...args) {
         console.log(...args)
       },
       goBack() {
