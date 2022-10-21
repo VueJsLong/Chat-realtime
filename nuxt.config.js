@@ -90,7 +90,7 @@ export default {
             method: 'post',
           },
           user: {
-            url: '/auth/profile',
+            url: '/me/profile',
             method: 'get',
           },
           logout: { url: '/auth/logout', method: 'post' },
