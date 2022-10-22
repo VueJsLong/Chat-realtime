@@ -29,11 +29,11 @@ export default {
     return {}
   },
   mounted() {
-    var _this = this
-    _this.socket = this.$nuxtSocket({
-      name: 'main', // select "main" socket from nuxt.config.js - we could also skip this because "main" is the default socket
+    var me = this
+    me.socket = this.$nuxtSocket({
+      name: 'main',
     })
-    this.log('Console log thông qua this.log', _this.socket)
+    this.log('Console log thông qua this.log', me.socket)
 
     //
     let userId = prompt('Chọn userId từ 1-3 thay cho login', 0)
@@ -50,9 +50,9 @@ export default {
         target: activeContact.dataset.target,
       }
       if (input.value) {
-        _this.socket.emit(_this.$socketEvent.chat.typingStart, payload)
+        me.socket.emit(me.$socketEvent.chat.typingStart, payload)
       } else {
-        _this.socket.emit(_this.$socketEvent.chat.typingEnd, payload)
+        me.socket.emit(me.$socketEvent.chat.typingEnd, payload)
       }
     })
 
@@ -67,7 +67,7 @@ export default {
           msg: input.value,
           target: activeContact.dataset.target,
         }
-        _this.socket.emit(_this.$socketEvent.chat.sendMessages, payload)
+        me.socket.emit(me.$socketEvent.chat.sendMessages, payload)
 
         // side effect
         input.value = ''
@@ -76,12 +76,12 @@ export default {
     })
 
     // Socket event listener
-    _this.socket.on('connect', () => {
-      // displayMessages(`Your socketID: ${_this.socket.id}`)
-      _this.socket.emit(_this.$socketEvent.account.login, userId)
+    me.socket.on('connect', () => {
+      // displayMessages(`Your socketID: ${me.socket.id}`)
+      me.socket.emit(me.$socketEvent.account.login, userId)
     })
 
-    _this.socket.on(_this.$socketEvent.chat.typingStart, function (payload) {
+    me.socket.on(me.$socketEvent.chat.typingStart, function (payload) {
       let typingContact = null
       if (payload.target == 'USER')
         typingContact = document.querySelector(
@@ -93,7 +93,7 @@ export default {
         )
       typingContact.classList.add('typing')
     })
-    _this.socket.on(_this.$socketEvent.chat.typingEnd, function (payload) {
+    me.socket.on(me.$socketEvent.chat.typingEnd, function (payload) {
       let typingContact = null
       if (payload.target == 'USER')
         typingContact = document.querySelector(
@@ -106,12 +106,9 @@ export default {
       typingContact.classList.remove('typing')
     })
 
-    _this.socket.on(
-      _this.$socketEvent.chat.receiveMessages,
-      function (payload) {
-        if (isMessagesCanDisplay(payload)) displayMessages(payload.msg, 'guest')
-      }
-    )
+    me.socket.on(me.$socketEvent.chat.receiveMessages, function (payload) {
+      if (isMessagesCanDisplay(payload)) displayMessages(payload.msg, 'guest')
+    })
 
     function isMessagesCanDisplay(payload) {
       const activeContact = document.querySelector('.contacts>li.active')

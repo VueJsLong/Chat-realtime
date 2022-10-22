@@ -1,28 +1,28 @@
-@import url(./animation.css);
+@import url(/css/animation.css);
 
 @font-face {
   font-family: Roboto;
-  src: url(..font/Roboto/Roboto-Regular.ttf);
+  src: url(/font/Roboto/Roboto-Regular.ttf);
 }
 
 @font-face {
   font-family: Roboto-thin;
-  src: url(..font/Roboto/Roboto-Thin.ttf);
+  src: url(/font/Roboto/Roboto-Thin.ttf);
 }
 
 @font-face {
   font-family: Roboto-light;
-  src: url(..font/Roboto/Roboto-Light.ttf);
+  src: url(/font/Roboto/Roboto-Light.ttf);
 }
 
 @font-face {
   font-family: Roboto-medium;
-  src: url(..font/Roboto/Roboto-Medium.ttf);
+  src: url(/font/Roboto/Roboto-Medium.ttf);
 }
 
 @font-face {
   font-family: Roboto-bold;
-  src: url(..font/Roboto/Roboto-Bold.ttf);
+  src: url(/font/Roboto/Roboto-Bold.ttf);
 }
 
 :root {

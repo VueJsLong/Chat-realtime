@@ -95,7 +95,7 @@ export default {
           maxAge: 60 * 60 * 24 * 7,
         },
         user: {
-          property: 'data.email',
+          property: 'data',
           autoFetch: true,
         },
         endpoints: {
