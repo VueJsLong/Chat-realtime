@@ -22,6 +22,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/css/common.css' },
+      { rel: 'stylesheet', href: '/css/components/button.css' },
+      { rel: 'stylesheet', href: '/css/components/scrollbar.css' },
       { rel: 'stylesheet', href: '/css/login-page.css' },
       { rel: 'stylesheet', href: '/css/common.css' },
       { rel: 'stylesheet', href: '/css/login-page.css' },
@@ -30,11 +32,11 @@ export default {
       { rel: 'stylesheet', href: '/css/override.css' },
       {
         rel: 'stylesheet',
-        href: '/lib/uicons-regular-straight.css',
+        href: 'https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css',
       },
       {
         rel: 'stylesheet',
-        href: '/lib/uicons-regular-rounded.css',
+        href: 'https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css',
       },
     ],
     script: [
@@ -53,7 +55,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/mixins', '~/plugins/socket.event.js'],
+  plugins: [
+    '~/plugins/mixins',
+    '~/plugins/socket.event.js',
+    '~/plugins/api.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

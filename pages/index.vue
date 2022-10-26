@@ -2,12 +2,7 @@
   <div class="message-page mess">
     <Header></Header>
     <div class="toolbar">
-      <div class="search">
-        <input type="text" placeholder="Tìm kiếm" />
-        <button class="search-btn m-icon-btn">
-          <i class="fi fi-rr-search input-search-icon"></i>
-        </button>
-      </div>
+      <search-box></search-box>
       <div class="groups">
         <div class="option">
           <p>Groups</p>

@@ -13,7 +13,7 @@ const socketEvent = {
   friend: {
     online: 'ONLINE',
     offline: 'OFFLINE',
-    requireFriend: 'REQUIRE_FRIEND',
+    requestFriend: 'REQUEST_FRIEND',
     acceptFriend: 'ACCEPT_FRIEND',
   },
 }

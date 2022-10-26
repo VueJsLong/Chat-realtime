@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img src="/img/Ellipse 1.png" alt="" class="thumnail" />
+    <img :src="thumbnail" alt="" class="thumbnail" :title="fullName" />
     <nav class="header-nav">
       <ul>
         <div>
@@ -30,6 +30,17 @@
 
 <script>
 export default {
+  name: 'Header',
+  computed: {
+    thumbnail() {
+      return this.$auth.user.thumbnail
+        ? this.$auth.user.thumbnail
+        : '/img/thumbnail-placeholder.png'
+    },
+    fullName() {
+      return this.$auth.user.fullName ? this.$auth.user.fullName : 'profile'
+    },
+  },
   methods: {
     async logout() {
       await this.$auth.logout('local')
