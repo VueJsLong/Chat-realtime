@@ -107,11 +107,11 @@
 </template>
 
 <script>
-import BasePageVue from '~/components/BasePage.vue'
+import BaseAuth from '~/components/BaseAuth.vue'
 export default {
   auth: 'guest',
-  layout: 'bodyOnly',
-  extends: BasePageVue,
+  layout: 'BodyOnly',
+  extends: BaseAuth,
   data() {
     return {
       form: {

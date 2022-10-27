@@ -22,6 +22,15 @@ if (!Vue.__my_mixin__) {
       log(...args) {
         console.log(...args)
       },
+      warn(...args) {
+        console.log(...args)
+      },
+      error(...args) {
+        console.error(...args)
+      },
+      debug(...args) {
+        console.debug(...args)
+      },
       goBack() {
         if (window) {
           window.history.back()

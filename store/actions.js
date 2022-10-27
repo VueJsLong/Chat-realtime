@@ -6,5 +6,8 @@ const actions = {
     vuexContext.commit('setLanguage', language)
     vuexContext.commit('resetStore')
   },
+  setSocket(vuexContext, socket) {
+    vuexContext.commit('setSocket', socket)
+  },
 }
 export default actions

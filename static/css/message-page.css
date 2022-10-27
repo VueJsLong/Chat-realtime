@@ -78,6 +78,7 @@
 
 .thumbnail {
   width: var(--header-thumbnail-height);
+  height: var(--header-thumbnail-height);
   margin: 1rem auto;
   border-radius: 50%;
   object-fit: cover;
@@ -158,6 +159,7 @@
 }
 
 .search .search-data .search-user__thumbnail img {
+  width: 36px;
   height: 36px;
   border-radius: 50%;
 }

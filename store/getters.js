@@ -5,6 +5,9 @@ const getters = {
   getLanguage(state) {
     return state.language
   },
+  getSocket(state) {
+    return state.socket
+  },
 }
 
 export default getters

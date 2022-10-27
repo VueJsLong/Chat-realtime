@@ -4,14 +4,14 @@
     <nav class="header-nav">
       <ul>
         <div>
-          <li class="nav-item active">
+          <nuxt-link to="/message" tag="li" class="nav-item">
             <i class="fi fi-rr-comment"></i>
             <span class="nav-item__tooltip">Tin nhắn</span>
-          </li>
-          <li class="nav-item">
+          </nuxt-link>
+          <nuxt-link to="/contact" tag="li" class="nav-item">
             <i class="fi fi-rr-users"></i>
             <span class="nav-item__tooltip">Bạn bè</span>
-          </li>
+          </nuxt-link>
         </div>
         <div>
           <li class="nav-item">

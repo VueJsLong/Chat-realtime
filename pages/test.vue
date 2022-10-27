@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  layout: 'bodyOnly',
+  layout: 'BodyOnly',
   mounted() {
     // connect socket
     var me = this
@@ -43,6 +43,14 @@ export default {
       me.AMsg.push(data.content)
       me.log('receiveMessage', data)
     })
+
+    this.$snotify.success('success')
+    this.$snotify.error('error')
+    this.$snotify.simple('simple')
+    this.$snotify.info('info')
+    this.$snotify.warning('warning')
+    this.$snotify.confirm('confirm')
+    this.$snotify.prompt('prompt')
   },
   data() {
     return {

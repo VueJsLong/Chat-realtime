@@ -59,6 +59,7 @@ export default {
     '~/plugins/mixins',
     '~/plugins/socket.event.js',
     '~/plugins/api.js',
+    '~/plugins/vue-snotify',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -142,6 +143,7 @@ export default {
 
   router: {
     middleware: ['auth'],
+    linkActiveClass: 'active',
   },
 
   loading: '~/components/Loading.vue',

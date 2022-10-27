@@ -84,7 +84,19 @@ export default {
         .catch()
     },
     sendRequestFriend() {
-      this.log(this.searchResult)
+      this.debug('Search result', this.searchResult)
+      const me = this
+      const socket = me.$store.getters.getSocket
+
+      // emit event
+      const payload = {
+        from: me.$auth.user.id,
+        to: this.searchResult.id,
+      }
+      socket.emit(me.$socketEvent.friend.requestFriend, payload, (res) => {
+        me.debug(res)
+        this.$snotify.success(me.$socketEvent.friend.requestFriend)
+      })
     },
   },
 }
