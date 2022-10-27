@@ -16,6 +16,7 @@ const socketEvent = {
     requestFriend: 'REQUEST_FRIEND',
     acceptFriend: 'ACCEPT_FRIEND',
   },
+  error: 'ERROR',
 }
 
 export default ({ app }, inject) => {

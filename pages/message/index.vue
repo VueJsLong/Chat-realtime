@@ -18,81 +18,15 @@
         </ul>
       </div>
       <div class="group-contacts ctm-scroll-y">
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
+        <div
+          class="chat-contact-item"
+          v-for="item in groupConversations"
+          :key="item.id"
+        >
+          <img :src="item.targetThumbnail" alt="" />
           <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 1</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 2</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Name 3</div>
-            <div>Hi Guys, Wassup!</div>
+            <div class="friends">{{ item.targetName }}</div>
+            <div>{{ item.content }}</div>
           </div>
         </div>
       </div>
@@ -112,81 +46,15 @@
         </ul>
       </div>
       <div class="recent-contacts ctm-scroll-y">
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
+        <div
+          class="chat-contact-item"
+          v-for="item in userConversations"
+          :key="item.id"
+        >
+          <img :src="item.targetThumbnail" alt="" />
           <div class="content">
-            <div class="friends">Friends Reunion</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Reunion</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <p>Friends Reunion</p>
-            <p>Hi Guys, Wassup!</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Reunion</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <p>Friends Reunion</p>
-            <p>Hi Guys, Wassup!</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Reunion</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <p>Friends Reunion</p>
-            <p>Hi Guys, Wassup!</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Reunion</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <p>Friends Reunion</p>
-            <p>Hi Guys, Wassup!</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <div class="friends">Friends Reunion</div>
-            <div>Hi Guys, Wassup!</div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/img/Ellipse 2.png" alt="" />
-          <div class="content">
-            <p>Friends Reunion</p>
-            <p>Hi Guys, Wassup!</p>
+            <div class="friends">{{ item.targetName }}</div>
+            <div>{{ item.content }}</div>
           </div>
         </div>
       </div>
@@ -203,10 +71,53 @@ export default {
   components: { Header, Message },
   layout: 'default',
   extends: BasePage,
+  data() {
+    return {
+      userConversations: [],
+      groupConversations: [],
+      currentPage: 1,
+    }
+  },
+  created() {},
   mounted() {
     this.debug('Message-page mounted.............................')
+    this.getUserConversations()
+    this.getGroupConversations()
   },
-  methods: {},
+  methods: {
+    async getUserConversations(page = 1, size = 10) {
+      this.currentPage = page
+      const params = {
+        page: page,
+        size: size,
+        target: 'USER',
+      }
+      this.$axios
+        .get(this.$api.conversation, { params })
+        .then((res) => {
+          this.userConversations = res.data.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    async getGroupConversations(page = 1, size = 10) {
+      this.currentPage = page
+      const params = {
+        page: page,
+        size: size,
+        target: 'GROUP',
+      }
+      this.$axios
+        .get(this.$api.conversation, { params })
+        .then((res) => {
+          this.groupConversations = res.data.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
 }
 </script>
 
