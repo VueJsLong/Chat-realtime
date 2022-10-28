@@ -22,123 +22,63 @@
           <div class="chat-box__content ctm-scroll-y">
             <Message></Message>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content"
                 >msg Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Quia voluptates iste dolore voluptate laboriosam commodi, eum
@@ -147,11 +87,7 @@
               >
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content"
                 >msg Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Praesentium nesciunt quibusdam aliquam ducimus eius maiores odio
@@ -160,139 +96,71 @@
               >
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message guest">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
             <div class="chat-content__message host">
-              <img
-                class="chat-message__thumbnail"
-                src="/img/Ellipse 2.png"
-                alt="thumbnail"
-              />
+              <img class="chat-message__thumbnail" src="/img/Ellipse 2.png" />
               <span class="chat-message__content">msg</span>
             </div>
           </div>

@@ -1,6 +1,19 @@
 <template>
   <div class="header">
-    <img :src="thumbnail" alt="" class="thumbnail" :title="fullName" />
+    <div></div>
+    <div class="option">
+      <ul class="option-thumbnail">
+        <li class="option-click">
+          <img :src="thumbnail" alt="" class="thumbnail" :title="fullName" />
+          <ul class="menu">
+            <li><a href="/">Hồ sơ của bạn</a></li>
+            <li><a href="/">Cài đặt</a></li>
+            <li><a href="/">Đăng xuất</a></li>
+          </ul>
+        </li>
+      </ul>
+      <profile />
+    </div>
     <nav class="header-nav">
       <ul>
         <div>
@@ -29,8 +42,10 @@
 </template>
 
 <script>
+import Profile from './Profile'
 export default {
   name: 'Header',
+  components: [Profile],
   computed: {
     thumbnail() {
       return this.$auth.user.thumbnail

@@ -8,6 +8,9 @@ const onMouseUp = (e) => {
     $('.option ul li ul').removeClass('optionSetting')
   }
 }
+$('#thumbnail').click(function() {
+  
+})
 $(document).ready(function () {
   // xử lí option
   $('.option-click').click(function (e) {
