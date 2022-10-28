@@ -8,6 +8,9 @@ const getters = {
   getSocket(state) {
     return state.socket
   },
+  getConversation(state) {
+    return state.conversation
+  },
 }
 
 export default getters

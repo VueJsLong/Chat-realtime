@@ -19,9 +19,10 @@
       </div>
       <div class="group-contacts ctm-scroll-y">
         <div
-          class="chat-contact-item"
+          class="item"
           v-for="item in groupConversations"
           :key="item.id"
+          @click="setConversation(item)"
         >
           <img :src="item.targetThumbnail" alt="" />
           <div class="content">
@@ -47,9 +48,10 @@
       </div>
       <div class="recent-contacts ctm-scroll-y">
         <div
-          class="chat-contact-item"
+          class="item"
           v-for="item in userConversations"
           :key="item.id"
+          @click="setConversation(item)"
         >
           <img :src="item.targetThumbnail" alt="" />
           <div class="content">
@@ -116,6 +118,15 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    },
+    setConversation(conversation) {
+      const { targetId, targetName, targetThumbnail, target } = conversation
+      this.$store.dispatch('setConversation', {
+        targetId,
+        targetName,
+        targetThumbnail,
+        target,
+      })
     },
   },
 }

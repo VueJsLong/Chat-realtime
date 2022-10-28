@@ -35,7 +35,7 @@ export default {
     thumbnail() {
       return this.$auth.user.thumbnail
         ? this.$auth.user.thumbnail
-        : '/img/thumbnail-placeholder.png'
+        : '/img/thumbnail-placeholder.jpg'
     },
     fullName() {
       return this.$auth.user.fullName ? this.$auth.user.fullName : 'profile'
@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     async logout() {
+      this.$store.dispatch('resetStore')
       await this.$auth.logout('local')
     },
   },

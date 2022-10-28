@@ -1,3 +1,5 @@
+import defaultState from './default.state'
+
 const mutations = {
   setLoading(state, isLoading) {
     state.isLoading = isLoading
@@ -8,6 +10,11 @@ const mutations = {
   setSocket(state, socket) {
     state.socket = socket
   },
-  resetStore(state) {},
+  setConversation(state, conversation) {
+    state.conversation = conversation
+  },
+  resetStore(state) {
+    state = { ...defaultState }
+  },
 }
 export default mutations
