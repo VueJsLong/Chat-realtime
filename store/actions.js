@@ -12,8 +12,17 @@ const actions = {
   setSocket(vuexContext, socket) {
     vuexContext.commit('setSocket', socket)
   },
-  setConversation(vuexContext, conversation) {
-    vuexContext.commit('setConversation', conversation)
+  setUserConversations(vuexContext, payload) {
+    vuexContext.commit('setUserConversations', payload)
+  },
+  setGroupConversations(vuexContext, payload) {
+    vuexContext.commit('setGroupConversations', payload)
+  },
+  setConversation(vuexContext, payload) {
+    vuexContext.commit('setConversation', payload)
+  },
+  setChatMessages(vuexContext, payload) {
+    vuexContext.commit('setChatMessages', payload)
   },
 }
 export default actions

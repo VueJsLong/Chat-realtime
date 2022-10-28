@@ -1,15 +1,12 @@
 <template>
-  <div class="chat-content__message host">
+  <div class="chat-content__message" :class="isHost ? 'host' : 'guest'">
     <img
       class="chat-message__thumbnail"
-      src="/img/Ellipse 2.png"
+      :src="data.from.thumbnail"
       alt="thumbnail"
     />
     <span class="chat-message__content"
-      >msg Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolor
-      velit voluptas cupiditate, maxime dignissimos? Voluptates repellendus
-      eligendi inventore, ipsa vel ipsum nobis ipsam repellat illo debitis
-      incidunt! Ex, fugiat.
+      >{{ data.content }}
       <div class="chat-message__context-menu">
         <div class="chat-context-menu__item">
           <button class="m-icon-btn">
@@ -35,7 +32,7 @@
               </button>
               <span class="context-menu-item__tooltip">Dịch</span>
             </div>
-            <div class="chat-context-menu__item">
+            <div class="chat-context-menu__item recall_btn">
               <button class="m-icon-btn">
                 <i class="fi fi-rr-trash"></i>
               </button>
@@ -50,11 +47,41 @@
 
 <script>
 export default {
-  name: 'Message',
+  name: 'ChatMessage',
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default() {
+        return {
+          from: {
+            id: null,
+            fullName: null,
+            thumbnail: null,
+          },
+          to: null,
+          content: null,
+          target: null,
+          id: null,
+          referTo: null,
+        }
+      },
+    },
+  },
   data() {
     return {}
   },
-  computed: {},
+  computed: {
+    isHost() {
+      let currentUser = this.$auth.user
+      if (this.data.target == 'GROUP') {
+        return this.data.from.id == currentUser.id
+      } else {
+        return this.data.from.id == currentUser.id
+      }
+    },
+  },
+  methods: {},
 }
 </script>
 

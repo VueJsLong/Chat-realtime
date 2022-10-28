@@ -11,6 +11,15 @@ const getters = {
   getConversation(state) {
     return state.conversation
   },
+  getUserConversations(state) {
+    return state.userConversations
+  },
+  getGroupConversations(state) {
+    return state.groupConversations
+  },
+  getChatMessages(state) {
+    return state.chatMessages
+  },
 }
 
 export default getters

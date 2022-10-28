@@ -36,6 +36,11 @@ if (!Vue.__my_mixin__) {
           window.history.back()
         }
       },
+      appendChatMessages(chatMessage) {
+        const storedChatMessages = this.$store.getters.getChatMessages
+        storedChatMessages.push(chatMessage)
+        this.$store.dispatch('setChatMessages', storedChatMessages)
+      },
     },
   })
 }

@@ -66,11 +66,9 @@
 
 <script>
 import BasePage from '~/components/BasePage.vue'
-import Header from '~/components/Header.vue'
-import Message from '~/components/Message.vue'
 export default {
   name: 'MessagePage',
-  components: { Header, Message },
+  components: {},
   layout: 'default',
   extends: BasePage,
   data() {
@@ -80,6 +78,14 @@ export default {
       currentPage: 1,
     }
   },
+  watch: {
+    '$store.state.userConversations'() {
+      this.userConversations = this.$store.getters.getUserConversations
+    },
+    '$store.state.groupConversations'() {
+      this.groupConversations = this.$store.getters.getGroupConversations
+    },
+  },
   created() {},
   mounted() {
     this.debug('Message-page mounted.............................')
@@ -87,7 +93,7 @@ export default {
     this.getGroupConversations()
   },
   methods: {
-    async getUserConversations(page = 1, size = 10) {
+    async getUserConversations(page = 1, size = 20) {
       this.currentPage = page
       const params = {
         page: page,
@@ -97,13 +103,13 @@ export default {
       this.$axios
         .get(this.$api.conversation, { params })
         .then((res) => {
-          this.userConversations = res.data.data
+          this.$store.dispatch('setUserConversations', res.data.data)
         })
         .catch((err) => {
           console.log(err)
         })
     },
-    async getGroupConversations(page = 1, size = 10) {
+    async getGroupConversations(page = 1, size = 20) {
       this.currentPage = page
       const params = {
         page: page,
@@ -113,7 +119,7 @@ export default {
       this.$axios
         .get(this.$api.conversation, { params })
         .then((res) => {
-          this.groupConversations = res.data.data
+          this.$store.dispatch('setGroupConversations', res.data.data)
         })
         .catch((err) => {
           console.log(err)

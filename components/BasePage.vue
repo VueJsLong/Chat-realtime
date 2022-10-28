@@ -23,7 +23,10 @@ export default {
     })
     this.$store.dispatch('setSocket', me.socket)
     this.debug('Socket created', me.socket)
+
+    // listen events
     this.listenFriendRequestEvent()
+    this.listenMessageReceiveEvent()
     this.listenExceptionEvent()
     this.listenErrorEvent()
   },
@@ -39,6 +42,14 @@ export default {
       me.socket.on(me.$socketEvent.friend.requestFriend, (payload) => {
         me.debug('Listen request friend', payload)
         this.$snotify.success(me.$socketEvent.friend.requestFriend)
+      })
+    },
+    listenMessageReceiveEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.chat.receiveMessages, (payload) => {
+        me.debug('Listen message receive', payload)
+        // this.$snotify.success(me.$socketEvent.chat.receiveMessages)
+        me.appendChatMessages(payload)
       })
     },
     listenExceptionEvent() {

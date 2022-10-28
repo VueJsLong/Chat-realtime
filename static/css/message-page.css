@@ -207,7 +207,8 @@
   padding: 0.5rem;
 }
 
-.groups .item:hover {
+.groups .item:hover,
+.recents .item:hover {
   background-color: rgb(218, 218, 218);
   cursor: pointer;
 }
@@ -247,6 +248,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  flex: 1;
 }
 
 .chat-introduction {
@@ -309,6 +311,7 @@
 .chat-content__message.guest+.chat-content__message.guest .chat-message__thumbnail {
   /* display: none; */
   opacity: 0;
+  /* opacity: 1; */
 }
 
 
@@ -391,10 +394,15 @@
   flex-direction: row;
 }
 
+.chat-content__message.guest .chat-context-menu__child-item .recall_btn {
+  display: none;
+}
+
 /* chat context host */
 .chat-content__message.host .chat-message__context-menu {
   float: right;
 }
+
 
 /* chat footer */
 

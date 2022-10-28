@@ -10,8 +10,17 @@ const mutations = {
   setSocket(state, socket) {
     state.socket = socket
   },
-  setConversation(state, conversation) {
-    state.conversation = conversation
+  setUserConversations(state, payload) {
+    state.userConversations = payload
+  },
+  setGroupConversations(state, payload) {
+    state.groupConversations = payload
+  },
+  setConversation(state, payload) {
+    state.conversation = payload
+  },
+  setChatMessages(state, payload) {
+    state.chatMessages = payload
   },
   resetStore(state) {
     state = { ...defaultState }
