@@ -1,18 +1,17 @@
 <template>
   <div class="header">
-    <div></div>
     <div class="option">
       <ul class="option-thumbnail">
         <li class="option-click">
           <img :src="thumbnail" alt="" class="thumbnail" :title="fullName" />
           <ul class="menu">
-            <li><a href="/">Hồ sơ của bạn</a></li>
+            <li><a href="#" @click="modalProfile">Hồ sơ của bạn</a></li>
             <li><a href="/">Cài đặt</a></li>
             <li><a href="/">Đăng xuất</a></li>
           </ul>
         </li>
       </ul>
-      <profile />
+      <Profile ref="profile" />
     </div>
     <nav class="header-nav">
       <ul>
@@ -45,7 +44,7 @@
 import Profile from './Profile'
 export default {
   name: 'Header',
-  components: [Profile],
+  components: { Profile },
   computed: {
     thumbnail() {
       return this.$auth.user.thumbnail
@@ -60,8 +59,38 @@ export default {
     async logout() {
       await this.$auth.logout('local')
     },
+    modalProfile() {
+      this.$refs.profile.show()
+    },
   },
 }
 </script>
 
-<style></style>
+<style>
+.modal.fade .modal-dialog {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.5s;
+  animation-name: zoom;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+</style>
