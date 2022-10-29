@@ -41,6 +41,7 @@ export default {
       const me = this
       me.socket.on(me.$socketEvent.friend.requestFriend, (payload) => {
         me.debug('Listen request friend', payload)
+        me.appendFriends(payload)
         this.$snotify.success(me.$socketEvent.friend.requestFriend)
       })
     },

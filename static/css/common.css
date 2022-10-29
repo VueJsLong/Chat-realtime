@@ -161,3 +161,8 @@ input:focus {
 .ctm-scroll-y::-webkit-scrollbar {
   width: 16px;
 }
+
+.m-thumbnail {
+  border: 1px solid var(--wcag-border-color);
+  border-radius: 50%;
+}

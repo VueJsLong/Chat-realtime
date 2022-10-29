@@ -41,6 +41,11 @@ if (!Vue.__my_mixin__) {
         storedChatMessages.push(chatMessage)
         this.$store.dispatch('setChatMessages', storedChatMessages)
       },
+      appendFriends(friend) {
+        const storedFriends = this.$store.getters.getFriends
+        storedFriends.push(friend)
+        this.$store.dispatch('setFriends', storedFriends)
+      },
     },
   })
 }

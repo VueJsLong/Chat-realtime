@@ -20,6 +20,9 @@ const getters = {
   getChatMessages(state) {
     return state.chatMessages
   },
+  getFriends(state) {
+    return state.friends
+  },
 }
 
 export default getters

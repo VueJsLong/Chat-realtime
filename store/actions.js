@@ -24,5 +24,8 @@ const actions = {
   setChatMessages(vuexContext, payload) {
     vuexContext.commit('setChatMessages', payload)
   },
+  setFriends(vuexContext, payload) {
+    vuexContext.commit('setFriends', payload)
+  },
 }
 export default actions

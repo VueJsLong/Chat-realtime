@@ -95,6 +95,7 @@ export default {
       }
       socket.emit(me.$socketEvent.friend.requestFriend, payload, (res) => {
         me.debug(res)
+        me.appendFriends(res)
         this.$snotify.success(me.$socketEvent.friend.requestFriend)
       })
     },

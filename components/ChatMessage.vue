@@ -1,7 +1,7 @@
 <template>
   <div class="chat-content__message" :class="isHost ? 'host' : 'guest'">
     <img
-      class="chat-message__thumbnail"
+      class="chat-message__thumbnail m-thumbnail"
       :src="data.from.thumbnail"
       alt="thumbnail"
     />

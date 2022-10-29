@@ -3,7 +3,11 @@
     <div class="chat-box">
       <div class="chat-box__header">
         <div class="item">
-          <img :src="conversation.targetThumbnail" alt="thumbnail" />
+          <img
+            :src="conversation.targetThumbnail"
+            alt="thumbnail"
+            class="m-thumbnail"
+          />
           <div class="content">
             <div class="friends-message"></div>
             <div>{{ conversation.targetName }}</div>
