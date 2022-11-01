@@ -8,27 +8,14 @@ export default {
       socket: {},
     }
   },
+  watch: {
+    $auth() {
+      this.initSocket()
+    },
+  },
   mounted() {
     this.debug('Base-page mounted.............................')
-    let storedSocket = this.$store.getters.getSocket
-    if (storedSocket) return
-
-    // create socket
-    var me = this
-    me.socket = this.$nuxtSocket({
-      name: 'main',
-      query: {
-        bearerToken: me.$auth.strategy.token.get(),
-      },
-    })
-    this.$store.dispatch('setSocket', me.socket)
-    this.debug('Socket created', me.socket)
-
-    // listen events
-    this.listenFriendRequestEvent()
-    this.listenMessageReceiveEvent()
-    this.listenExceptionEvent()
-    this.listenErrorEvent()
+    this.initSocket()
   },
   methods: {
     toggleProcessing() {
@@ -36,6 +23,27 @@ export default {
     },
     setProcessing(newState) {
       this.isProcessing = newState
+    },
+    initSocket() {
+      let storedSocket = this.$store.getters.getSocket
+      if (storedSocket) return
+
+      // create socket
+      var me = this
+      me.socket = this.$nuxtSocket({
+        name: 'main',
+        query: {
+          bearerToken: me.$auth.strategy.token.get(),
+        },
+      })
+      this.$store.dispatch('setSocket', me.socket)
+      this.debug('Socket created', me.socket)
+
+      // listen events
+      this.listenFriendRequestEvent()
+      this.listenMessageReceiveEvent()
+      this.listenExceptionEvent()
+      this.listenErrorEvent()
     },
     listenFriendRequestEvent() {
       const me = this

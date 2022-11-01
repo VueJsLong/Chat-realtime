@@ -26,7 +26,7 @@
     >
       <div class="search-data" v-if="searchResult">
         <div class="search-user__thumbnail">
-          <img :src="thumbnail" alt="" />
+          <img :src="thumbnail" alt="" referrerpolicy="no-referrer" />
         </div>
         <div class="search-user__fullName">{{ searchResult.fullName }}</div>
         <div class="search-user__addFriendBtn">

@@ -1,6 +1,12 @@
 <template>
   <div class="header">
-    <img :src="thumbnail" alt="" class="thumbnail" :title="fullName" />
+    <img
+      :src="thumbnail"
+      alt=""
+      class="thumbnail"
+      :title="fullName"
+      referrerpolicy="no-referrer"
+    />
     <nav class="header-nav">
       <ul>
         <div>

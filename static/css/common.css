@@ -126,6 +126,13 @@ input:focus {
   text-align: center;
 }
 
+.--text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 /* button */
 .m-icon-btn {
   border: unset;
@@ -165,4 +172,16 @@ input:focus {
 .m-thumbnail {
   border: 1px solid var(--wcag-border-color);
   border-radius: 50%;
+}
+
+/* text select-color */
+::-moz-selection {
+  /* Code for Firefox */
+  color: var(--wcag-white-color);
+  background: var(--btn-primary-hover-color);
+}
+
+::selection {
+  color: var(--wcag-white-color);
+  background: var(--btn-primary-hover-color);
 }

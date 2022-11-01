@@ -338,7 +338,7 @@ export default {
         .catch()
     },
     nextDigit(event, current) {
-      console.log(event)
+      this.log(event)
       if (!Number(event.key) && Number(event.key) != 0) return
       this.otp[`otpDigit${current}`] = event.key
       if (current < 6) {

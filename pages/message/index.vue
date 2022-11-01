@@ -24,10 +24,16 @@
           :key="item.id"
           @click="setConversation(item)"
         >
-          <img :src="item.targetThumbnail" alt="" />
+          <img
+            :src="item.targetThumbnail"
+            alt=""
+            referrerpolicy="no-referrer"
+          />
           <div class="content">
             <div class="friends">{{ item.targetName }}</div>
-            <div>{{ item.content }}</div>
+            <div class="preview-message --text-ellipsis">
+              {{ item.content }}
+            </div>
           </div>
         </div>
       </div>
@@ -53,10 +59,16 @@
           :key="item.id"
           @click="setConversation(item)"
         >
-          <img :src="item.targetThumbnail" alt="" />
+          <img
+            :src="item.targetThumbnail"
+            alt=""
+            referrerpolicy="no-referrer"
+          />
           <div class="content">
             <div class="friends">{{ item.targetName }}</div>
-            <div>{{ item.content }}</div>
+            <div class="preview-message --text-ellipsis">
+              {{ item.content }}
+            </div>
           </div>
         </div>
       </div>
@@ -96,9 +108,9 @@ export default {
     async getUserConversations(page = 1, size = 20) {
       this.currentPage = page
       const params = {
+        target: 'USER',
         page: page,
         size: size,
-        target: 'USER',
       }
       this.$axios
         .get(this.$api.conversation, { params })
@@ -106,15 +118,15 @@ export default {
           this.$store.dispatch('setUserConversations', res.data.data)
         })
         .catch((err) => {
-          console.log(err)
+          this.log(err)
         })
     },
     async getGroupConversations(page = 1, size = 20) {
       this.currentPage = page
       const params = {
+        target: 'GROUP',
         page: page,
         size: size,
-        target: 'GROUP',
       }
       this.$axios
         .get(this.$api.conversation, { params })
@@ -122,7 +134,7 @@ export default {
           this.$store.dispatch('setGroupConversations', res.data.data)
         })
         .catch((err) => {
-          console.log(err)
+          this.log(err)
         })
     },
     setConversation(conversation) {

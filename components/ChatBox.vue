@@ -5,8 +5,9 @@
         <div class="item">
           <img
             :src="conversation.targetThumbnail"
-            alt="thumbnail"
+            alt=""
             class="m-thumbnail"
+            referrerpolicy="no-referrer"
           />
           <div class="content">
             <div class="friends-message"></div>
@@ -21,9 +22,10 @@
       </div>
       <div ref="chatBoxContent" class="chat-box__content ctm-scroll-y">
         <ChatMessage
-          v-for="item in chatMessages"
+          v-for="(item, index) in chatMessages"
           :key="item.id"
           :data="item"
+          :isSameSource="isMessagesSameSource(index)"
         ></ChatMessage>
       </div>
       <div class="chat-box__footer">
@@ -80,7 +82,7 @@ export default {
   },
   methods: {
     getCurrentConversation(page = 1, size = 20) {
-      console.log('change conversation', this.conversation)
+      this.log('change conversation', this.conversation)
       const params = {
         target: this.conversation.target,
         page: page,
@@ -94,7 +96,7 @@ export default {
           this.$store.dispatch('setChatMessages', res.data.data)
         })
         .catch((err) => {
-          console.log(err)
+          this.log(err)
         })
     },
     async handleCtrlEnter() {
@@ -118,6 +120,12 @@ export default {
         me.appendChatMessages(res)
         me.messageInput = ''
       })
+    },
+    isMessagesSameSource(index) {
+      if (index == 0) return false
+      return (
+        this.chatMessages[index].from.id == this.chatMessages[index - 1].from.id
+      )
     },
     chatBoxScrollBottom() {
       const chatBoxContent = this.$refs.chatBoxContent

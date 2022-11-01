@@ -1,12 +1,18 @@
 <template>
-  <div class="chat-content__message" :class="isHost ? 'host' : 'guest'">
+  <div
+    class="chat-content__message"
+    :class="{ host: isHost, guest: !isHost, '--same-source': isSameSource }"
+  >
     <img
       class="chat-message__thumbnail m-thumbnail"
       :src="data.from.thumbnail"
-      alt="thumbnail"
+      alt=""
+      referrerpolicy="no-referrer"
     />
     <span class="chat-message__content"
-      >{{ data.content }}
+      ><span :title="getCreateTime">
+        {{ data.content }}
+      </span>
       <div class="chat-message__context-menu">
         <div class="chat-context-menu__item">
           <button class="m-icon-btn">
@@ -64,7 +70,15 @@ export default {
           target: null,
           id: null,
           referTo: null,
+          createdAt: null,
         }
+      },
+    },
+    isSameSource: {
+      type: Boolean,
+      required: false,
+      default() {
+        return false
       },
     },
   },
@@ -79,6 +93,10 @@ export default {
       } else {
         return this.data.from.id == currentUser.id
       }
+    },
+    getCreateTime() {
+      let createdTime = new Date(this.data.createdAt)
+      return createdTime.toLocaleTimeString()
     },
   },
   methods: {},

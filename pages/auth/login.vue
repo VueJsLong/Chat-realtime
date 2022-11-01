@@ -115,7 +115,7 @@ export default {
       this.axiosLoadError(responsePromise)
     },
     loginWithToken(access_token, refresh_token) {
-      console.log('loginWithToken: ', access_token, refresh_token)
+      this.log('loginWithToken: ', access_token, refresh_token)
       this.$auth
         .setStrategy('local')
         .then(() =>

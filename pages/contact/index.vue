@@ -25,7 +25,11 @@
           @click="setConversation(friend.from)"
         >
           <div class="search-user__thumbnail">
-            <img :src="friend.from.thumbnail" alt="" />
+            <img
+              :src="friend.from.thumbnail"
+              alt=""
+              referrerpolicy="no-referrer"
+            />
           </div>
           <div class="search-user__fullName">{{ friend.from.fullName }}</div>
           <div class="search-user__addFriendBtn">
@@ -63,7 +67,11 @@
           @click="setConversation(friend.to)"
         >
           <div class="search-user__thumbnail">
-            <img :src="friend.to.thumbnail" alt="" />
+            <img
+              :src="friend.to.thumbnail"
+              alt=""
+              referrerpolicy="no-referrer"
+            />
           </div>
           <div class="search-user__fullName">{{ friend.to.fullName }}</div>
           <div class="search-user__addFriendBtn"></div>
@@ -111,7 +119,7 @@ export default {
           this.$store.dispatch('setFriends', res.data.data)
         })
         .catch((err) => {
-          console.log(err)
+          this.log(err)
         })
     },
     getRequestFriend() {
