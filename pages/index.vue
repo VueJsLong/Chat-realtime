@@ -2,7 +2,7 @@
 
 <script>
 export default {
-  name: 'Index page',
+  name: 'IndexPage',
   layout: 'BodyOnly',
   middleware: [
     function ({ redirect }) {

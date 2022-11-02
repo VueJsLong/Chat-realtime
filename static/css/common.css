@@ -132,6 +132,11 @@ input:focus {
   text-overflow: ellipsis;
 }
 
+.--button-reset {
+  outline: unset;
+  background-color: unset;
+  border: unset;
+}
 
 /* button */
 .m-icon-btn {

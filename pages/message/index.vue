@@ -5,13 +5,13 @@
       <div class="option">
         <p>Groups</p>
         <ul>
-          <li class="option-click">
-            <div>
-              <img src="/img/option.png" alt="" />
+          <li>
+            <div class="option-click">
+              <button class="option-btn --button-reset">
+                <i class="fi fi-rs-menu-dots-vertical"></i>
+              </button>
               <ul class="menu">
-                <li><a href="/">Cài đặt</a></li>
-                <li><a href="/">Tùy chọn</a></li>
-                <li><a href="/">Xóa</a></li>
+                <li><a href="/">Tạo nhóm</a></li>
               </ul>
             </div>
           </li>
@@ -41,7 +41,7 @@
     <div class="recents">
       <div class="option">
         <p>Recents</p>
-        <ul>
+        <!-- <ul>
           <li class="option-click">
             <img src="/img/option.png" alt="" />
             <ul class="menu">
@@ -50,7 +50,7 @@
               <li><a href="/">Xóa</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </div>
       <div class="recent-contacts ctm-scroll-y">
         <div

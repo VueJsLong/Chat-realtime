@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="icon-message">
-          <button class="m-icon-btn">
+          <button class="m-icon-btn" title="chat info">
             <i class="fi fi-rr-info"></i>
           </button>
         </div>

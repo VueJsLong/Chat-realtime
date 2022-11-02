@@ -26,6 +26,7 @@ export default {
     },
     initSocket() {
       let storedSocket = this.$store.getters.getSocket
+      this.debug('Stored socket', storedSocket)
       if (storedSocket) return
 
       // create socket
@@ -35,6 +36,7 @@ export default {
         query: {
           bearerToken: me.$auth.strategy.token.get(),
         },
+        persist: true, // specifies whether to save this socket in vuex
       })
       this.$store.dispatch('setSocket', me.socket)
       this.debug('Socket created', me.socket)

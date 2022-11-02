@@ -194,7 +194,10 @@
   padding: 1rem 0 1rem 1rem;
 }
 
-.groups .option {}
+.groups .option,
+.recents .option {
+  height: 36px;
+}
 
 
 .groups .group-contacts {
@@ -497,14 +500,23 @@
   width: 3px;
 }
 
-.option ul li.option-click {
+.option ul .option-click .option-btn {
   border-radius: 50%;
-  padding: 0.1rem 0.5rem;
+  padding: 0.1rem 0.4rem;
 }
 
-.option ul li.option-click:hover {
+.option ul .option-click .option-btn:hover {
   cursor: pointer;
-  background-color: rgb(238, 234, 234);
+  background-color: var(--main-color-50);
+}
+
+
+.option .option-btn:focus+.menu {
+  display: block;
+}
+
+.option .menu:hover {
+  display: block;
 }
 
 .menu {
@@ -520,7 +532,7 @@
 }
 
 .menu li:hover {
-  background-color: rgb(218, 218, 218);
+  background-color: var(--main-color-50);
 }
 
 .optionSetting {
