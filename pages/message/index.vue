@@ -20,6 +20,7 @@
       <div class="group-contacts ctm-scroll-y">
         <div
           class="item"
+          :class="{ active: isActiveConversation(item.targetId, 'GROUP') }"
           v-for="item in groupConversations"
           :key="item.id"
           @click="setConversation(item)"
@@ -55,6 +56,7 @@
       <div class="recent-contacts ctm-scroll-y">
         <div
           class="item"
+          :class="{ active: isActiveConversation(item.targetId, 'USER') }"
           v-for="item in userConversations"
           :key="item.id"
           @click="setConversation(item)"
@@ -88,6 +90,7 @@ export default {
       userConversations: [],
       groupConversations: [],
       currentPage: 1,
+      conversation: null,
     }
   },
   watch: {
@@ -139,12 +142,21 @@ export default {
     },
     setConversation(conversation) {
       const { targetId, targetName, targetThumbnail, target } = conversation
-      this.$store.dispatch('setConversation', {
+      const payload = {
         targetId,
         targetName,
         targetThumbnail,
         target,
-      })
+      }
+      this.conversation = payload
+      this.$store.dispatch('setConversation', payload)
+    },
+    isActiveConversation(id, target) {
+      if (!this.conversation) return false
+      console.log()
+      return (
+        this.conversation.target == target && this.conversation.targetId == id
+      )
     },
   },
 }

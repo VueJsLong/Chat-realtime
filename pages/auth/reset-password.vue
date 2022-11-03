@@ -32,7 +32,7 @@
       <b-form v-show="isShow(listForm.emailSentForm)">
         <h1 class="text-center">Please check your mail box</h1>
         <div class="text-center">
-          <img src="/img/email-sent-icon.png" alt="" width="200" />
+          <img src="/img/auth/email-sent-icon.png" alt="" width="200" />
         </div>
         <div class="text-center">
           <a href="#" @click.prevent="sendResetEmail"
@@ -90,7 +90,7 @@
       <b-form v-show="isShow(listForm.resetPasswordDoneForm)">
         <h1 class="text-center">Your password has been saved</h1>
         <div class="text-center">
-          <img src="/img/done.png" alt="" width="200" />
+          <img src="/img/auth/done.png" alt="" width="200" />
         </div>
         <nuxt-link to="/auth/login">
           <b-button

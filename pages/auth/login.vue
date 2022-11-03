@@ -36,7 +36,7 @@
               variant="outline-secondary"
               @click="loginWithGoogle"
               >Continue with Google
-              <img width="30" src="~/static/img/google.svg" />
+              <img width="30" src="~/static/img/auth/google.svg" />
             </b-button>
           </div>
           <div class="col-12 col-md-6">
@@ -45,7 +45,7 @@
               variant="outline-secondary"
               @click="loginWithFacebook"
               >Continue with Facebook
-              <img width="30" src="~/static/img/facebook.svg"
+              <img width="30" src="~/static/img/auth/facebook.svg"
             /></b-button>
           </div>
         </div>

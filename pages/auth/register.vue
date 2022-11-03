@@ -140,7 +140,7 @@
               variant="outline-secondary"
               @click="loginWithGoogle"
               >Continue with Google
-              <img width="30" src="~/static/img/google.svg" />
+              <img width="30" src="~/static/img/auth/google.svg" />
             </b-button>
           </div>
           <div class="col-12 col-md-6">
@@ -149,7 +149,7 @@
               variant="outline-secondary"
               @click="loginWithFacebook"
               >Continue with Facebook
-              <img width="30" src="~/static/img/facebook.svg" />
+              <img width="30" src="~/static/img/auth/facebook.svg" />
             </b-button>
           </div>
         </div>
@@ -235,7 +235,7 @@
       <b-form v-show="isShow(listForm.registerSuccessForm)">
         <h1 class="text-center">Register account done</h1>
         <div class="text-center">
-          <img src="/img/done.png" alt="" width="200" />
+          <img src="/img/auth/done.png" alt="" width="200" />
         </div>
         <nuxt-link to="/auth/login">
           <b-button type="button" variant="primary" class="w-100"

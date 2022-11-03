@@ -61,7 +61,7 @@ input[type=number] {
 
 #login-page {
 
-  background: url('/img/login-background.png');
+  background: url('/img/auth/login-background.png');
   background-size: cover;
   background-position: center;
 
@@ -69,7 +69,7 @@ input[type=number] {
 
 /* otp page */
 #otp-page {
-  background: url('/img/email-sent-background.jpg');
+  background: url('/img/auth/email-sent-background.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -112,7 +112,7 @@ input[type=number] {
 
 /* reset-password-page */
 #reset-password-page {
-  background: url('/img/reset-password-background.jpg');
+  background: url('/img/auth/reset-password-background.jpg');
   background-size: cover;
   background-position: center;
 }
