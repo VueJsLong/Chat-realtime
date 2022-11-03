@@ -16,7 +16,7 @@
   cursor: pointer;
   border: none;
   background-color: unset;
-  border: 1px solid var(--wcag-white-color);
+  border: 1px solid transparent;
 }
 
 .m-btn-sm {
@@ -26,7 +26,7 @@
 
 .m-btn:focus {
   outline: unset;
-  border: 1px solid var(--btn-primary-color);
+  border: 1px solid transparent;
 }
 
 .m-btn label {
@@ -36,7 +36,7 @@
 /* primary button */
 
 .primary-btn {
-  min-width: 80px;
+  min-width: 100px;
   background: var(--btn-primary-color);
   color: #fff;
 }
@@ -88,6 +88,34 @@
 
 .primary-btn.--danger:disabled:focus {
   background-color: var(--btn-danger-disabled-color);
+}
+
+/* warning button */
+
+.primary-btn.--warning {
+  background-color: var(--btn-warning-color);
+}
+
+.primary-btn.--warning:hover {
+  background-color: var(--btn-warning-hover-color);
+}
+
+.primary-btn.--warning:focus {
+  background-color: var(--btn-warning-press-color);
+
+}
+
+.primary-btn.--warning:disabled {
+  cursor: default;
+  background-color: var(--btn-warning-disabled-color);
+}
+
+.primary-btn.--warning:disabled:hover {
+  background-color: var(--btn-warning-disabled-color);
+}
+
+.primary-btn.--warning:disabled:focus {
+  background-color: var(--btn-warning-disabled-color);
 }
 
 /* secondary button */
@@ -152,19 +180,12 @@
 .m-btn-with-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .m-btn-with-icon .btn-icon {
-  margin-right: 4px;
+  margin-right: 8px;
 }
-
-.delete-btn {
-  background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -462px -312px;
-  width: 20px;
-  height: 20px;
-  filter: brightness(1000);
-}
-
 
 /* context menu button */
 .m-context-menu-btn {
@@ -219,4 +240,33 @@
   left: unset;
   bottom: 100%;
   right: 0;
+}
+
+/* icon btn */
+.m-icon-btn {
+  border: unset;
+  outline: unset;
+  background-color: transparent;
+  color: var(--wcag-secondary-text-color);
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.m-icon-btn i {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.m-icon-btn:hover {
+  opacity: 0.56;
+}
+
+.m-icon-btn.--primary {
+  color: var(--btn-primary-color);
+}
+
+.m-icon-btn.--danger {
+  color: var(--btn-danger-color);
 }

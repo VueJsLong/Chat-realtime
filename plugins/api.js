@@ -4,6 +4,7 @@ const api = {
   findUser: '/users/find',
   conversation: '/messages/conversations',
   getFriends: '/friends',
+  getGroupMembers: '/groups',
 }
 
 export default ({ app }, inject) => {

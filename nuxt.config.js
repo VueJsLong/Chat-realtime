@@ -22,10 +22,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/css/common.css' },
-      { rel: 'stylesheet', href: '/css/components/button.css' },
-      { rel: 'stylesheet', href: '/css/components/scrollbar.css' },
       { rel: 'stylesheet', href: '/css/login-page.css' },
-      { rel: 'stylesheet', href: '/css/common.css' },
       { rel: 'stylesheet', href: '/css/login-page.css' },
       // { rel: 'stylesheet', href: '/css/setting-page.css' },
       { rel: 'stylesheet', href: '/css/message-page.css' },

@@ -249,7 +249,7 @@
 </template>
 
 <script>
-import BaseAuth from '~/components/BaseAuth.vue'
+import BaseAuth from '~/components/base/BaseAuth.vue'
 export default {
   auth: 'guest',
   layout: 'BodyOnly',

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <img
-      :src="thumbnail"
+      :src="thumbnail($auth.user.thumbnail)"
       alt=""
       class="thumbnail"
       :title="fullName"
@@ -38,11 +38,6 @@
 export default {
   name: 'Header',
   computed: {
-    thumbnail() {
-      return this.$auth.user.thumbnail
-        ? this.$auth.user.thumbnail
-        : '/img/thumbnail-placeholder.jpg'
-    },
     fullName() {
       return this.$auth.user.fullName ? this.$auth.user.fullName : 'profile'
     },

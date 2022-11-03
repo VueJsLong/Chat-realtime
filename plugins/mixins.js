@@ -19,6 +19,7 @@ if (!Vue.__my_mixin__) {
           callback()
         })
       },
+      // console
       log(...args) {
         console.log(...args)
       },
@@ -36,6 +37,7 @@ if (!Vue.__my_mixin__) {
           window.history.back()
         }
       },
+      // append
       appendChatMessages(chatMessage) {
         const storedChatMessages = this.$store.getters.getChatMessages
         storedChatMessages.push(chatMessage)
@@ -45,6 +47,10 @@ if (!Vue.__my_mixin__) {
         const storedFriends = this.$store.getters.getFriends
         storedFriends.push(friend)
         this.$store.dispatch('setFriends', storedFriends)
+      },
+      // helper
+      thumbnail(thumbnail) {
+        return thumbnail ? thumbnail : '/img/thumbnail-placeholder.jpg'
       },
     },
   })

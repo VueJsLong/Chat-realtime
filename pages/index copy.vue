@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import BasePageVue from '~/components/BasePage.vue'
+import BasePageVue from '~/components/base/BasePage.vue'
 export default {
   name: 'test',
   extends: BasePageVue,

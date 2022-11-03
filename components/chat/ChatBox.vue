@@ -52,6 +52,7 @@
         </div>
       </div>
     </div>
+    <chat-info></chat-info>
   </div>
   <div class="chat-introduction" v-else>
     <h2>Chào mừng bạn đến với ứng dụng chat của chúng tôi</h2>

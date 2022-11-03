@@ -26,7 +26,11 @@
     >
       <div class="search-data" v-if="searchResult">
         <div class="search-user__thumbnail">
-          <img :src="thumbnail" alt="" referrerpolicy="no-referrer" />
+          <img
+            :src="thumbnail(searchResult.thumbnail)"
+            alt=""
+            referrerpolicy="no-referrer"
+          />
         </div>
         <div class="search-user__fullName">{{ searchResult.fullName }}</div>
         <div class="search-user__addFriendBtn">
@@ -59,13 +63,7 @@ export default {
     }
   },
   mounted() {},
-  computed: {
-    thumbnail() {
-      return this.searchResult.thumbnail
-        ? this.searchResult.thumbnail
-        : '/img/thumbnail-placeholder.jpg'
-    },
-  },
+  computed: {},
   methods: {
     search() {
       this.isFocus = true

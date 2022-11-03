@@ -36,7 +36,7 @@
             <button
               type="button"
               class="m-btn m-btn-sm m-btn-with-icon primary-btn"
-              @click="acceptFriend"
+              @click.stop="acceptFriend"
             >
               <i class="btn-icon fi fi-rr-user-add"></i>
               Đồng ý
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import BasePage from '~/components/BasePage.vue'
+import BasePage from '~/components/base/BasePage.vue'
 
 export default {
   name: 'ContactPage',
@@ -93,13 +93,7 @@ export default {
       friends: [],
     }
   },
-  computed: {
-    thumbnail() {
-      return this.searchResult.thumbnail
-        ? this.searchResult.thumbnail
-        : '/img/thumbnail-placeholder.jpg'
-    },
-  },
+  computed: {},
   watch: {
     '$store.state.friends'() {
       this.friends = this.$store.getters.getFriends

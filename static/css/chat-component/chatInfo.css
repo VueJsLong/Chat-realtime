@@ -1,0 +1,100 @@
+/* chat info */
+.chat-info {
+  flex: 1;
+  border-left: 1px solid var(--wcag-border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 0px 16px;
+}
+
+.chat-info-header {
+  display: flex;
+  height: 56px;
+}
+
+.chat-info-header__back-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-info-main {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* main conversation info */
+
+.chat-info-main__conversation-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-info-main__conversation-info .chat-info__thumbnail {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 8px;
+}
+
+.chat-info-main__conversation-info .chat-info__name {
+  font-family: Roboto-medium;
+  font-size: 1.5rem;
+}
+
+.chat-info-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* main toolbar */
+.chat-info-main__toolbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.chat-info .toolbar-accordion {
+  width: 100%;
+}
+
+/* chat user info */
+
+.chat-info-footer__ban-message {}
+
+.chat-info-footer__remove-friend {}
+
+/* chat group info */
+
+
+
+
+/* accordion override */
+.chat-info .accordion .card-header {
+  background-color: unset;
+}
+
+.chat-info .accordion .card-body {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(40vh);
+  overflow-y: auto;
+}
+
+.chat-info .accordion .item {
+  border-bottom: 1px solid var(--wcag-border-color);
+  padding: 4px;
+  cursor: default;
+  gap: 4px;
+}
+
+.chat-info .accordion .m-btn {
+  margin-bottom: 4px;
+}

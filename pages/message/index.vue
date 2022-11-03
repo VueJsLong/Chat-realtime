@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import BasePage from '~/components/BasePage.vue'
+import BasePage from '~/components/base/BasePage.vue'
 export default {
   name: 'MessagePage',
   components: {},
