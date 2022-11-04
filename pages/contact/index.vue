@@ -17,7 +17,7 @@
           </li>
         </ul>
       </div>
-      <div class="group-contacts ctm-scroll-y">
+      <div class="group-contacts scroll-y">
         <div
           class="friend-item search-data"
           v-for="friend in getRequestFriend()"
@@ -59,7 +59,7 @@
           </li>
         </ul>
       </div>
-      <div class="recent-contacts ctm-scroll-y">
+      <div class="recent-contacts scroll-y">
         <div
           class="friend-item search-data"
           v-for="friend in getAcceptedFriend()"

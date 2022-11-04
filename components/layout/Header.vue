@@ -20,10 +20,10 @@
           </nuxt-link>
         </div>
         <div>
-          <li class="nav-item">
+          <nuxt-link to="/setting" tag="li" class="nav-item">
             <i class="fi fi-rr-settings"></i>
             <span class="nav-item__tooltip">Cài đặt</span>
-          </li>
+          </nuxt-link>
           <li class="nav-item" @click="logout">
             <i class="fi fi-rr-sign-out-alt"></i>
             <span class="nav-item__tooltip">Đăng xuất</span>

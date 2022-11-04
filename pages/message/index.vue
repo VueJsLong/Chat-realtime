@@ -17,7 +17,7 @@
           </li>
         </ul>
       </div>
-      <div class="group-contacts ctm-scroll-y">
+      <div class="group-contacts scroll-y">
         <div
           class="item"
           :class="{ active: isActiveConversation(item.targetId, 'GROUP') }"
@@ -53,7 +53,7 @@
           </li>
         </ul> -->
       </div>
-      <div class="recent-contacts ctm-scroll-y">
+      <div class="recent-contacts scroll-y">
         <div
           class="item"
           :class="{ active: isActiveConversation(item.targetId, 'USER') }"

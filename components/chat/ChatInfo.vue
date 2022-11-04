@@ -2,7 +2,7 @@
   <!-- chat user info -->
   <div class="chat-info" v-if="conversation.target == 'USER'">
     <div class="chat-info-header">
-      <div class="chat-info-header__back-btn m-icon-btn">
+      <div class="chat-info-header__back-btn m-icon-btn" @click="hideChatInfo">
         <i class="fi fi-rs-arrow-circle-left"></i>
         Back
       </div>
@@ -73,7 +73,7 @@
   <!-- chat group info -->
   <div class="chat-info" v-else>
     <div class="chat-info-header">
-      <div class="chat-info-header__back-btn m-icon-btn">
+      <div class="chat-info-header__back-btn m-icon-btn" @click="hideChatInfo">
         <i class="fi fi-rs-arrow-circle-left"></i>
         Back
       </div>
@@ -181,6 +181,7 @@
 
 <script>
 export default {
+  emits: ['hideChatInfo'],
   data() {
     return {
       conversation: {
@@ -224,6 +225,10 @@ export default {
     },
     removeGroupMember(member) {
       console.log(member)
+    },
+    hideChatInfo() {
+      this.log('click')
+      this.$emit('hideChatInfo')
     },
   },
 }

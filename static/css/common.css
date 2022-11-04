@@ -1,5 +1,6 @@
 @import url(/css/base/animation.css);
 @import url(/css/base/button.css);
+@import url(/css/base/input.css);
 @import url(/css/base/scrollbar.css);
 
 @font-face {
@@ -155,4 +156,8 @@ input:focus {
 ::selection {
   color: var(--wcag-white-color);
   background: var(--btn-primary-hover-color);
+}
+
+.scroll-y {
+  overflow-y: auto;
 }
