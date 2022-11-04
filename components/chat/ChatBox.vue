@@ -120,7 +120,7 @@ export default {
       conversation: null,
       messageInput: '',
       isInfoShow: false,
-      isSearchShow: true,
+      isSearchShow: false,
       searchInput: '',
     }
   },
