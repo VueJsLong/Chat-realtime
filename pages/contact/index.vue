@@ -6,21 +6,21 @@
         <p>Request</p>
         <ul>
           <li class="option-click">
-            <div>
+            <!-- <div>
               <img src="/img/option.png" alt="" />
               <ul class="menu">
                 <li><a href="/">Cài đặt</a></li>
                 <li><a href="/">Tùy chọn</a></li>
                 <li><a href="/">Xóa</a></li>
               </ul>
-            </div>
+            </div> -->
           </li>
         </ul>
       </div>
       <div class="group-contacts scroll-y">
         <div
           class="friend-item search-data"
-          v-for="friend in getRequestFriend()"
+          v-for="friend in requests"
           :key="friend.id"
           @click="setConversation(friend.from)"
         >
@@ -35,11 +35,19 @@
           <div class="search-user__addFriendBtn">
             <button
               type="button"
-              class="m-btn m-btn-sm m-btn-with-icon primary-btn"
+              class="m-icon-btn --primary"
               @click.stop="acceptFriend"
+              title="accept"
             >
               <i class="btn-icon fi fi-rr-user-add"></i>
-              Đồng ý
+            </button>
+            <button
+              type="button"
+              class="m-icon-btn --danger"
+              @click.stop="removeRequest"
+              title="remove"
+            >
+              <i class="fi fi-rr-remove-user btn-icon"></i>
             </button>
           </div>
         </div>
@@ -50,30 +58,30 @@
         <p>My friend</p>
         <ul>
           <li class="option-click">
-            <img src="/img/option.png" alt="" />
+            <!-- <img src="/img/option.png" alt="" />
             <ul class="menu">
               <li><a href="/">Cài đặt</a></li>
               <li><a href="/">Tùy chọn</a></li>
               <li><a href="/">Xóa</a></li>
-            </ul>
+            </ul> -->
           </li>
         </ul>
       </div>
       <div class="recent-contacts scroll-y">
         <div
           class="friend-item search-data"
-          v-for="friend in getAcceptedFriend()"
+          v-for="friend in friends"
           :key="friend.id"
-          @click="setConversation(friend.to)"
+          @click="setConversation(friend.friend)"
         >
           <div class="search-user__thumbnail">
             <img
-              :src="friend.to.thumbnail"
+              :src="friend.friend.thumbnail"
               alt=""
               referrerpolicy="no-referrer"
             />
           </div>
-          <div class="search-user__fullName">{{ friend.to.fullName }}</div>
+          <div class="search-user__fullName">{{ friend.friend.fullName }}</div>
           <div class="search-user__addFriendBtn"></div>
         </div>
       </div>
@@ -90,22 +98,37 @@ export default {
   layout: 'default',
   data() {
     return {
+      requests: [],
       friends: [],
     }
   },
   computed: {},
   watch: {
+    '$store.state.requests'() {
+      this.requests = this.$store.getters.getRequests
+    },
     '$store.state.friends'() {
       this.friends = this.$store.getters.getFriends
     },
   },
   mounted() {
     this.debug('Contact-page mounted.............................')
+    this.getRequests()
     this.getFriends()
   },
   methods: {
-    async getFriends(page = 1, size = 20) {
-      this.currentPage = page
+    async getRequests() {
+      const params = {}
+      this.$axios
+        .get(this.$api.getRequests, { params })
+        .then((res) => {
+          this.$store.dispatch('setRequests', res.data.data)
+        })
+        .catch((err) => {
+          this.log(err)
+        })
+    },
+    async getFriends() {
       const params = {}
       this.$axios
         .get(this.$api.getFriends, { params })
@@ -117,16 +140,17 @@ export default {
         })
     },
     getRequestFriend() {
-      return this.friends.filter((friend) => {
-        return friend.from.id != this.$auth.user.id
-      })
+      // return this.friends.filter((friend) => {
+      //   return friend.from.id != this.$auth.user.id
+      // })
     },
     getAcceptedFriend() {
-      return this.friends.filter((friend) => {
-        return friend.from.id == this.$auth.user.id
-      })
+      // return this.friends.filter((friend) => {
+      //   return friend.from.id == this.$auth.user.id
+      // })
     },
     acceptFriend() {},
+    removeRequest() {},
     setConversation(friend) {
       this.$store.dispatch('setConversation', {
         targetId: friend.id,

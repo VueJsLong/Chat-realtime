@@ -71,6 +71,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     'nuxt-socket-io',
+    'nuxt-vue-multiselect',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -143,5 +144,5 @@ export default {
     linkActiveClass: 'active',
   },
 
-  loading: '~/components/Loading.vue',
+  loading: '~/components/layout/Loading.vue',
 }

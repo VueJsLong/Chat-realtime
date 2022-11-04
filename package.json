@@ -19,6 +19,7 @@
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
     "nuxt-socket-io": "^2.0.3",
+    "nuxt-vue-multiselect": "^1.0.4",
     "socket.io-client": "^4.5.2",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",

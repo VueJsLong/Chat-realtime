@@ -6,6 +6,7 @@ const defaultState = {
   groupConversations: [],
   conversation: null,
   chatMessages: [],
+  requests: [],
   friends: [],
 }
 

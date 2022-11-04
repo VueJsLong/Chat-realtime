@@ -20,6 +20,9 @@ const getters = {
   getChatMessages(state) {
     return state.chatMessages
   },
+  getRequests(state) {
+    return state.requests
+  },
   getFriends(state) {
     return state.friends
   },

@@ -22,6 +22,9 @@ const mutations = {
   setChatMessages(state, payload) {
     state.chatMessages = payload
   },
+  setRequests(state, payload) {
+    state.requests = payload
+  },
   setFriends(state, payload) {
     state.friends = payload
   },

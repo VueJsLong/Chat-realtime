@@ -6,3 +6,36 @@ ul {
 p {
   margin-bottom: 0 !important;
 }
+
+
+/* modal */
+#create-group button.close {
+  outline: unset !important;
+  border: unset !important;
+  background: unset !important;
+  font-size: 2rem !important;
+}
+
+
+/* accordion override */
+.accordion .card-header {
+  background-color: unset;
+}
+
+.accordion .card-body {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(40vh);
+  overflow-y: auto;
+}
+
+.accordion .item {
+  border-bottom: 1px solid var(--wcag-border-color);
+  padding: 4px;
+  cursor: default;
+  gap: 4px;
+}
+
+.accordion .m-btn {
+  margin-bottom: 4px;
+}

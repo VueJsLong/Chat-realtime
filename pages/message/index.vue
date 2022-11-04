@@ -11,7 +11,7 @@
                 <i class="fi fi-rs-menu-dots-vertical"></i>
               </button>
               <ul class="menu">
-                <li><a href="/">Tạo nhóm</a></li>
+                <li v-b-modal.create-group><a href="#">Tạo nhóm</a></li>
               </ul>
             </div>
           </li>
@@ -75,6 +75,7 @@
         </div>
       </div>
     </div>
+    <create-group></create-group>
   </div>
 </template>
 

@@ -72,29 +72,3 @@
 .chat-info-footer__remove-friend {}
 
 /* chat group info */
-
-
-
-
-/* accordion override */
-.chat-info .accordion .card-header {
-  background-color: unset;
-}
-
-.chat-info .accordion .card-body {
-  display: flex;
-  flex-direction: column;
-  max-height: calc(40vh);
-  overflow-y: auto;
-}
-
-.chat-info .accordion .item {
-  border-bottom: 1px solid var(--wcag-border-color);
-  padding: 4px;
-  cursor: default;
-  gap: 4px;
-}
-
-.chat-info .accordion .m-btn {
-  margin-bottom: 4px;
-}
