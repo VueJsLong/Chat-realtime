@@ -145,4 +145,5 @@ export default {
   },
 
   loading: '~/components/layout/Loading.vue',
+  target: 'static',
 }

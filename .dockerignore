@@ -1,0 +1,9 @@
+.nuxt
+node_modules
+.dockerignore
+.editorconfig
+.git*
+.prettier*
+Dockerfile
+README.md
+.circleci
