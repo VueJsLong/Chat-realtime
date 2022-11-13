@@ -1,11 +1,11 @@
 export default {
   env: {
-    wsUrl: process.env.WS_URL || 'http://localhost:4000',
-    apiUrl: process.env.API_URL || 'http://localhost:4000',
+    wsUrl: process.env.NUXT_APP_WS_URL || 'http://localhost:4000',
+    apiUrl: process.env.NUXT_APP_API_URL || 'http://localhost:4000',
     googleLoginUrl:
-      process.env.GOOGLE_LOGIN_URL || 'http://localhost:4000/auth/google',
+      process.env.NUXT_APP_GOOGLE_LOGIN_URL || 'http://localhost:4000/auth/google',
     facebookLoginUrl:
-      process.env.FACEBOOK_LOGIN_URL || 'http://localhost:4000/auth/facebook',
+      process.env.NUXT_APP_FACEBOOK_LOGIN_URL || 'http://localhost:4000/auth/facebook',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -77,7 +77,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.API_URL,
+    baseURL: process.env.NUXT_APP_API_URL,
   },
 
   auth: {
@@ -131,7 +131,7 @@ export default {
       {
         default: true, // make this the default socket
         name: 'main', // give it a name that we can later use to choose this socket in the .vue file
-        url: process.env.WS_URL, // URL wherever your socket IO server runs
+        url: process.env.NUXT_APP_WS_URL, // URL wherever your socket IO server runs
       },
     ],
   },
