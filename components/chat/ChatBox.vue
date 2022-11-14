@@ -45,7 +45,7 @@
                 class="m-input-container__input"
                 type="text"
                 name="input"
-                placeholder="Placeholder"
+                placeholder="Search message"
               />
               <button
                 type="button"

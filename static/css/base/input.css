@@ -7,7 +7,7 @@
 .m-textfield {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
+  font-family: Roboto-bold;
   font-size: 14px;
 }
 
@@ -18,7 +18,7 @@
 .m-input-container {
   width: 100%;
   position: relative;
-  font-weight: 500;
+  font-family: Roboto-medium;
 }
 
 .m-input-container__input {
@@ -111,14 +111,14 @@
   content: "tùy chọn";
   margin-left: 8px;
   font-style: italic;
-  font-weight: 500;
+  font-family: Roboto-medium;
   opacity: 0.56;
 }
 
 
 /* radio */
 .m-radio-container {
-  font-weight: 500;
+  font-family: Roboto-medium;
 }
 
 .m-radio-item {
@@ -155,7 +155,7 @@
 /* date */
 .m-date-container {
   width: 100%;
-  font-weight: 500;
+  font-family: Roboto-medium;
 }
 
 .m-date-container__input {}

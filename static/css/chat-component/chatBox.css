@@ -58,6 +58,10 @@
   flex: 1;
 }
 
+.chat-box__tool input {
+  font-family: Roboto;
+}
+
 .chat-box__tool .search-tool .m-textfield .m-icon {
   top: 50%;
   right: 0px;

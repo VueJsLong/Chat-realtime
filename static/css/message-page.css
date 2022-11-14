@@ -54,6 +54,7 @@
   font-size: 1.1rem;
   border-radius: 4px;
   padding: 4px 8px;
+  z-index: 1000;
 }
 
 .thumbnail {
@@ -243,6 +244,10 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--wcag-border-color);
+}
+
+.option>p {
+  font-family: Roboto-medium;
 }
 
 .option img {

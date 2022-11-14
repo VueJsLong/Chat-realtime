@@ -8,9 +8,7 @@
         <div class="accordion" role="tablist">
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block v-b-toggle.accordion-1 variant="info"
-                >Accordion 1</b-button
-              >
+              <p block v-b-toggle.accordion-1 variant="info">Tài khoản</p>
             </b-card-header>
             <b-collapse
               id="accordion-1"
@@ -50,9 +48,7 @@
 
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block v-b-toggle.accordion-2 variant="info"
-                >Accordion 2</b-button
-              >
+              <p block v-b-toggle.accordion-2 variant="info">Ngôn ngữ</p>
             </b-card-header>
             <b-collapse
               id="accordion-2"
@@ -67,9 +63,7 @@
 
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block v-b-toggle.accordion-3 variant="info"
-                >Accordion 3</b-button
-              >
+              <p block v-b-toggle.accordion-3 variant="info">Thông báo</p>
             </b-card-header>
             <b-collapse
               id="accordion-3"

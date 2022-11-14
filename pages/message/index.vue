@@ -12,6 +12,7 @@
               </button>
               <ul class="menu">
                 <li v-b-modal.create-group><a href="#">Tạo nhóm</a></li>
+                <create-group></create-group>
               </ul>
             </div>
           </li>
@@ -75,7 +76,6 @@
         </div>
       </div>
     </div>
-    <create-group></create-group>
   </div>
 </template>
 

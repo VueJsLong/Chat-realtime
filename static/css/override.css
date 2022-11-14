@@ -18,8 +18,19 @@ p {
 
 
 /* accordion override */
+.accordion .card {
+  border-top: unset;
+  border-left: unset;
+  border-right: unset;
+  border-radius: unset;
+}
+
 .accordion .card-header {
   background-color: unset;
+}
+
+.accordion .card-header p {
+  font-family: Roboto-medium;
 }
 
 .accordion .card-body {
