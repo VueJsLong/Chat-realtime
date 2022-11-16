@@ -1,5 +1,10 @@
 FROM node:16-alpine as builder
 
+ARG NUXT_ENV_WS_URL
+ARG NUXT_ENV_API_URL
+ARG NUXT_ENV_GOOGLE_LOGIN_URL
+ARG NUXT_ENV_FACEBOOK_LOGIN_URL
+
 RUN mkdir /app
 
 COPY ./package*.json /app/

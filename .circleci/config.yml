@@ -14,7 +14,13 @@ jobs:
       - checkout
       - run:
           name: Build docker image
-          command: cd ~/chat-realtime-frontend && docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+          command: |
+            cd ~/chat-realtime-frontend && docker build \
+            --build-arg NUXT_ENV_WS_URL=${NUXT_ENV_WS_URL} \
+            --build-arg NUXT_ENV_API_URL=${NUXT_ENV_API_URL} \
+            --build-arg NUXT_ENV_GOOGLE_LOGIN_URL=${NUXT_ENV_GOOGLE_LOGIN_URL} \
+            --build-arg NUXT_ENV_FACEBOOK_LOGIN_URL=${NUXT_ENV_FACEBOOK_LOGIN_URL} \
+            -t $DOCKER_IMAGE:$DOCKER_TAG .
       - run:
           name: Push image to docker hub
           command: |
