@@ -43,10 +43,46 @@ if (!Vue.__my_mixin__) {
         storedChatMessages.push(chatMessage)
         this.$store.dispatch('setChatMessages', storedChatMessages)
       },
+      appendRequests(friend) {
+        const storedRequests = this.$store.getters.getRequests
+        storedRequests.push(friend)
+        this.$store.dispatch('setRequests', storedRequests)
+      },
       appendFriends(friend) {
         const storedFriends = this.$store.getters.getFriends
         storedFriends.push(friend)
         this.$store.dispatch('setFriends', storedFriends)
+      },
+      removeFriends(removeFriend) {
+        let newStoredFriends = [...this.$store.getters.getFriends]
+        let newStoredRequest = [...this.$store.getters.getRequests]
+        newStoredFriends = newStoredFriends.filter((friend) => {
+          return !this.compareTwoFriendRecord(friend, removeFriend)
+        })
+        newStoredRequest = newStoredRequest.filter((friend) => {
+          return !this.compareTwoFriendRecord(friend, removeFriend)
+        })
+
+        this.$store.dispatch('setFriends', newStoredFriends)
+        this.$store.dispatch('setRequests', newStoredRequest)
+      },
+      compareTwoFriendRecord(friendA, friendB) {
+        if (
+          friendA.from.id == friendB.from.id &&
+          friendA.to.id == friendB.to.id
+        )
+          return true
+        else if (
+          friendA.from.id == friendB.to.id &&
+          friendA.to.id == friendB.from.id
+        )
+          return true
+        return false
+      },
+      getFriend(friend) {
+        const userId = this.$auth.user.id
+        if (friend.from.id == userId) return friend.to
+        return friend.from
       },
       // helper
       thumbnail(thumbnail) {

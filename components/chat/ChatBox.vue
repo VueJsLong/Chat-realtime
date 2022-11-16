@@ -119,6 +119,7 @@ export default {
       chatMessages: [],
       conversation: null,
       messageInput: '',
+      referTo: null,
       isInfoShow: false,
       isSearchShow: false,
       searchInput: '',
@@ -172,6 +173,7 @@ export default {
         content: this.messageInput,
         status: null,
         target: this.conversation.target,
+        referTo: this.referTo,
       }
       socket.emit(me.$socketEvent.chat.sendMessages, payload, (res) => {
         // me.$snotify.success(me.$socketEvent.chat.sendMessages)

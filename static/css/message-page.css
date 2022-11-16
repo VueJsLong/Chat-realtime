@@ -117,8 +117,7 @@
   left: 0;
 }
 
-.search .search-data,
-.friend-item.search-data {
+.search-data {
   width: 100%;
   height: 50px;
   display: flex;
@@ -138,26 +137,28 @@
   background-color: rgb(218, 218, 218);
 }
 
-.search .search-data .search-message,
+.search-data .search-message,
 .friend-item.search-data .search-message {
   flex: 1;
   text-align: center;
 }
 
-.search .search-data .search-user__thumbnail img,
+.search-data .search-user__thumbnail img,
 .friend-item.search-data .search-user__thumbnail img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
 }
 
-.search .search-data .search-user__fullName {}
+.search-data .search-user__fullName {}
 
 .friend-item.search-data .search-user__fullName {}
 
-.search .search-data .search-user__addFriendBtn {}
+.search-data .search-user__addFriendBtn {}
 
-.friend-item.search-data .search-user__addFriendBtn {}
+.friend-item.search-data .search-user__addFriendBtn {
+  display: flex;
+}
 
 /* group */
 

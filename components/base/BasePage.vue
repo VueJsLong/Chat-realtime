@@ -42,30 +42,59 @@ export default {
       this.debug('Socket created', me.socket)
 
       // listen events
-      this.listenFriendRequestEvent()
-      this.listenMessageReceiveEvent()
+      this.listenRequestFriendEvent()
+      this.listenAcceptFriendEvent()
+      this.listenRemoveFriendEvent()
+      this.listenReceiveMessageEvent()
       this.listenExceptionEvent()
       this.listenErrorEvent()
     },
-    listenFriendRequestEvent() {
+    listenRequestFriendEvent() {
       const me = this
       me.socket.on(me.$socketEvent.friend.requestFriend, (payload) => {
         me.debug('Listen request friend', payload)
-        me.appendFriends(payload)
+        me.appendRequests(payload)
+        // notify
         this.$snotify.success(me.$socketEvent.friend.requestFriend)
       })
     },
-    listenMessageReceiveEvent() {
+    listenAcceptFriendEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.friend.acceptFriend, (payload) => {
+        me.debug('Listen accept friend', payload)
+        me.removeFriends(payload)
+        me.appendFriends(payload)
+        // notify
+        this.$snotify.success(
+          me.$socketEvent.friend.acceptFriend,
+          me.getFriend(payload).fullName
+        )
+      })
+    },
+    listenRemoveFriendEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.friend.removeFriend, (payload) => {
+        me.debug('Listen remove friend', payload)
+        me.removeFriends(payload)
+        // notify
+        this.$snotify.success(
+          me.$socketEvent.friend.removeFriend,
+          me.getFriend(payload).fullName
+        )
+      })
+    },
+    listenReceiveMessageEvent() {
       const me = this
       me.socket.on(me.$socketEvent.chat.receiveMessages, (payload) => {
         me.debug('Listen message receive', payload)
+        // notify
         // this.$snotify.success(me.$socketEvent.chat.receiveMessages)
         me.appendChatMessages(payload)
       })
     },
     listenExceptionEvent() {
       const me = this
-      me.socket.on('exceptions', (payload) => {
+      me.socket.on('exception', (payload) => {
         me.debug('Listen exception', payload)
         this.$snotify.error(payload.message)
       })

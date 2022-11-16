@@ -20,6 +20,10 @@
           </nuxt-link>
         </div>
         <div>
+          <li class="nav-item" @click="setConversation">
+            <i class="fi fi-rs-cloud-upload-alt"></i>
+            <span class="nav-item__tooltip">Cloud</span>
+          </li>
           <nuxt-link to="/setting" tag="li" class="nav-item">
             <i class="fi fi-rr-settings"></i>
             <span class="nav-item__tooltip">Cài đặt</span>
@@ -46,6 +50,15 @@ export default {
     async logout() {
       this.$store.dispatch('resetStore')
       await this.$auth.logout('local')
+    },
+    setConversation() {
+      const payload = {
+        targetId: this.$auth.user.id,
+        targetName: 'Cloud',
+        targetThumbnail: this.$auth.user.thumbnail,
+        target: 'USER',
+      }
+      this.$store.dispatch('setConversation', payload)
     },
   },
 }

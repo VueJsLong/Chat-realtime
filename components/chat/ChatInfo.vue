@@ -57,6 +57,7 @@
                 </button>
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
+                  @click="removeFriend"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
                   Unfriend
@@ -169,6 +170,12 @@
                   <i class="fi fi-rr-remove-user btn-icon"></i>
                   Delete group
                 </button>
+                <button
+                  class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
+                >
+                  <i class="fi fi-rr-remove-user btn-icon"></i>
+                  Out group
+                </button>
               </b-card-body>
             </b-collapse>
           </b-card>
@@ -229,6 +236,21 @@ export default {
     hideChatInfo() {
       this.log('click')
       this.$emit('hideChatInfo')
+    },
+    removeFriend() {
+      const me = this
+      const socket = me.$store.getters.getSocket
+
+      // emit event
+      const payload = {
+        from: me.$auth.user.id,
+        to: this.conversation.targetId,
+      }
+      socket.emit(me.$socketEvent.friend.removeFriend, payload, (res) => {
+        // me.debug(res)
+        me.removeFriends(res)
+        this.$snotify.success(me.$socketEvent.friend.removeFriend)
+      })
     },
   },
 }

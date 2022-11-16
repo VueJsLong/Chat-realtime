@@ -15,6 +15,7 @@ const socketEvent = {
     offline: 'OFFLINE',
     requestFriend: 'REQUEST_FRIEND',
     acceptFriend: 'ACCEPT_FRIEND',
+    removeFriend: 'REMOVE_FRIEND',
   },
   error: 'ERROR',
 }

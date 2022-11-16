@@ -25,9 +25,11 @@ const actions = {
     vuexContext.commit('setChatMessages', payload)
   },
   setRequests(vuexContext, payload) {
+    if (!payload) payload = []
     vuexContext.commit('setRequests', payload)
   },
   setFriends(vuexContext, payload) {
+    if (!payload) payload = []
     vuexContext.commit('setFriends', payload)
   },
 }

@@ -8,6 +8,7 @@
       :src="data.from.thumbnail"
       alt=""
       referrerpolicy="no-referrer"
+      :title="getCreateTime"
     />
     <span class="chat-message__content"
       ><span :title="getCreateTime">

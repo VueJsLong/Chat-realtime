@@ -32,7 +32,9 @@
             referrerpolicy="no-referrer"
           />
         </div>
-        <div class="search-user__fullName">{{ searchResult.fullName }}</div>
+        <div class="search-user__fullName --text-ellipsis-2">
+          {{ searchResult.fullName }}
+        </div>
         <div class="search-user__addFriendBtn">
           <button
             type="button"
@@ -93,7 +95,7 @@ export default {
       }
       socket.emit(me.$socketEvent.friend.requestFriend, payload, (res) => {
         me.debug(res)
-        me.appendFriends(res)
+        me.appendRequests(res)
         this.$snotify.success(me.$socketEvent.friend.requestFriend)
       })
     },

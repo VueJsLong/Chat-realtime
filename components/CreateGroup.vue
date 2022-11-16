@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     friendOptions() {
-      return this.friends.map((item) => item.friend)
+      return this.friends.map((item) => item.from)
     },
   },
   watch: {
