@@ -10,18 +10,27 @@
     <nav class="header-nav">
       <ul>
         <div>
-          <nuxt-link to="/message" tag="li" class="nav-item">
+          <nuxt-link to="/message" tag="li" class="nav-item" v-if="!isAdmin">
             <i class="fi fi-rr-comment"></i>
             <span class="nav-item__tooltip">Tin nhắn</span>
           </nuxt-link>
-          <nuxt-link to="/contact" tag="li" class="nav-item">
+          <nuxt-link to="/contact" tag="li" class="nav-item" v-if="!isAdmin">
             <i class="fi fi-rr-users"></i>
             <span class="nav-item__tooltip">Bạn bè</span>
+          </nuxt-link>
+          <nuxt-link
+            to="/system-chat-box"
+            tag="li"
+            class="nav-item"
+            v-if="isAdmin"
+          >
+            <i class="fi fi-rr-envelope"></i>
+            <span class="nav-item__tooltip">Hòm thư hệ thống</span>
           </nuxt-link>
         </div>
         <div>
           <li class="nav-item" @click="setConversation">
-            <i class="fi fi-rs-cloud-upload-alt"></i>
+            <i class="fi fi-rr-cloud-upload-alt"></i>
             <span class="nav-item__tooltip">Cloud</span>
           </li>
           <nuxt-link to="/setting" tag="li" class="nav-item">
@@ -55,7 +64,7 @@ export default {
       const payload = {
         targetId: this.$auth.user.id,
         targetName: 'Cloud',
-        targetThumbnail: this.$auth.user.thumbnail,
+        targetThumbnail: '/img/chat/cloud.jpg',
         target: 'USER',
       }
       this.$store.dispatch('setConversation', payload)

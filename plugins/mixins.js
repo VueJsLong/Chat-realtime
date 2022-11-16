@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { ADMIN_ID } from './constants'
 
 // Make sure to pick a unique name for the flag
 // so it won't conflict with any other mixin.
@@ -6,6 +7,11 @@ if (!Vue.__my_mixin__) {
   Vue.__my_mixin__ = true
 
   Vue.mixin({
+    computed: {
+      isAdmin() {
+        return this.$auth.user.id == ADMIN_ID
+      },
+    },
     methods: {
       axiosLoadError(p, callback = () => {}) {
         p.catch((error) => {
@@ -80,13 +86,13 @@ if (!Vue.__my_mixin__) {
         return false
       },
       getFriend(friend) {
+        // check friend
         const userId = this.$auth.user.id
         if (friend.from.id == userId) return friend.to
         return friend.from
       },
-      // helper
       thumbnail(thumbnail) {
-        return thumbnail ? thumbnail : '/img/thumbnail-placeholder.jpg'
+        return thumbnail ? thumbnail : '/img/chat/thumbnail-placeholder.jpg'
       },
     },
   })

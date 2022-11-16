@@ -55,7 +55,10 @@ export default {
         me.debug('Listen request friend', payload)
         me.appendRequests(payload)
         // notify
-        this.$snotify.success(me.$socketEvent.friend.requestFriend)
+        this.$snotify.success(
+          me.$socketEvent.friend.requestFriend,
+          payload.from.fullName
+        )
       })
     },
     listenAcceptFriendEvent() {

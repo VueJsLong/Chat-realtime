@@ -2,10 +2,11 @@
   <div>
     <div class="message-page mess">
       <Header></Header>
-      <Nuxt></Nuxt>
+      <Nuxt keep-alive></Nuxt>
       <ChatBox></ChatBox>
     </div>
 
+    <create-group></create-group>
     <vue-snotify></vue-snotify>
     <audio ref="receiveMessageSound" src="/sound/receive-message.mp3"></audio>
   </div>

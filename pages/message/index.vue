@@ -12,7 +12,6 @@
               </button>
               <ul class="menu">
                 <li v-b-modal.create-group><a href="#">Tạo nhóm</a></li>
-                <create-group></create-group>
               </ul>
             </div>
           </li>
@@ -60,17 +59,17 @@
           :class="{ active: isActiveConversation(item.targetId, 'USER') }"
           v-for="item in userConversations"
           :key="item.id"
-          @click="setConversation(item)"
+          @click="setConversation(checkCloud(item))"
         >
           <img
-            :src="item.targetThumbnail"
+            :src="checkCloud(item).targetThumbnail"
             alt=""
             referrerpolicy="no-referrer"
           />
           <div class="content">
-            <div class="friends">{{ item.targetName }}</div>
+            <div class="friends">{{ checkCloud(item).targetName }}</div>
             <div class="preview-message --text-ellipsis">
-              {{ item.content }}
+              {{ checkCloud(item).content }}
             </div>
           </div>
         </div>
@@ -95,6 +94,9 @@ export default {
     }
   },
   watch: {
+    '$store.state.conversation'() {
+      this.conversation = this.$store.getters.getConversation
+    },
     '$store.state.userConversations'() {
       this.userConversations = this.$store.getters.getUserConversations
     },
@@ -158,6 +160,21 @@ export default {
       return (
         this.conversation.target == target && this.conversation.targetId == id
       )
+    },
+    checkCloud(conversation) {
+      // check cloud
+      const userId = this.$auth.user.id
+      if (conversation.targetId == userId) {
+        return {
+          ...conversation,
+          targetName: 'Cloud',
+          targetThumbnail: '/img/chat/cloud.jpg',
+        }
+      }
+      return {
+        ...conversation,
+        targetThumbnail: this.thumbnail(conversation.targetThumbnail),
+      }
     },
   },
 }

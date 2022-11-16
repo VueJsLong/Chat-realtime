@@ -102,6 +102,18 @@
     <div class="recents">
       <div class="option">
         <p>My friend</p>
+        <ul>
+          <li>
+            <div class="option-click">
+              <button class="option-btn --button-reset">
+                <i class="fi fi-rs-menu-dots-vertical"></i>
+              </button>
+              <ul class="menu">
+                <li v-b-modal.create-group><a href="#">Tạo nhóm</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
       <div class="recent-contacts scroll-y">
         <div
