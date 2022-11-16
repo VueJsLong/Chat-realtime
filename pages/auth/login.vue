@@ -72,7 +72,7 @@
 <script>
 import BaseAuth from '~/components/base/BaseAuth.vue'
 export default {
-  layout: 'BodyOnly',
+  layout: 'bodyOnly',
   extends: BaseAuth,
   data() {
     return {

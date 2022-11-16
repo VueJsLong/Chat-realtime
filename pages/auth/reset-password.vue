@@ -110,7 +110,7 @@
 import BaseAuth from '~/components/base/BaseAuth.vue'
 export default {
   auth: 'guest',
-  layout: 'BodyOnly',
+  layout: 'bodyOnly',
   extends: BaseAuth,
   data() {
     return {

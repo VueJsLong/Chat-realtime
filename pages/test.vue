@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  layout: 'BodyOnly',
+  layout: 'bodyOnly',
   mounted() {
     // connect socket
     var me = this

@@ -3,7 +3,7 @@
 <script>
 export default {
   name: 'IndexPage',
-  layout: 'BodyOnly',
+  layout: 'bodyOnly',
   middleware: [
     function ({ redirect }) {
       redirect('/message')
