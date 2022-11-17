@@ -177,8 +177,9 @@ export default {
       }
       socket.emit(me.$socketEvent.chat.sendMessages, payload, (res) => {
         // me.$snotify.success(me.$socketEvent.chat.sendMessages)
-        me.debug(res)
+        // me.debug(res)
         me.appendChatMessages(res)
+        me.bubbleConversationUp(res)
         me.messageInput = ''
       })
     },

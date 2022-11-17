@@ -94,6 +94,7 @@ export default {
         // this.$snotify.success(me.$socketEvent.chat.receiveMessages)
         if (me.compareMessageVsActiveConversation(payload))
           me.appendChatMessages(payload)
+        me.bubbleConversationUp(payload)
       })
     },
     listenExceptionEvent() {
