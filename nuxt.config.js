@@ -1,11 +1,14 @@
 export default {
   env: {
+    environment: process.env.ENVIRONMENT || 'DEVELOPMENT',
     wsUrl: process.env.NUXT_ENV_WS_URL || 'http://localhost:4000',
     apiUrl: process.env.NUXT_ENV_API_URL || 'http://localhost:4000',
     googleLoginUrl:
-      process.env.NUXT_ENV_GOOGLE_LOGIN_URL || 'http://localhost:4000/auth/google',
+      process.env.NUXT_ENV_GOOGLE_LOGIN_URL ||
+      'http://localhost:4000/auth/google',
     facebookLoginUrl:
-      process.env.NUXT_ENV_FACEBOOK_LOGIN_URL || 'http://localhost:4000/auth/facebook',
+      process.env.NUXT_ENV_FACEBOOK_LOGIN_URL ||
+      'http://localhost:4000/auth/facebook',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

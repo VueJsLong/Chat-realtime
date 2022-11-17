@@ -156,7 +156,6 @@ export default {
     },
     isActiveConversation(id, target) {
       if (!this.conversation) return false
-      console.log()
       return (
         this.conversation.target == target && this.conversation.targetId == id
       )

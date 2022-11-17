@@ -92,7 +92,8 @@ export default {
         me.debug('Listen message receive', payload)
         // notify
         // this.$snotify.success(me.$socketEvent.chat.receiveMessages)
-        me.appendChatMessages(payload)
+        if (me.compareMessageVsActiveConversation(payload))
+          me.appendChatMessages(payload)
       })
     },
     listenExceptionEvent() {

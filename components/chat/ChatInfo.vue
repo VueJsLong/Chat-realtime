@@ -231,7 +231,7 @@ export default {
       })
     },
     removeGroupMember(member) {
-      console.log(member)
+      this.debug('remove group member', member)
     },
     hideChatInfo() {
       this.log('click')

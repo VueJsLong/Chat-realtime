@@ -27,15 +27,19 @@ if (!Vue.__my_mixin__) {
       },
       // console
       log(...args) {
+        if (process.env.environment != 'DEVELOPMENT') return
         console.log(...args)
       },
       warn(...args) {
+        if (process.env.environment != 'DEVELOPMENT') return
         console.log(...args)
       },
       error(...args) {
+        if (process.env.environment != 'DEVELOPMENT') return
         console.error(...args)
       },
       debug(...args) {
+        if (process.env.environment != 'DEVELOPMENT') return
         console.debug(...args)
       },
       goBack() {
@@ -45,9 +49,33 @@ if (!Vue.__my_mixin__) {
       },
       // append
       appendChatMessages(chatMessage) {
+        // append chat
         const storedChatMessages = this.$store.getters.getChatMessages
         storedChatMessages.push(chatMessage)
         this.$store.dispatch('setChatMessages', storedChatMessages)
+      },
+      bubbleConversationUp(chatMessage) {
+        if (chatMessage.target == 'USER') {
+          const storedUserConversation =
+            this.$store.getters.getUserConversations
+          // lấy ra conversation cần đưa lên top
+          let targetConv = storedUserConversation.find((current) =>
+            compareMessageVsConversation(chatMessage, current)
+          )
+          // lấy ra cấc conversation còn lại
+          let listConv = storedUserConversation.filter(
+            (current) => !compareMessageVsConversation(chatMessage, current)
+          )
+          // đưa lên top
+          listConv.unshift({
+            ...targetConv,
+            content: chatMessage.content,
+          })
+          this.debug(targetConv, listConv)
+        } else {
+          const storedGroupConversation =
+            this.$store.getters.getGroupConversations
+        }
       },
       appendRequests(friend) {
         const storedRequests = this.$store.getters.getRequests
@@ -81,6 +109,29 @@ if (!Vue.__my_mixin__) {
         else if (
           friendA.from.id == friendB.to.id &&
           friendA.to.id == friendB.from.id
+        )
+          return true
+        return false
+      },
+      compareMessageVsConversation(message, conversation) {
+        if (
+          message.from.id == conversation.from &&
+          message.to == conversation.to
+        )
+          return true
+        else if (
+          message.from.id == conversation.to &&
+          message.to == conversation.from
+        )
+          return true
+        return false
+      },
+      compareMessageVsActiveConversation(chatMessage) {
+        // check is conversation active
+        const storedConversation = this.$store.getters.getConversation
+        if (
+          chatMessage.target == storedConversation.target &&
+          chatMessage.from.id == storedConversation.targetId
         )
           return true
         return false

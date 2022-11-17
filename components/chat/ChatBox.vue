@@ -200,7 +200,7 @@ export default {
       this.isSearchShow = !this.isSearchShow
     },
     searchMessage() {
-      console.log(this.searchInput)
+      this.debug('search message', this.searchInput)
     },
   },
 }
