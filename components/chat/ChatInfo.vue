@@ -121,7 +121,7 @@
               <b-card-body>
                 <div class="item" v-for="item in groupMembers" :key="item.id">
                   <img
-                    :src="item.member.thumbnail"
+                    :src="thumbnail(item.member?.thumbnail)"
                     alt=""
                     referrerpolicy="no-referrer"
                   />

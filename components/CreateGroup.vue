@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       friends: [],
+      requests: [],
       group: {
         name: '',
         thumbnail: '',
@@ -81,19 +82,44 @@ export default {
   },
   computed: {
     friendOptions() {
-      return this.friends.map((item) => item.from)
+      return [...this.friends, ...this.requests].map((item) =>
+        this.getFriend(item)
+      )
     },
   },
   watch: {
+    '$store.state.requests'() {
+      this.requests = this.$store.getters.getRequests
+    },
     '$store.state.friends'() {
       this.friends = this.$store.getters.getFriends
     },
   },
   mounted() {
     this.getFriends()
+    this.getRequests()
   },
   methods: {
+    async getRequests() {
+      if (this.$store.getters.getRequests.length > 0) {
+        this.requests = this.$store.getters.getRequests
+      }
+
+      const params = {}
+      this.$axios
+        .get(this.$api.getRequests, { params })
+        .then((res) => {
+          this.$store.dispatch('setRequests', res.data.data)
+        })
+        .catch((err) => {
+          this.log(err)
+        })
+    },
     async getFriends() {
+      if (this.$store.getters.getFriends.length > 0) {
+        this.friends = this.$store.getters.getFriends
+      }
+
       const params = {}
       this.$axios
         .get(this.$api.getFriends, { params })

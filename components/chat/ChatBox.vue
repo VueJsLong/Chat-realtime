@@ -4,15 +4,27 @@
       <!-- header start -->
       <div class="chat-box__header">
         <div class="item">
-          <img
-            :src="conversation.targetThumbnail"
-            alt=""
+          <div
             class="m-thumbnail"
-            referrerpolicy="no-referrer"
-          />
+            :class="{ active: isActivating(conversationUser?.status) }"
+          >
+            <img
+              :src="conversation.targetThumbnail"
+              alt=""
+              referrerpolicy="no-referrer"
+            />
+          </div>
           <div class="content">
-            <div class="friends-message"></div>
-            <div>{{ conversation.targetName }}</div>
+            <div class="friend-name">{{ conversation.targetName }}</div>
+            <div class="last-active" v-if="conversation.target == 'USER'">
+              <span v-if="isActivating(conversationUser?.status)">
+                đang hoạt động
+              </span>
+              <span v-else-if="conversationUser?.updatedAt">
+                {{ $moment(conversationUser?.updatedAt).fromNow() }}
+              </span>
+              <span v-else></span>
+            </div>
           </div>
         </div>
         <div class="chat-box-header__icons">
@@ -124,6 +136,11 @@ export default {
       isSearchShow: false,
       searchInput: '',
     }
+  },
+  computed: {
+    conversationUser() {
+      return this.isConversationActivating(this.conversation)
+    },
   },
   watch: {
     '$store.state.conversation'() {

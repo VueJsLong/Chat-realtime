@@ -42,16 +42,6 @@
     <div class="recents">
       <div class="option">
         <p>Recents</p>
-        <!-- <ul>
-          <li class="option-click">
-            <img src="/img/option.png" alt="" />
-            <ul class="menu">
-              <li><a href="/">Cài đặt</a></li>
-              <li><a href="/">Tùy chọn</a></li>
-              <li><a href="/">Xóa</a></li>
-            </ul>
-          </li>
-        </ul> -->
       </div>
       <div class="recent-contacts scroll-y">
         <div
@@ -61,11 +51,18 @@
           :key="item.id"
           @click="setConversation(checkCloud(item))"
         >
-          <img
-            :src="checkCloud(item).targetThumbnail"
-            alt=""
-            referrerpolicy="no-referrer"
-          />
+          <div
+            class="m-thumbnail"
+            :class="{
+              active: isActivating(isConversationActivating(item)?.status),
+            }"
+          >
+            <img
+              :src="checkCloud(item).targetThumbnail"
+              alt=""
+              referrerpolicy="no-referrer"
+            />
+          </div>
           <div class="content">
             <div class="friends">{{ checkCloud(item).targetName }}</div>
             <div class="preview-message --text-ellipsis">

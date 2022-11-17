@@ -27,7 +27,7 @@
       <div class="search-data" v-if="searchResult">
         <div class="search-user__thumbnail">
           <img
-            :src="thumbnail(searchResult.thumbnail)"
+            :src="thumbnail(searchResult?.thumbnail)"
             alt=""
             referrerpolicy="no-referrer"
           />

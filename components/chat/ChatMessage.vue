@@ -5,7 +5,7 @@
   >
     <img
       class="chat-message__thumbnail m-thumbnail"
-      :src="data.from.thumbnail"
+      :src="thumbnail(data.from?.thumbnail)"
       alt=""
       referrerpolicy="no-referrer"
       :title="getCreateTime"

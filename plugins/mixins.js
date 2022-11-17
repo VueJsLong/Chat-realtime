@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import { ADMIN_ID } from './constants'
 
 // Make sure to pick a unique name for the flag
 // so it won't conflict with any other mixin.
@@ -9,10 +8,45 @@ if (!Vue.__my_mixin__) {
   Vue.mixin({
     computed: {
       isAdmin() {
-        return this.$auth.user.id == ADMIN_ID
+        return this.$auth.user.id == this.$constants.ADMIN_ID
       },
     },
     methods: {
+      /**
+       * Kiểm tra trạng thái active của status
+       * @param {*} status
+       * @returns
+       */
+      isActivating(status) {
+        return status == 'ONLINE'
+      },
+
+      /**
+       * Kiểm tra conversation có active hay không, dựa vào danh sách bạn bè
+       * @param {*} conversation
+       * @returns bạn bè nếu tìm thấy, null nếu không tìm thấy
+       */
+      isConversationActivating(conversation) {
+        const storedFriends = this.$store.getters.getFriends
+        const storedRequests = this.$store.getters.getRequests
+        const friendStore = [...storedFriends, ...storedRequests]
+
+        // Tạo đối tượng bạn bè tạm thời, phục vụ tái sử dụng hàm compareTwoFriendRecord
+        const conversationFriend = {
+          from: {
+            id: conversation.targetId,
+          },
+          to: {
+            id: this.$auth.user.id,
+          },
+        }
+        // Tìm kiếm conversation trong danh sách bạn bè
+        const activeFriend = friendStore.find((friend) => {
+          return this.compareTwoFriendRecord(friend, conversationFriend)
+        })
+        if (activeFriend) return this.getFriend(activeFriend)
+        else return null
+      },
       axiosLoadError(p, callback = () => {}) {
         p.catch((error) => {
           if (error.response) {
@@ -61,12 +95,12 @@ if (!Vue.__my_mixin__) {
         // this.debug('compareMessageVsConversation', message, conversation)
         if (
           message?.from?.id == conversation?.from &&
-          message?.to == conversation?.to
+          message?.to?.id == conversation?.to
         )
           return true
         else if (
           message?.from?.id == conversation?.to &&
-          message?.to == conversation?.from
+          message?.to?.id == conversation?.from
         )
           return true
         return false
@@ -105,18 +139,19 @@ if (!Vue.__my_mixin__) {
         let targetConv = storedTargetConversation.find((current) => {
           return this.compareMessageVsConversation(chatMessage, current)
         })
+        this.debug(targetConv)
         if (!targetConv) {
           targetConv = {
             content: chatMessage.content,
             target: chatMessage.target,
             status: chatMessage.status,
-            to: chatMessage.to,
+            to: chatMessage.to.id,
             from: chatMessage.from.id,
-            referTo: null,
-            referToContent: null,
-            targetId: chatMessage.from.id,
-            targetName: chatMessage.from.fullName,
-            targetThumbnail: chatMessage.thumbnail,
+            targetId: this.getFriend(chatMessage).id,
+            targetName: this.getFriend(chatMessage).name,
+            targetThumbnail: this.thumbnail(
+              this.getFriend(chatMessage).thumbnail
+            ),
           }
         }
         // lấy ra cấc conversation còn lại

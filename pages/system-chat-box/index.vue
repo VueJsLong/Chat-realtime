@@ -82,11 +82,21 @@
 </template>
 
 <script>
+import BasePage from '~/components/base/BasePage.vue'
+
 export default {
-  name: 'SettingPage',
+  name: 'SystemChatBox',
+  extends: BasePage,
+  layout: 'default',
   data() {
     return {
       text: 'lorem',
+    }
+  },
+  mounted() {
+    // Nếu người đang đăng nhập không phải là admin thì không cho phép vào
+    if (this.$auth.user.id != this.$constants.ADMIN_ID) {
+      this.$router.push({ path: '/' })
     }
   },
 }

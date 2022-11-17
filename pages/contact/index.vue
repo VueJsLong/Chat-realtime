@@ -22,9 +22,12 @@
                   :key="friend.id"
                   @click="setConversation(friend.to)"
                 >
-                  <div class="search-user__thumbnail">
+                  <div
+                    class="search-user__thumbnail m-thumbnail"
+                    :class="{ active: isActivating(friend.to.status) }"
+                  >
                     <img
-                      :src="friend.to.thumbnail"
+                      :src="thumbnail(friend.to?.thumbnail)"
                       alt=""
                       referrerpolicy="no-referrer"
                     />
@@ -65,9 +68,12 @@
                 :key="friend.id"
                 @click="setConversation(friend.from)"
               >
-                <div class="search-user__thumbnail">
+                <div
+                  class="search-user__thumbnail m-thumbnail"
+                  :class="{ active: isActivating(friend.from.status) }"
+                >
                   <img
-                    :src="friend.from.thumbnail"
+                    :src="thumbnail(friend.from?.thumbnail)"
                     alt=""
                     referrerpolicy="no-referrer"
                   />
@@ -122,9 +128,12 @@
           :key="friend.id"
           @click="setConversation(getFriend(friend))"
         >
-          <div class="search-user__thumbnail">
+          <div
+            class="search-user__thumbnail m-thumbnail"
+            :class="{ active: isActivating(getFriend(friend).status) }"
+          >
             <img
-              :src="getFriend(friend).thumbnail"
+              :src="thumbnail(getFriend(friend)?.thumbnail)"
               alt=""
               referrerpolicy="no-referrer"
             />
@@ -177,6 +186,9 @@ export default {
   },
   methods: {
     async getRequests() {
+      if (this.$store.getters.getRequests.length > 0) {
+        this.requests = this.$store.getters.getRequests
+      }
       const params = {}
       this.$axios
         .get(this.$api.getRequests, { params })
@@ -188,6 +200,9 @@ export default {
         })
     },
     async getFriends() {
+      if (this.$store.getters.getFriends.length > 0) {
+        this.friends = this.$store.getters.getFriends
+      }
       const params = {}
       this.$axios
         .get(this.$api.getFriends, { params })

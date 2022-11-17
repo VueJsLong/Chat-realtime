@@ -58,6 +58,7 @@ export default {
   plugins: [
     '~/plugins/mixins',
     '~/plugins/socket.event.js',
+    '~/plugins/constants/index.js',
     '~/plugins/api.js',
     '~/plugins/vue-snotify',
   ],
@@ -66,7 +67,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/moment'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -76,6 +77,10 @@ export default {
     'nuxt-socket-io',
     'nuxt-vue-multiselect',
   ],
+
+  moment: {
+    locales: ['vi'],
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

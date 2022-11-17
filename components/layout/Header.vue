@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <img
-      :src="thumbnail($auth.user.thumbnail)"
+      :src="thumbnail($auth.user?.thumbnail)"
       alt=""
       class="thumbnail"
       :title="fullName"
@@ -59,6 +59,8 @@ export default {
     async logout() {
       this.$store.dispatch('resetStore')
       await this.$auth.logout('local')
+      let storedSocket = this.$store.getters.getSocket
+      if (storedSocket) storedSocket.disconnect()
     },
     setConversation() {
       const payload = {

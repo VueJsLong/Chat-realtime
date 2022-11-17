@@ -62,6 +62,8 @@
   --btn-warning-press-color: #c29205;
   --btn-warning-disabled-color: #f7d87b;
 
+  --active-color: #50B83C;
+
   /* block variable */
   --block-border-radius: 8px;
   --container-padding: 20px;
@@ -152,6 +154,20 @@ input:focus {
 .m-thumbnail {
   border: 1px solid var(--wcag-border-color);
   border-radius: 50%;
+  position: relative;
+}
+
+.m-thumbnail.active::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: var(--active-color);
+  border-radius: 50%;
+  box-shadow: #fff 0 0 1px 2px;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 /* text select-color */
