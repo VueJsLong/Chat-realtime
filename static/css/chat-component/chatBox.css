@@ -38,6 +38,11 @@
   border-bottom: 1px solid var(--wcag-border-color);
 }
 
+.chat-box__header .item:hover {
+  background-color: unset;
+  cursor: default;
+}
+
 /* chat box tool */
 
 .chat-box__tool {
@@ -104,7 +109,7 @@
   background-color: var(--main-color-400);
 }
 
-.chat-content__message .chat-message__content>span {
+.chat-content__message .chat-message__content>.message {
   color: var(--wcag-white-color);
 
 }
@@ -152,6 +157,29 @@
 .chat-content__message.host .chat-message__content {
   float: right;
 }
+
+/* info message */
+.chat-content__message.info {
+  justify-content: center;
+}
+
+.chat-content__message.info .chat-message__thumbnail {
+  display: none;
+}
+
+.chat-content__message.info .chat-message__content {
+  background-color: var(--main-color-50);
+}
+
+.chat-content__message.info .chat-message__content>.message {
+  color: var(--wcag-primary-text-color);
+}
+
+
+.chat-content__message.info .chat-message__content .chat-message__context-menu {
+  display: none !important;
+}
+
 
 /* chat context */
 .chat-content__message .chat-message__content:hover .chat-message__context-menu {

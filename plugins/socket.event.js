@@ -17,6 +17,12 @@ const socketEvent = {
     acceptFriend: 'ACCEPT_FRIEND',
     removeFriend: 'REMOVE_FRIEND',
   },
+  group: {
+    create: 'CREATE_GROUP',
+    addMember: 'ADD_MEMBER',
+    removeMember: 'REMOVE_MEMBER',
+    removeGroup: 'REMOVE_GROUP',
+  },
   error: 'ERROR',
 }
 

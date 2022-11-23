@@ -4,6 +4,7 @@ import { paging } from './paging'
 import {
   userStatus,
   messagesStatus,
+  messagesType,
   messagesTarget,
   friendStatus,
 } from './state'
@@ -14,6 +15,7 @@ const constants = {
   paging,
   userStatus,
   messagesStatus,
+  messagesType,
   messagesTarget,
   friendStatus,
   gender,

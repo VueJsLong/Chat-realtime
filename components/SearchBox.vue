@@ -6,24 +6,12 @@
       v-model="searchInput"
       placeholder="Tìm kiếm"
       @keyup.enter="search"
-      @focus="isFocus = true"
-      @blur="isFocus = false"
     />
-    <button
-      class="search-btn m-icon-btn"
-      @click="search"
-      @focus="isFocus = true"
-      @blur="isFocus = false"
-    >
+    <button class="search-btn m-icon-btn" @click="search">
       <i class="fi fi-rr-search input-search-icon"></i>
     </button>
 
-    <div
-      class="search-result-container"
-      @mouseover="isMouseOver = true"
-      @mouseleave="isMouseOver = false"
-      v-if="isFocus | isMouseOver"
-    >
+    <div class="search-result-container">
       <div class="search-data" v-if="searchResult">
         <div class="search-user__thumbnail">
           <img
@@ -38,11 +26,19 @@
         <div class="search-user__addFriendBtn">
           <button
             type="button"
-            class="m-btn m-btn-sm m-btn-with-icon primary-btn"
-            @click="sendRequestFriend"
+            class="m-icon-btn --primary"
+            @click.stop="setConversation"
+            title="send message"
+          >
+            <i class="fi fi-rr-comment"></i>
+          </button>
+          <button
+            type="button"
+            class="m-icon-btn --primary"
+            @click.stop="sendRequestFriend"
+            title="request friend"
           >
             <i class="btn-icon fi fi-rr-user-add"></i>
-            Kết bạn
           </button>
         </div>
       </div>
@@ -60,15 +56,12 @@ export default {
     return {
       searchInput: '18020847@vnu.edu.vn',
       searchResult: null,
-      isFocus: false,
-      isMouseOver: false,
     }
   },
   mounted() {},
   computed: {},
   methods: {
     search() {
-      this.isFocus = true
       this.searchResult = null
       this.searchInput = String(this.searchInput).trim()
       if (!this.searchInput) return
@@ -97,6 +90,15 @@ export default {
         me.debug(res)
         me.appendRequests(res)
         this.$snotify.success(me.$socketEvent.friend.requestFriend)
+      })
+    },
+    setConversation() {
+      const { id, fullName, thumbnail } = this.searchResult
+      this.$store.dispatch('setConversation', {
+        targetId: id,
+        targetName: fullName,
+        targetThumbnail: thumbnail,
+        target: 'USER',
       })
     },
   },

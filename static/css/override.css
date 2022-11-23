@@ -29,6 +29,7 @@ p {
   background-color: unset;
 }
 
+.accordion .card-header div,
 .accordion .card-header p {
   font-family: Roboto-medium;
 }

@@ -33,6 +33,7 @@
             :class="{ active: isSearchShow }"
             @click="toggleSearchTool"
             title="search"
+            v-if="false"
           >
             <i class="fi fi-rr-search"></i>
           </button>
@@ -189,6 +190,7 @@ export default {
         to: this.conversation.targetId,
         content: this.messageInput,
         status: null,
+        type: 'TEXT',
         target: this.conversation.target,
         referTo: this.referTo,
       }

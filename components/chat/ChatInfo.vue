@@ -16,7 +16,7 @@
         />
         <span class="chat-info__name">{{ conversation.targetName }}</span>
       </div>
-      <div class="chat-info-main__toolbar">
+      <div class="chat-info-main__toolbar" v-if="false">
         <div
           class="main-toolbar__notify m-icon-btn d-flex g-2 flex-column align-items-center"
           title="notify"
@@ -88,7 +88,7 @@
         />
         <span class="chat-info__name">{{ conversation.targetName }}</span>
       </div>
-      <div class="chat-info-main__toolbar">
+      <div class="chat-info-main__toolbar" v-if="false">
         <div
           class="main-toolbar__notify m-icon-btn d-flex g-2 flex-column align-items-center"
           title="notify"
@@ -111,7 +111,9 @@
         <div class="accordion" role="tablist">
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <div block v-b-toggle.accordion-1 variant="info">Members</div>
+              <div block v-b-toggle.accordion-1 variant="info">
+                Members ({{ groupMembers.length }})
+              </div>
             </b-card-header>
             <b-collapse
               id="accordion-1"
@@ -126,7 +128,9 @@
                     referrerpolicy="no-referrer"
                   />
                   <div class="content">
-                    <div class="friends">{{ item.member.fullName }}</div>
+                    <div class="friends --text-ellipsis-2">
+                      {{ item.member.fullName }}
+                    </div>
                   </div>
 
                   <button
@@ -140,6 +144,7 @@
                     class="member__remove-member m-icon-btn --danger"
                     title="Remove"
                     @click.stop="removeGroupMember(item)"
+                    v-if="isLeader"
                   >
                     <i class="fi fi-rr-remove-user btn-icon"></i>
                   </button>
@@ -160,18 +165,21 @@
               <b-card-body>
                 <button
                   class="chat-info-footer__ban-message m-btn m-btn-with-icon primary-btn"
+                  v-if="isLeader"
                 >
                   <i class="btn-icon fi fi-rr-user-add"></i>
                   Add member
                 </button>
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
+                  v-if="isLeader"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
                   Delete group
                 </button>
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
+                  v-if="!isLeader"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
                   Out group
@@ -196,10 +204,16 @@ export default {
         targetId: null,
         targetName: null,
         targetThumbnail: null,
+        leaderId: null,
       },
       text: 'lorem',
       groupMembers: [],
     }
+  },
+  computed: {
+    isLeader() {
+      return this.conversation.leaderId == this.$auth.user.id
+    },
   },
   watch: {
     '$store.state.conversation'() {

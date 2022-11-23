@@ -138,7 +138,7 @@
               referrerpolicy="no-referrer"
             />
           </div>
-          <div class="search-user__fullName">
+          <div class="search-user__fullName --text-ellipsis-2">
             {{ getFriend(friend).fullName }}
           </div>
           <div class="search-user__addFriendBtn"></div>

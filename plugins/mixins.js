@@ -18,7 +18,7 @@ if (!Vue.__my_mixin__) {
        * @returns
        */
       isActivating(status) {
-        return status == 'ONLINE'
+        return status == this.$constants.userStatus.online
       },
 
       /**
@@ -93,27 +93,41 @@ if (!Vue.__my_mixin__) {
       },
       compareMessageVsConversation(message, conversation) {
         // this.debug('compareMessageVsConversation', message, conversation)
-        if (
-          message?.from?.id == conversation?.from &&
-          message?.to?.id == conversation?.to
-        )
-          return true
-        else if (
-          message?.from?.id == conversation?.to &&
-          message?.to?.id == conversation?.from
-        )
-          return true
-        return false
+        if (message.target == 'USER') {
+          if (
+            message?.from?.id == conversation?.from &&
+            message?.to?.id == conversation?.to
+          )
+            return true
+          else if (
+            message?.from?.id == conversation?.to &&
+            message?.to?.id == conversation?.from
+          )
+            return true
+          return false
+        } else {
+          if (message?.to?.id == conversation?.to) return true
+          return false
+        }
       },
       compareMessageVsActiveConversation(chatMessage) {
         // check is conversation active
         const storedConversation = this.$store.getters.getConversation
-        if (
-          chatMessage.target == storedConversation.target &&
-          chatMessage.from.id == storedConversation.targetId
-        )
-          return true
-        return false
+        if (chatMessage.target == 'USER') {
+          if (
+            chatMessage.target == storedConversation.target &&
+            chatMessage.from.id == storedConversation.targetId
+          )
+            return true
+          return false
+        } else {
+          if (
+            chatMessage.target == storedConversation.target &&
+            chatMessage.to.id == storedConversation.targetId
+          )
+            return true
+          return false
+        }
       },
       // append
       appendChatMessages(chatMessage) {

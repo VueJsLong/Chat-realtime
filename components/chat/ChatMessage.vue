@@ -1,7 +1,12 @@
 <template>
   <div
     class="chat-content__message"
-    :class="{ host: isHost, guest: !isHost, '--same-source': isSameSource }"
+    :class="{
+      host: isHost,
+      guest: !isHost,
+      '--same-source': isSameSource,
+      info: isInfo,
+    }"
   >
     <img
       class="chat-message__thumbnail m-thumbnail"
@@ -11,9 +16,9 @@
       :title="getCreateTime"
     />
     <span class="chat-message__content"
-      ><span :title="getCreateTime">
+      ><p class="message" :title="getCreateTime">
         {{ data.content }}
-      </span>
+      </p>
       <div class="chat-message__context-menu">
         <div class="chat-context-menu__item">
           <button class="m-icon-btn">
@@ -95,9 +100,17 @@ export default {
         return this.data.from.id == currentUser.id
       }
     },
+    isInfo() {
+      return this.data.type == this.$constants.messagesType.info
+    },
     getCreateTime() {
-      let createdTime = new Date(this.data.createdAt)
-      return createdTime.toLocaleTimeString()
+      let now = this.$moment()
+      let messageDate = this.$moment(this.data.createdAt)
+      if (now.diff(messageDate, 'hours') < 24) {
+        return this.$moment(this.data.createdAt).format('HH:mm')
+      } else {
+        return this.$moment(this.data.createdAt).format('DD/MM/YYYY, HH:mm')
+      }
     },
   },
   methods: {},

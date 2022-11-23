@@ -31,7 +31,7 @@
             referrerpolicy="no-referrer"
           />
           <div class="content">
-            <div class="friends">{{ item.targetName }}</div>
+            <div class="friends --text-ellipsis">{{ item.targetName }}</div>
             <div class="preview-message --text-ellipsis">
               {{ item.content }}
             </div>
@@ -64,7 +64,9 @@
             />
           </div>
           <div class="content">
-            <div class="friends">{{ checkCloud(item).targetName }}</div>
+            <div class="friends --text-ellipsis">
+              {{ checkCloud(item).targetName }}
+            </div>
             <div class="preview-message --text-ellipsis">
               {{ checkCloud(item).content }}
             </div>
@@ -147,6 +149,7 @@ export default {
         targetName,
         targetThumbnail,
         target,
+        leaderId: conversation?.leaderId,
       }
       this.conversation = payload
       this.$store.dispatch('setConversation', payload)

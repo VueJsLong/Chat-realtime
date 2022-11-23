@@ -9,57 +9,68 @@
       @hidden="resetModal"
       @ok="handleOk"
     >
-      <b-container fluid>
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label for="group-name">Name</label>
-          </b-col>
-          <b-col sm="9">
-            <b-form-input
-              id="group-name"
-              type="text"
-              placeholder="Group name"
-              v-model="group.name"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label for="group-thumbnail">Thumbnail</label>
-          </b-col>
-          <b-col sm="9">
-            <b-form-input
-              id="group-thumbnail"
-              type="text"
-              placeholder="Thumbnail url"
-              v-model="group.thumbnail"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label for="group-members">Members</label>
-          </b-col>
-          <b-col sm="9">
-            <div class="group-members__selector">
-              <b-form-group>
-                <multiselect
-                  v-model="group.members"
-                  placeholder="Choose member"
-                  select-label=""
-                  label="fullName"
-                  track-by="id"
-                  :options="friendOptions"
-                  :searchable="true"
-                  :multiple="true"
-                  :hide-selected="true"
-                >
-                </multiselect>
-              </b-form-group>
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
+      <b-form @submit.prevent="handleCreateGroup">
+        <b-container fluid>
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="group-name">Name</label>
+            </b-col>
+            <b-col sm="9">
+              <b-form-input
+                id="group-name"
+                type="text"
+                placeholder="Group name"
+                v-model="group.name"
+                required
+              ></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="group-thumbnail">Thumbnail</label>
+            </b-col>
+            <b-col sm="9">
+              <b-form-input
+                id="group-thumbnail"
+                type="text"
+                placeholder="Thumbnail url"
+                v-model="group.thumbnail"
+                required
+              ></b-form-input>
+            </b-col>
+          </b-row>
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="group-members">Members</label>
+            </b-col>
+            <b-col sm="9">
+              <div class="group-members__selector">
+                <b-form-group>
+                  <multiselect
+                    v-model="group.members"
+                    placeholder="Choose member"
+                    select-label=""
+                    label="fullName"
+                    track-by="id"
+                    :options="friendOptions"
+                    :searchable="true"
+                    :multiple="true"
+                    :hide-selected="true"
+                  >
+                  </multiselect>
+                </b-form-group>
+              </div>
+            </b-col>
+          </b-row>
+          <b-button
+            ref="submitFormBtn"
+            type="submit"
+            variant="primary"
+            v-show="false"
+            >Login</b-button
+          >
+        </b-container>
+      </b-form>
     </b-modal>
   </div>
 </template>
@@ -82,9 +93,9 @@ export default {
   },
   computed: {
     friendOptions() {
-      return [...this.friends, ...this.requests].map((item) =>
-        this.getFriend(item)
-      )
+      return [...this.friends, ...this.requests]
+        .map((item) => this.getFriend(item))
+        .sort((a, b) => String(a.fullName).localeCompare(b.fullName))
     },
   },
   watch: {
@@ -142,17 +153,26 @@ export default {
         ...this.group,
         members: this.group.members.map((item) => item.id),
       }
-      this.log(params)
+      this.debug('Create group payload', params)
+      const me = this
+      const socket = me.$store.getters.getSocket
+
+      // emit event
+      socket.emit(me.$socketEvent.group.create, params, (res) => {
+        me.debug(res)
+        this.$snotify.success(me.$socketEvent.group.create)
+
+        // Hide the modal manually
+        // this.$nextTick(() => {
+        //   this.$bvModal.hide('create-group')
+        // })
+      })
     },
     async handleOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault()
       // Trigger submit handler
-      await this.handleCreateGroup()
-      // Hide the modal manually
-      this.$nextTick(() => {
-        this.$bvModal.hide('create-group')
-      })
+      this.$refs.submitFormBtn.click()
     },
   },
 }
