@@ -106,15 +106,14 @@
           <button class="m-icon-btn" title="send message" @click="sendMessage">
             <i class="fi fi-rs-paper-plane"></i>
           </button>
-          <button class="m-icon-btn" title="send image">
-            <i class="fi fi-rr-picture"></i>
-          </button>
-          <button class="m-icon-btn" title="send voice">
-            <i class="fi fi-rr-microphone"></i>
-          </button>
-          <button class="m-icon-btn" title="send emoji">
-            <i class="fi fi-rr-smile"></i>
-          </button>
+          <label for="send-image"> </label>
+          <div class="image-upload">
+            <label for="file-input" class="m-icon-btn" title="send image">
+              <i class="fi fi-rr-picture"></i>
+            </label>
+            <input id="file-input" type="file" style="display: none" multiple />
+          </div>
+          <emoji-box @input="(emoji) => insertEmoji(emoji)"></emoji-box>
         </div>
       </div>
     </div>
@@ -126,7 +125,9 @@
 </template>
 
 <script>
+import EmojiBox from './EmojiBox.vue'
 export default {
+  components: { EmojiBox },
   data() {
     return {
       chatMessages: [],
@@ -174,6 +175,9 @@ export default {
         .catch((err) => {
           this.log(err)
         })
+    },
+    insertEmoji(emoji) {
+      this.messageInput += emoji
     },
     async handleCtrlEnter() {
       await this.sendMessage()

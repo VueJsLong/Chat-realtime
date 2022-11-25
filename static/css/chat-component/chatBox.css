@@ -303,3 +303,9 @@
 .chat-box-footer__icon .m-icon-btn {
   margin-right: 8px;
 }
+
+.chat-box__footer .image-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

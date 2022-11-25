@@ -23,6 +23,7 @@
     "nuxt-vue-multiselect": "^1.0.4",
     "socket.io-client": "^4.5.2",
     "vue": "^2.6.14",
+    "vue-emoji-picker": "^1.0.3",
     "vue-server-renderer": "^2.6.14",
     "vue-snotify": "^3.2.1",
     "vue-template-compiler": "^2.6.14",

@@ -2,6 +2,7 @@
 @import url(/css/layout.css);
 @import url(/css/chat-component/chatBox.css);
 @import url(/css/chat-component/chatInfo.css);
+@import url(/css/chat-component/emojiBox.css);
 
 /* header start*/
 .header-nav {

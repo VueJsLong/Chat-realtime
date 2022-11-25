@@ -1,0 +1,56 @@
+.w-128 {
+  width: 32rem
+}
+
+.h-96 {
+  height: 24rem
+}
+
+.t-4 {
+  top: 1rem
+}
+
+.-r-64 {
+  right: -16rem
+}
+
+.emoji-container {}
+
+.emoji-invoker {
+  transition: all 0.2s
+}
+
+.emoji-invoker:hover {}
+
+.emojis:after {
+  content: "";
+  flex: auto
+}
+
+.emoji-invoker+div {
+  height: 0;
+}
+
+.emoji-picker {
+  width: 50%;
+  position: absolute;
+  right: 0;
+  transform: translateY(calc(-100% - 56px));
+}
+
+
+
+/* emoji button */
+.emoji-picker button {
+  border: 2px solid transparent;
+  background-color: unset;
+  font-size: 1.5rem !important;
+}
+
+.emoji-picker button:hover {
+  background-color: var(--main-color-100);
+}
+
+.emoji-picker button:focus {
+  border: 2px solid var(--main-color-100);
+}
