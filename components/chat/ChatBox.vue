@@ -83,7 +83,14 @@
       <!-- tool end -->
 
       <!-- content start -->
-      <div ref="chatBoxContent" class="chat-box__content scroll-y">
+      <div
+        ref="chatBoxContent"
+        class="chat-box__content"
+        @scroll="handleScroll"
+      >
+        <div class="d-flex justify-content-center mb-3" v-if="loadingChat">
+          <b-spinner label=""></b-spinner>
+        </div>
         <ChatMessage
           v-for="(item, index) in chatMessages"
           :key="item.id"
@@ -136,6 +143,10 @@ export default {
       isInfoShow: false,
       isSearchShow: false,
       searchInput: '',
+      lastScrollTop: 0,
+      loadingChat: false,
+      page: 1,
+      sizeCheck: false,
     }
   },
   computed: {
@@ -146,6 +157,7 @@ export default {
   watch: {
     '$store.state.conversation'() {
       this.conversation = this.$store.getters.getConversation
+      this.resetChat()
       this.getCurrentConversation()
     },
     '$store.state.chatMessages'() {
@@ -154,7 +166,7 @@ export default {
   },
   mounted() {},
   updated() {
-    this.chatBoxScrollBottom()
+    //
   },
   methods: {
     getCurrentConversation(page = 1, size = 20) {
@@ -170,6 +182,9 @@ export default {
         })
         .then((res) => {
           this.$store.dispatch('setChatMessages', res.data.data)
+          if (res.data.data.length < 20) {
+            this.sizeCheck = true
+          }
         })
         .catch((err) => {
           this.log(err)
@@ -221,6 +236,45 @@ export default {
     },
     searchMessage() {
       this.debug('search message', this.searchInput)
+    },
+    handleScroll(e) {
+      var nowScrollTop = e.srcElement.scrollTop
+      if (nowScrollTop < this.lastScrollTop) {
+        if (nowScrollTop == 0) {
+          if (!this.sizeCheck) {
+            this.loadingChat = true
+            this.getdata()
+          }
+        }
+      }
+      this.lastScrollTop = nowScrollTop
+    },
+    getdata(size = 20) {
+      this.page = this.page + 1
+      const params = {
+        target: this.conversation.target,
+        page: this.page,
+        size: size,
+      }
+      this.$axios
+        .get(`${this.$api.conversation}/${this.conversation.targetId}`, {
+          params,
+        })
+        .then((res) => {
+          this.chatMessages = res.data.data.concat(this.chatMessages)
+          this.loadingChat = false
+          if (res.data.data.length < 20) {
+            this.sizeCheck = true
+          }
+          $('.chat-box__content').scrollTop(50)
+        })
+        .catch((err) => {
+          this.log(err)
+        })
+    },
+    resetChat() {
+      this.sizeCheck = false
+      this.page = 1
     },
   },
 }
