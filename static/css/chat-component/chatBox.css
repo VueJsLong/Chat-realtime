@@ -181,11 +181,11 @@
   opacity: 1;
 }
 
-.message.guest.--same-source .chat-message__thumbnail {
+.--same-source .message.guest .chat-message__thumbnail {
   opacity: 0;
 }
 
-.message.guest.--same-source {}
+.--same-source .message.guest {}
 
 .message.guest .refer-to-message::after {
   border-bottom-left-radius: 2px;
@@ -389,4 +389,5 @@
 /* time milestone */
 .time-milestone {
   text-align: center;
+  color: var(--wcag-secondary-text-color);
 }
