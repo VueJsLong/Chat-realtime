@@ -97,6 +97,7 @@
           :key="item.id"
           :data="item"
           :isSameSource="isMessagesSameSource(index)"
+          :isTimeMilestone="isMessagesTimeMilestone(index)"
           @referTo="setReferTo(item)"
         ></ChatMessage>
       </div>
@@ -251,6 +252,20 @@ export default {
       return (
         this.chatMessages[index].from.id == this.chatMessages[index - 1].from.id
       )
+    },
+    isMessagesTimeMilestone(index) {
+      if (index == 0) return true
+      const thisMessage = this.chatMessages[index]
+      const previousMessage = this.chatMessages[index - 1]
+
+      const thisMoment = this.$moment(thisMessage.createdAt)
+      const previousMoment = this.$moment(previousMessage.createdAt)
+
+      // Nếu khác ngày
+      if (thisMoment.date() - previousMoment.date() > 0) return true
+
+      // Nếu cùng ngày và giờ cách nhau hơn 1 tiếng
+      return thisMoment.diff(previousMoment, 'hours') > 1
     },
     chatBoxScrollBottom() {
       const chatBoxContent = this.$refs.chatBoxContent
