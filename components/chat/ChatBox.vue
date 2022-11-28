@@ -9,7 +9,7 @@
             :class="{ active: isActivating(conversationUser?.status) }"
           >
             <img
-              :src="conversation.targetThumbnail"
+              :src="thumbnail(conversation.targetThumbnail)"
               alt=""
               referrerpolicy="no-referrer"
             />
@@ -85,6 +85,7 @@
       <!-- content start -->
       <div
         ref="chatBoxContent"
+        :id="conversation?.targetId"
         class="chat-box__content"
         @scroll="handleScroll"
       >
@@ -103,10 +104,12 @@
       <!-- footer start -->
       <div class="chat-box__footer">
         <textarea
+          ref="chatInput"
           type="text"
           class="chat-box__input scroll-y"
           placeholder="Aa"
           v-model="messageInput"
+          @keyup.exact.enter="sendMessage"
           @keyup.ctrl.enter="handleCtrlEnter"
         ></textarea>
         <div class="chat-box-footer__icon">
@@ -160,15 +163,16 @@ export default {
       this.conversation = this.$store.getters.getConversation
       this.resetChat()
       this.getCurrentConversation()
+      this.$nextTick(() => {
+        this.chatBoxScrollBottom()
+      })
     },
     '$store.state.chatMessages'() {
       this.chatMessages = this.$store.getters.getChatMessages
     },
   },
   mounted() {},
-  updated() {
-    //
-  },
+  updated() {},
   methods: {
     getCurrentConversation(page = 1, size = 20) {
       this.log('change conversation', this.conversation)
@@ -195,7 +199,8 @@ export default {
       this.messageInput += emoji
     },
     async handleCtrlEnter() {
-      await this.sendMessage()
+      this.messageInput += `
+`
     },
     async sendMessage() {
       if (String(this.messageInput).trim() == '') return
@@ -247,13 +252,13 @@ export default {
         if (nowScrollTop == 0) {
           if (!this.sizeCheck) {
             this.loadingChat = true
-            this.getdata()
+            this.getData()
           }
         }
       }
       this.lastScrollTop = nowScrollTop
     },
-    getdata(size = 20) {
+    getData(size = 20) {
       this.page = this.page + 1
       const params = {
         target: this.conversation.target,

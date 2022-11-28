@@ -173,7 +173,7 @@ export default {
         return {
           ...conversation,
           targetName: 'Cloud',
-          targetThumbnail: '/img/chat/cloud.jpg',
+          targetThumbnail: process.env.baseUrl + '/img/chat/cloud.jpg',
         }
       }
       return {

@@ -1,6 +1,7 @@
 export default {
   env: {
     environment: process.env.ENVIRONMENT || 'DEVELOPMENT',
+    baseUrl: process.env.NUXT_ENV_BASE_URL || 'http://localhost:4040',
     wsUrl: process.env.NUXT_ENV_WS_URL || 'http://localhost:4000',
     apiUrl: process.env.NUXT_ENV_API_URL || 'http://localhost:4000',
     googleLoginUrl:
