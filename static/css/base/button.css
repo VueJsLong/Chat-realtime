@@ -142,11 +142,10 @@
 /* icon button */
 
 .icon-btn {
-  width: 36px;
   padding: 0px 8px;
   font-size: 20px;
-  color: var(--btn-primary-color);
-  background-color: var(--btn-icon-color);
+  background-color: var(--btn-primary-color);
+  color: var(--wcag-white-color);
 }
 
 .icon-btn:hover {}

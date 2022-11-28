@@ -6,6 +6,8 @@ const api = {
   getRequests: '/friends/request',
   getFriends: '/friends',
   getGroupMembers: '/groups',
+  uploadSingleImage: '/uploads/single',
+  uploadMultipleImage: '/uploads/multiple',
 }
 
 export default ({ app }, inject) => {

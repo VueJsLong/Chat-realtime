@@ -122,13 +122,17 @@
             label="Thumbnail:"
             label-for="input-thumbnail"
           >
-            <b-form-input
-              id="input-thumbnail"
-              v-model="form.thumbnail"
-              type="text"
-              placeholder="Enter your name"
-              required
-            ></b-form-input>
+            <b-input-group class="thumbnail-group">
+              <b-form-input
+                type="text"
+                placeholder="Thumbnail url"
+                v-model="form.thumbnail"
+                required
+              ></b-form-input>
+              <b-input-group-append>
+                <thumbnail-cropper v-model="form.thumbnail"></thumbnail-cropper>
+              </b-input-group-append>
+            </b-input-group>
           </b-form-group>
 
           <b-button type="submit" variant="primary">Next</b-button>
@@ -257,14 +261,14 @@ export default {
   data() {
     return {
       form: {
-        fullName: 'fullname',
-        email: 'mama7576277@gmail.com',
-        password: 'examplePassword',
-        rePassword: 'examplePassword',
-        phoneNumber: '123123',
-        birthday: '2000-05-20',
-        gender: '1',
-        thumbnail: '/img',
+        fullName: null,
+        email: null,
+        password: null,
+        rePassword: null,
+        phoneNumber: null,
+        birthday: null,
+        gender: null,
+        thumbnail: null,
       },
       otp: {
         otpDigit1: null,

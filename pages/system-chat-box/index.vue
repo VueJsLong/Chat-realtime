@@ -93,7 +93,7 @@ export default {
       text: 'lorem',
     }
   },
-  mounted() {
+  beforeMount() {
     // Nếu người đang đăng nhập không phải là admin thì không cho phép vào
     if (this.$auth.user.id != this.$constants.ADMIN_ID) {
       this.$router.push({ path: '/' })

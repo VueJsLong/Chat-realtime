@@ -26,7 +26,7 @@
           @click="setConversation(item)"
         >
           <img
-            :src="item.targetThumbnail"
+            :src="thumbnail(item.targetThumbnail)"
             alt=""
             referrerpolicy="no-referrer"
           />
@@ -104,6 +104,12 @@ export default {
     },
   },
   created() {},
+  beforeMount() {
+    // Nếu người đang đăng nhập là admin thì không cho vào
+    if (this.$auth.user.id == this.$constants.ADMIN_ID) {
+      this.$router.push({ path: '/' })
+    }
+  },
   mounted() {
     this.debug('Message-page mounted.............................')
     this.getUserConversations()

@@ -214,7 +214,16 @@ if (!Vue.__my_mixin__) {
         return friend.from
       },
       thumbnail(thumbnail) {
-        return thumbnail ? thumbnail : '/img/chat/thumbnail-placeholder.jpg'
+        // Nếu có thumbnail kiểm tra là ảnh ngoài backend hay ảnh trong backend
+        if (thumbnail) {
+          // Nếu là ảnh trong backend, nối apiUrl vào thumbnail
+          // Nếu là ảnh ngoài backend, trả về thumbnail
+          if (String(thumbnail).startsWith('/')) {
+            return process.env.apiUrl + thumbnail
+          } else return thumbnail
+        }
+        // Nếu không có thumbnail trả về ảnh placeholder
+        return '/img/chat/thumbnail-placeholder.jpg'
       },
     },
   })

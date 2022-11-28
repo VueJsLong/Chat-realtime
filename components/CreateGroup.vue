@@ -30,13 +30,20 @@
               <label for="group-thumbnail">Thumbnail</label>
             </b-col>
             <b-col sm="9">
-              <b-form-input
-                id="group-thumbnail"
-                type="text"
-                placeholder="Thumbnail url"
-                v-model="group.thumbnail"
-                required
-              ></b-form-input>
+              <b-input-group>
+                <b-form-input
+                  id="group-thumbnail"
+                  type="text"
+                  placeholder="Thumbnail url"
+                  v-model="group.thumbnail"
+                  required
+                ></b-form-input>
+                <b-input-group-append>
+                  <thumbnail-cropper
+                    v-model="group.thumbnail"
+                  ></thumbnail-cropper>
+                </b-input-group-append>
+              </b-input-group>
             </b-col>
           </b-row>
           <b-row class="my-1">
@@ -77,9 +84,10 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import ThumbnailCropper from './ThumbnailCropper.vue'
 export default {
   name: 'CreateGroup',
-  components: { Multiselect },
+  components: { Multiselect, ThumbnailCropper },
   data() {
     return {
       friends: [],
@@ -163,9 +171,9 @@ export default {
         this.$snotify.success(me.$socketEvent.group.create)
 
         // Hide the modal manually
-        // this.$nextTick(() => {
-        //   this.$bvModal.hide('create-group')
-        // })
+        this.$nextTick(() => {
+          this.$bvModal.hide('create-group')
+        })
       })
     },
     async handleOk(bvModalEvent) {

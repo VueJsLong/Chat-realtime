@@ -10,7 +10,7 @@ export default {
       process.env.NUXT_ENV_FACEBOOK_LOGIN_URL ||
       'http://localhost:4000/auth/facebook',
   },
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
   head: {
     title: 'Chat_realtime',
     htmlAttrs: {
