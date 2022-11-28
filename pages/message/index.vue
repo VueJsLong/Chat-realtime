@@ -72,6 +72,35 @@
             </div>
           </div>
         </div>
+        <div class="placehoder-wapper" v-show="loading">
+          <div class="item">
+            <div class="m-thumnail-placeholder placehoder"></div>
+            <div class="content-placeholder">
+              <div class="friends --text-ellipsis-placeholder placehoder"></div>
+              <div
+                class="preview-message --text-ellipsis-placeholder placehoder"
+              ></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="m-thumnail-placeholder placehoder"></div>
+            <div class="content-placeholder">
+              <div class="friends --text-ellipsis-placeholder placehoder"></div>
+              <div
+                class="preview-message --text-ellipsis-placeholder placehoder"
+              ></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="m-thumnail-placeholder placehoder"></div>
+            <div class="content-placeholder">
+              <div class="friends --text-ellipsis-placeholder placehoder"></div>
+              <div
+                class="preview-message --text-ellipsis-placeholder placehoder"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -90,6 +119,7 @@ export default {
       groupConversations: [],
       currentPage: 1,
       conversation: null,
+      loading: true,
     }
   },
   watch: {
@@ -98,6 +128,7 @@ export default {
     },
     '$store.state.userConversations'() {
       this.userConversations = this.$store.getters.getUserConversations
+      this.loading = false
     },
     '$store.state.groupConversations'() {
       this.groupConversations = this.$store.getters.getGroupConversations
@@ -110,7 +141,7 @@ export default {
     this.getGroupConversations()
   },
   methods: {
-    async getUserConversations(page = 1, size = 20) {
+    getUserConversations(page = 1, size = 20) {
       this.currentPage = page
       const params = {
         target: 'USER',
@@ -126,7 +157,7 @@ export default {
           this.log(err)
         })
     },
-    async getGroupConversations(page = 1, size = 20) {
+    getGroupConversations(page = 1, size = 20) {
       this.currentPage = page
       const params = {
         target: 'GROUP',
@@ -179,4 +210,35 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.m-thumnail-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #353637;
+}
+.--text-ellipsis-placeholder {
+  width: 150px;
+  height: 21px;
+  background-color: #353637;
+  margin-bottom: 2px;
+}
+.placehoder {
+  animation-duration: 1.7s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: placeholderAnimate;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+  background-size: 1300px;
+}
+@keyframes placeholderAnimate {
+  0% {
+    background-position: -650px 0;
+  }
+  100% {
+    background-position: 650px 0;
+  }
+}
+</style>

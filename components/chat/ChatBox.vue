@@ -158,6 +158,7 @@ export default {
     '$store.state.conversation'() {
       this.conversation = this.$store.getters.getConversation
       this.resetChat()
+      // this.chatBoxScrollBottom()
       this.getCurrentConversation()
     },
     '$store.state.chatMessages'() {
@@ -280,4 +281,30 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.chat-box__content {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+  animation-name: fade;
+  animation-duration: 0.5s;
+}
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+</style>
