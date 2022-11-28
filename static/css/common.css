@@ -79,6 +79,7 @@
   --header-thumbnail-height: 60px;
   --navbar-height: calc(100% - var(--header-thumbnail-height) - 40px);
   --chat-message-thumbnail: 32px;
+  --chat-message-z-index: 10;
 }
 
 * {

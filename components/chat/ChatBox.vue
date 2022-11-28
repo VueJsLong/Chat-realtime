@@ -97,19 +97,28 @@
           :key="item.id"
           :data="item"
           :isSameSource="isMessagesSameSource(index)"
+          @referTo="setReferTo(item)"
         ></ChatMessage>
       </div>
       <!-- content end -->
 
       <!-- footer start -->
       <div class="chat-box__footer">
+        <div class="chat-refer-to" v-if="messageInput.referTo">
+          <div class="refer-to-content --text-ellipsis">
+            {{ this.messageInput.referTo?.content }}
+          </div>
+          <button class="m-icon-btn" @click="setReferTo(null)">
+            <i class="fi fi-rr-cross-small refer-to-close"></i>
+          </button>
+        </div>
         <textarea
           ref="chatInput"
           type="text"
           class="chat-box__input scroll-y"
           placeholder="Aa"
-          v-model="messageInput"
-          @keyup.exact.enter="sendMessage"
+          v-model="messageInput.content"
+          @keydown.exact.enter.prevent="sendMessage"
           @keyup.ctrl.enter="handleCtrlEnter"
         ></textarea>
         <div class="chat-box-footer__icon">
@@ -126,12 +135,19 @@
           <emoji-box @input="(emoji) => insertEmoji(emoji)"></emoji-box>
         </div>
       </div>
+      <!-- footer end -->
     </div>
+
+    <!-- chat info start -->
     <chat-info v-if="isInfoShow" @hideChatInfo="toggleChatInfo"></chat-info>
+    <!-- chat info end -->
   </div>
+
+  <!-- chat introduction start -->
   <div class="chat-introduction" v-else>
     <chat-introduction></chat-introduction>
   </div>
+  <!-- chat introduction end -->
 </template>
 
 <script>
@@ -142,8 +158,10 @@ export default {
     return {
       chatMessages: [],
       conversation: null,
-      messageInput: '',
-      referTo: null,
+      messageInput: {
+        content: '',
+        referTo: null,
+      },
       isInfoShow: false,
       isSearchShow: false,
       searchInput: '',
@@ -196,14 +214,14 @@ export default {
         })
     },
     insertEmoji(emoji) {
-      this.messageInput += emoji
+      this.messageInput.content += emoji
     },
     async handleCtrlEnter() {
-      this.messageInput += `
+      this.messageInput.content += `
 `
     },
-    async sendMessage() {
-      if (String(this.messageInput).trim() == '') return
+    async sendMessage(event) {
+      if (String(this.messageInput.content).trim() == '') return
 
       const me = this
       const socket = this.$store.getters.getSocket
@@ -212,18 +230,20 @@ export default {
       const payload = {
         from: me.$auth.user.id,
         to: this.conversation.targetId,
-        content: this.messageInput,
+        content: this.messageInput.content,
         status: null,
         type: 'TEXT',
         target: this.conversation.target,
-        referTo: this.referTo,
+        referTo: this.messageInput.referTo?.id,
       }
       socket.emit(me.$socketEvent.chat.sendMessages, payload, (res) => {
         // me.$snotify.success(me.$socketEvent.chat.sendMessages)
         // me.debug(res)
         me.appendChatMessages(res)
         me.bubbleConversationUp(res)
-        me.messageInput = ''
+        me.messageInput.content = ''
+        me.setReferTo(null)
+        me.chatBoxScrollBottom()
       })
     },
     isMessagesSameSource(index) {
@@ -284,6 +304,9 @@ export default {
     resetChat() {
       this.sizeCheck = false
       this.page = 1
+    },
+    setReferTo(message) {
+      this.messageInput.referTo = message
     },
   },
 }

@@ -15,13 +15,18 @@
       referrerpolicy="no-referrer"
       :title="getCreateTime"
     />
-    <span class="chat-message__content"
-      ><p class="message" :title="getCreateTime">
-        {{ data.content }}
-      </p>
+    <span class="chat-message__content">
+      <div class="message-container" :title="getCreateTime">
+        <p class="refer-to-message" v-if="data.referTo">
+          {{ data?.referTo?.content }}
+        </p>
+        <p class="main-message">
+          {{ data.content }}
+        </p>
+      </div>
       <div class="chat-message__context-menu">
         <div class="chat-context-menu__item">
-          <button class="m-icon-btn">
+          <button class="m-icon-btn" @click="handleReferTo">
             <i class="fi fi-rr-undo"></i>
           </button>
           <span class="context-menu-item__tooltip">Trả lời</span>
@@ -38,12 +43,12 @@
           </button>
           <span class="context-menu-item__tooltip">Xem thêm</span>
           <div class="chat-context-menu__child-item">
-            <div class="chat-context-menu__item">
+            <!-- <div class="chat-context-menu__item">
               <button class="m-icon-btn">
                 <i class="fi fi-rr-world"></i>
               </button>
               <span class="context-menu-item__tooltip">Dịch</span>
-            </div>
+            </div> -->
             <div class="chat-context-menu__item recall_btn">
               <button class="m-icon-btn">
                 <i class="fi fi-rr-trash"></i>
@@ -113,7 +118,12 @@ export default {
       }
     },
   },
-  methods: {},
+  methods: {
+    handleReferTo() {
+      this.log('refer')
+      this.$emit('referTo')
+    },
+  },
 }
 </script>
 
