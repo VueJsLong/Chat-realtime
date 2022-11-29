@@ -26,6 +26,9 @@ const getters = {
   getFriends(state) {
     return state.friends
   },
+  getModal(state) {
+    return state.modal
+  },
 }
 
 export default getters

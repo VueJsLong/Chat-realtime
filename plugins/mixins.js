@@ -50,11 +50,11 @@ if (!Vue.__my_mixin__) {
       axiosLoadError(p, callback = () => {}) {
         p.catch((error) => {
           if (error.response) {
-            alert(error.response.data?.messages)
+            this.$snotify.error(error.response.data?.messages)
           } else if (error.request) {
-            alert(error.request)
+            this.$snotify.error(error.request)
           } else {
-            alert(error.message)
+            this.$snotify.error(error.message)
           }
           callback()
         })
@@ -64,7 +64,7 @@ if (!Vue.__my_mixin__) {
         if (process.env.NODE_ENV == 'DEVELOPMENT') console.log(...args)
       },
       warn(...args) {
-        if (process.env.NODE_ENV == 'DEVELOPMENT') console.log(...args)
+        if (process.env.NODE_ENV == 'DEVELOPMENT') console.warn(...args)
       },
       error(...args) {
         if (process.env.NODE_ENV == 'DEVELOPMENT') console.error(...args)

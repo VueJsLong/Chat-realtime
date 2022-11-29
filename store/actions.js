@@ -32,5 +32,8 @@ const actions = {
     if (!payload) payload = []
     vuexContext.commit('setFriends', payload)
   },
+  setModal(vuexContext, payload) {
+    vuexContext.commit('setModal', payload)
+  },
 }
 export default actions

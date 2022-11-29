@@ -8,6 +8,7 @@
 
     <create-group></create-group>
     <vue-snotify></vue-snotify>
+    <base-modal></base-modal>
     <audio ref="receiveMessageSound" src="/sound/receive-message.mp3"></audio>
   </div>
 </template>

@@ -230,6 +230,15 @@ export default {
       })
     },
     removeFriend(fromId) {
+      this.$store.dispatch('setModal', {
+        isShow: true,
+        title: 'Bạn có chắc chắn muốn xóa bạn bè?',
+        description: 'Hành động này không thể khôi phục',
+
+        callback: () => this.handleRemoveFriend(fromId),
+      })
+    },
+    handleRemoveFriend(fromId) {
       const me = this
       const socket = me.$store.getters.getSocket
 

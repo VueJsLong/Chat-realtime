@@ -52,7 +52,7 @@
               <span class="context-menu-item__tooltip">Dịch</span>
             </div> -->
               <div class="chat-context-menu__item recall_btn">
-                <button class="m-icon-btn">
+                <button class="m-icon-btn" @click="handleRecall">
                   <i class="fi fi-rr-trash"></i>
                 </button>
                 <span class="context-menu-item__tooltip">Thu hồi</span>
@@ -133,6 +133,26 @@ export default {
   methods: {
     handleReferTo() {
       this.$emit('referTo')
+    },
+    handleRecall() {
+      const params = {
+        from: 10,
+        to: 20,
+      }
+      this.$store.dispatch('setModal', {
+        isShow: true,
+        title: 'Bạn có chắc chắn muốn thu hồi tin nhắn?',
+        description: 'Mọi người sẽ không thể nhìn thấy tin nhắn này nữa',
+
+        callback: async () => {
+          const p = this.$axios
+            .post(`${this.$api.uploadSingleImage}`, params)
+            .then((res) => {
+              this.log(res)
+            })
+          this.axiosLoadError(p)
+        },
+      })
     },
   },
 }

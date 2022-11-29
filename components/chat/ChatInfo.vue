@@ -173,6 +173,7 @@
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
                   v-if="isLeader"
+                  @click="deleteGroup"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
                   Delete group
@@ -180,6 +181,7 @@
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
                   v-if="!isLeader"
+                  @click="outGroup"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
                   Out group
@@ -244,14 +246,14 @@ export default {
         target: 'USER',
       })
     },
-    removeGroupMember(member) {
+    handleRemoveGroupMember(member) {
       this.debug('remove group member', member)
     },
     hideChatInfo() {
       this.log('click')
       this.$emit('hideChatInfo')
     },
-    removeFriend() {
+    handleRemoveFriend() {
       const me = this
       const socket = me.$store.getters.getSocket
 
@@ -264,6 +266,64 @@ export default {
         // me.debug(res)
         me.removeFriends(res)
         this.$snotify.success(me.$socketEvent.friend.removeFriend)
+      })
+    },
+    removeFriend() {
+      this.$store.dispatch('setModal', {
+        isShow: true,
+        title: 'Bạn có chắc chắn muốn xóa bạn bè?',
+        description: 'Hành động này không thể khôi phục',
+
+        callback: () => this.handleRemoveFriend(),
+      })
+    },
+    removeGroupMember(member) {
+      this.$store.dispatch('setModal', {
+        isShow: true,
+        title: 'Bạn có chắc chắn muốn xóa thành viên này?',
+        description: 'Hành động này không thể khôi phục',
+
+        callback: () => this.handleRemoveGroupMember(member),
+      })
+    },
+    outGroup() {
+      const params = {
+        from: 10,
+        to: 20,
+      }
+      this.$store.dispatch('setModal', {
+        isShow: true,
+        title: 'Bạn có chắc chắn muốn rời nhóm?',
+        description: 'Hành động này không thể khôi phục',
+
+        callback: async () => {
+          const p = this.$axios
+            .post(`${this.$api.uploadSingleImage}`, params)
+            .then((res) => {
+              this.log(res)
+            })
+          this.axiosLoadError(p)
+        },
+      })
+    },
+    deleteGroup() {
+      const params = {
+        from: 1,
+        to: 2,
+      }
+      this.$store.dispatch('setModal', {
+        isShow: true,
+        title: 'Bạn có chắc chắn muốn xóa nhóm?',
+        description: 'Hành động này không thể khôi phục',
+
+        callback: async () => {
+          const p = this.$axios
+            .post(`${this.$api.uploadMultipleImage}`, params)
+            .then((res) => {
+              this.log(res)
+            })
+          this.axiosLoadError(p)
+        },
       })
     },
   },

@@ -28,6 +28,9 @@ const mutations = {
   setFriends(state, payload) {
     state.friends = payload
   },
+  setModal(state, payload) {
+    state.modal = payload
+  },
   resetStore(state) {
     state = { ...defaultState }
   },

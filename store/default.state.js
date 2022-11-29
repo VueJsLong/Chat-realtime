@@ -8,6 +8,18 @@ const defaultState = {
   chatMessages: [],
   requests: [],
   friends: [],
+  modal: {
+    isShow: false,
+    title: null,
+    description: null,
+    callback: async () => {},
+    primaryButton: {
+      title: null,
+    },
+    secondaryButton: {
+      title: null,
+    },
+  },
 }
 
 export default defaultState
