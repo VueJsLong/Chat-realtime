@@ -44,63 +44,51 @@
         <p>Recents</p>
       </div>
       <div class="recent-contacts scroll-y">
-        <div
-          class="item"
-          :class="{ active: isActiveConversation(item.targetId, 'USER') }"
-          v-for="item in userConversations"
-          :key="item.id"
-          @click="setConversation(checkCloud(item))"
-        >
+        <transition name="fade">
           <div
-            class="m-thumbnail"
-            :class="{
-              active: isActivating(isConversationActivating(item)?.status),
-            }"
+            class="item"
+            :class="{ active: isActiveConversation(item.targetId, 'USER') }"
+            v-for="item in userConversations"
+            :key="item.id"
+            @click="setConversation(checkCloud(item))"
           >
-            <img
-              :src="checkCloud(item).targetThumbnail"
-              alt=""
-              referrerpolicy="no-referrer"
-            />
-          </div>
-          <div class="content">
-            <div class="friends --text-ellipsis">
-              {{ checkCloud(item).targetName }}
+            <div
+              class="m-thumbnail"
+              :class="{
+                active: isActivating(isConversationActivating(item)?.status),
+              }"
+            >
+              <img
+                :src="checkCloud(item).targetThumbnail"
+                alt=""
+                referrerpolicy="no-referrer"
+              />
             </div>
-            <div class="preview-message --text-ellipsis">
-              {{ checkCloud(item).content }}
-            </div>
-          </div>
-        </div>
-        <div class="placehoder-wapper" v-show="loading">
-          <div class="item">
-            <div class="m-thumnail-placeholder placehoder"></div>
-            <div class="content-placeholder">
-              <div class="friends --text-ellipsis-placeholder placehoder"></div>
-              <div
-                class="preview-message --text-ellipsis-placeholder placehoder"
-              ></div>
+            <div class="content">
+              <div class="friends --text-ellipsis">
+                {{ checkCloud(item).targetName }}
+              </div>
+              <div class="preview-message --text-ellipsis">
+                {{ checkCloud(item).content }}
+              </div>
             </div>
           </div>
-          <div class="item">
-            <div class="m-thumnail-placeholder placehoder"></div>
-            <div class="content-placeholder">
-              <div class="friends --text-ellipsis-placeholder placehoder"></div>
-              <div
-                class="preview-message --text-ellipsis-placeholder placehoder"
-              ></div>
+        </transition>
+        <transition name="fade">
+          <div class="placehoder-wapper" v-show="loading">
+            <div class="item" v-for="i in 2" :key="i">
+              <div class="m-thumnail-placeholder placehoder"></div>
+              <div class="content-placeholder">
+                <div
+                  class="friends --text-ellipsis-placeholder placehoder"
+                ></div>
+                <div
+                  class="preview-message --text-ellipsis-placeholder placehoder"
+                ></div>
+              </div>
             </div>
           </div>
-          <div class="item">
-            <div class="m-thumnail-placeholder placehoder"></div>
-            <div class="content-placeholder">
-              <div class="friends --text-ellipsis-placeholder placehoder"></div>
-              <div
-                class="preview-message --text-ellipsis-placeholder placehoder"
-              ></div>
-            </div>
-          </div>
-        </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -210,35 +198,4 @@ export default {
 }
 </script>
 
-<style>
-.m-thumnail-placeholder {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #353637;
-}
-.--text-ellipsis-placeholder {
-  width: 150px;
-  height: 21px;
-  background-color: #353637;
-  margin-bottom: 2px;
-}
-.placehoder {
-  animation-duration: 1.7s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-name: placeholderAnimate;
-  background: #f6f7f8;
-  background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
-  background-size: 1300px;
-}
-@keyframes placeholderAnimate {
-  0% {
-    background-position: -650px 0;
-  }
-  100% {
-    background-position: 650px 0;
-  }
-}
-</style>
+<style></style>
