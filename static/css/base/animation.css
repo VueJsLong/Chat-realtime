@@ -27,3 +27,49 @@
     top: 0px;
   }
 }
+/* placehoder loading */
+.m-thumnail-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #353637;
+}
+.--text-ellipsis-placeholder {
+  width: 150px;
+  height: 21px;
+  background-color: #353637;
+}
+.--text-ellipsis-placeholder:nth-child(2) {
+  width: 200px;
+}
+.--text-ellipsis-placeholder:not(:last-child) {
+  margin-bottom: 2px;
+}
+.placehoder {
+  animation-duration: 1.7s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: placeholderAnimate;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+  background-size: 1300px;
+}
+@keyframes placeholderAnimate {
+  0% {
+    background-position: -650px 0;
+  }
+  100% {
+    background-position: 650px 0;
+  }
+}
+
+.fade-enter-active {
+  transition: opacity 200ms ease-in-out;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave-active {
+  display: none;
+}
