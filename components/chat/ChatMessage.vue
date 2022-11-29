@@ -132,7 +132,6 @@ export default {
   },
   methods: {
     handleReferTo() {
-      this.log('refer')
       this.$emit('referTo')
     },
   },
