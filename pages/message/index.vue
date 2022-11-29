@@ -44,7 +44,7 @@
         <p>Recents</p>
       </div>
       <div class="recent-contacts scroll-y">
-        <transition name="fade">
+        <transition-group name="fade">
           <div
             class="item"
             :class="{ active: isActiveConversation(item.targetId, 'USER') }"
@@ -73,7 +73,7 @@
               </div>
             </div>
           </div>
-        </transition>
+        </transition-group>
         <transition name="fade">
           <div class="placehoder-wapper" v-show="loading">
             <div class="item" v-for="i in 2" :key="i">
@@ -192,7 +192,8 @@ export default {
         return {
           ...conversation,
           targetName: 'Cloud',
-          targetThumbnail: process.env.baseUrl + '/img/chat/cloud.jpg',
+          targetThumbnail:
+            process.env.NUXT_ENV_BASE_URL + '/img/chat/cloud.jpg',
         }
       }
       return {
