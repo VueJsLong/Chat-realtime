@@ -61,16 +61,16 @@ if (!Vue.__my_mixin__) {
       },
       // console
       log(...args) {
-        if (process.env.environment == 'DEVELOPMENT') console.log(...args)
+        if (process.env.NODE_ENV == 'DEVELOPMENT') console.log(...args)
       },
       warn(...args) {
-        if (process.env.environment == 'DEVELOPMENT') console.log(...args)
+        if (process.env.NODE_ENV == 'DEVELOPMENT') console.log(...args)
       },
       error(...args) {
-        if (process.env.environment == 'DEVELOPMENT') console.error(...args)
+        if (process.env.NODE_ENV == 'DEVELOPMENT') console.error(...args)
       },
       debug(...args) {
-        if (process.env.environment == 'DEVELOPMENT') console.debug(...args)
+        if (process.env.NODE_ENV == 'DEVELOPMENT') console.debug(...args)
       },
       goBack() {
         if (window) {
