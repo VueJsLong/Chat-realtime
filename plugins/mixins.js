@@ -61,16 +61,40 @@ if (!Vue.__my_mixin__) {
       },
       // console
       log(...args) {
-        if (process.env.NODE_ENV == 'DEVELOPMENT') console.log(...args)
+        console.log(this.$config.environment)
+        console.log(process.env.NODE_ENV)
+        if (
+          this.$config.environment == 'DEVELOPMENT' ||
+          this.$config.environment == 'development'
+        )
+          console.log(...args)
       },
       warn(...args) {
-        if (process.env.NODE_ENV == 'DEVELOPMENT') console.warn(...args)
+        console.log(this.$config.environment)
+        console.log(process.env.NODE_ENV)
+        if (
+          this.$config.environment == 'DEVELOPMENT' ||
+          this.$config.environment == 'development'
+        )
+          console.warn(...args)
       },
       error(...args) {
-        if (process.env.NODE_ENV == 'DEVELOPMENT') console.error(...args)
+        console.log(this.$config.environment)
+        console.log(process.env.NODE_ENV)
+        if (
+          this.$config.environment == 'DEVELOPMENT' ||
+          this.$config.environment == 'development'
+        )
+          console.error(...args)
       },
       debug(...args) {
-        if (process.env.NODE_ENV == 'DEVELOPMENT') console.debug(...args)
+        console.log(this.$config.environment)
+        console.log(process.env.NODE_ENV)
+        if (
+          this.$config.environment == 'DEVELOPMENT' ||
+          this.$config.environment == 'development'
+        )
+          console.debug(...args)
       },
       goBack() {
         if (window) {

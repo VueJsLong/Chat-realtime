@@ -17,6 +17,7 @@
   border: none;
   background-color: unset;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .m-btn-sm {
