@@ -99,10 +99,10 @@ export default {
   },
   methods: {
     loginWithGoogle() {
-      window.location.href = process.env.googleLoginUrl
+      window.location.href = this.$config.googleLoginUrl
     },
     loginWithFacebook() {
-      window.location.href = process.env.facebookLoginUrl
+      window.location.href = this.$config.facebookLoginUrl
     },
     async login() {
       this.toggleProcessing()

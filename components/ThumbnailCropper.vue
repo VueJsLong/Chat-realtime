@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     url() {
-      return process.env.apiUrl + this.$api.uploadSingleImage
+      return this.$config.apiUrl + this.$api.uploadSingleImage
     },
   },
   methods: {

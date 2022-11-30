@@ -161,7 +161,7 @@ export default {
         target: activeContact.dataset.target,
       }
 
-      fetch(process.env.apiUrl + '/messages', {
+      fetch(this.$config.apiUrl + '/messages', {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {

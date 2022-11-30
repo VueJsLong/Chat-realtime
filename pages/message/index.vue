@@ -44,51 +44,45 @@
         <p>Recents</p>
       </div>
       <div class="recent-contacts scroll-y">
-        <transition-group name="fade">
+        <div
+          class="item"
+          :class="{ active: isActiveConversation(item.targetId, 'USER') }"
+          v-for="item in userConversations"
+          :key="item.id"
+          @click="setConversation(checkCloud(item))"
+        >
           <div
-            class="item"
-            :class="{ active: isActiveConversation(item.targetId, 'USER') }"
-            v-for="item in userConversations"
-            :key="item.id"
-            @click="setConversation(checkCloud(item))"
+            class="m-thumbnail"
+            :class="{
+              active: isActivating(isConversationActivating(item)?.status),
+            }"
           >
-            <div
-              class="m-thumbnail"
-              :class="{
-                active: isActivating(isConversationActivating(item)?.status),
-              }"
-            >
-              <img
-                :src="checkCloud(item).targetThumbnail"
-                alt=""
-                referrerpolicy="no-referrer"
-              />
+            <img
+              :src="checkCloud(item).targetThumbnail"
+              alt=""
+              referrerpolicy="no-referrer"
+            />
+          </div>
+          <div class="content">
+            <div class="friends --text-ellipsis">
+              {{ checkCloud(item).targetName }}
             </div>
-            <div class="content">
-              <div class="friends --text-ellipsis">
-                {{ checkCloud(item).targetName }}
-              </div>
-              <div class="preview-message --text-ellipsis">
-                {{ checkCloud(item).content }}
-              </div>
+            <div class="preview-message --text-ellipsis">
+              {{ checkCloud(item).content }}
             </div>
           </div>
-        </transition-group>
-        <transition name="fade">
-          <div class="placehoder-wapper" v-show="loading">
-            <div class="item" v-for="i in 2" :key="i">
-              <div class="m-thumnail-placeholder placehoder"></div>
-              <div class="content-placeholder">
-                <div
-                  class="friends --text-ellipsis-placeholder placehoder"
-                ></div>
-                <div
-                  class="preview-message --text-ellipsis-placeholder placehoder"
-                ></div>
-              </div>
+        </div>
+        <div class="placehoder-wapper" v-show="loading">
+          <div class="item" v-for="i in 2" :key="i">
+            <div class="m-thumnail-placeholder placehoder"></div>
+            <div class="content-placeholder">
+              <div class="friends --text-ellipsis-placeholder placehoder"></div>
+              <div
+                class="preview-message --text-ellipsis-placeholder placehoder"
+              ></div>
             </div>
           </div>
-        </transition>
+        </div>
       </div>
     </div>
   </div>
@@ -193,7 +187,7 @@ export default {
           ...conversation,
           targetName: 'Cloud',
           targetThumbnail:
-            process.env.NUXT_ENV_BASE_URL + '/img/chat/cloud.jpg',
+            this.$config.NUXT_ENV_BASE_URL + '/img/chat/cloud.jpg',
         }
       }
       return {

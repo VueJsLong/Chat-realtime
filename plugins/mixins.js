@@ -61,8 +61,6 @@ if (!Vue.__my_mixin__) {
       },
       // console
       log(...args) {
-        console.log(this.$config.environment)
-        console.log(process.env.NODE_ENV)
         if (
           this.$config.environment == 'DEVELOPMENT' ||
           this.$config.environment == 'development'
@@ -70,8 +68,6 @@ if (!Vue.__my_mixin__) {
           console.log(...args)
       },
       warn(...args) {
-        console.log(this.$config.environment)
-        console.log(process.env.NODE_ENV)
         if (
           this.$config.environment == 'DEVELOPMENT' ||
           this.$config.environment == 'development'
@@ -79,8 +75,6 @@ if (!Vue.__my_mixin__) {
           console.warn(...args)
       },
       error(...args) {
-        console.log(this.$config.environment)
-        console.log(process.env.NODE_ENV)
         if (
           this.$config.environment == 'DEVELOPMENT' ||
           this.$config.environment == 'development'
@@ -88,8 +82,6 @@ if (!Vue.__my_mixin__) {
           console.error(...args)
       },
       debug(...args) {
-        console.log(this.$config.environment)
-        console.log(process.env.NODE_ENV)
         if (
           this.$config.environment == 'DEVELOPMENT' ||
           this.$config.environment == 'development'
@@ -243,7 +235,7 @@ if (!Vue.__my_mixin__) {
           // Nếu là ảnh trong backend, nối apiUrl vào thumbnail
           // Nếu là ảnh ngoài backend, trả về thumbnail
           if (String(thumbnail).startsWith('/')) {
-            return process.env.apiUrl + thumbnail
+            return this.$config.apiUrl + thumbnail
           } else return thumbnail
         }
         // Nếu không có thumbnail trả về ảnh placeholder

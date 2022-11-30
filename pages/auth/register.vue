@@ -325,10 +325,10 @@ export default {
       this.currentForm = form
     },
     loginWithGoogle() {
-      window.location.href = process.env.googleLoginUrl
+      window.location.href = this.$config.googleLoginUrl
     },
     loginWithFacebook() {
-      window.location.href = process.env.facebookLoginUrl
+      window.location.href = this.$config.facebookLoginUrl
     },
     async register() {
       this.setCurrentForm('otp-form')
