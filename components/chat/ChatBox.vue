@@ -6,7 +6,7 @@
         <div class="item">
           <div
             class="m-thumbnail"
-            :class="{ active: isActivating(conversationUser?.status) }"
+            :class="{ active: isActivating(conversationTarget?.status) }"
           >
             <img
               :src="thumbnail(conversation.targetThumbnail)"
@@ -17,11 +17,11 @@
           <div class="content">
             <div class="friend-name">{{ conversation.targetName }}</div>
             <div class="last-active" v-if="conversation.target == 'USER'">
-              <span v-if="isActivating(conversationUser?.status)">
+              <span v-if="isActivating(conversationTarget?.status)">
                 đang hoạt động
               </span>
-              <span v-else-if="conversationUser?.updatedAt">
-                {{ $moment(conversationUser?.updatedAt).fromNow() }}
+              <span v-else-if="conversationTarget?.updatedAt">
+                {{ $moment(conversationTarget?.updatedAt).fromNow() }}
               </span>
               <span v-else></span>
             </div>
@@ -136,7 +136,15 @@
             <label for="file-input" class="m-icon-btn" title="send image">
               <i class="fi fi-rr-picture"></i>
             </label>
-            <input id="file-input" type="file" style="display: none" multiple />
+            <input
+              id="file-input"
+              type="file"
+              style="display: none"
+              accept=".jpg, .jpeg, .png, .webp, .gif"
+              multiple
+              ref="imagesInput"
+              @input="handleChooseImages"
+            />
           </div>
           <emoji-box @input="(emoji) => insertEmoji(emoji)"></emoji-box>
         </div>
@@ -181,9 +189,11 @@ export default {
     }
   },
   computed: {
-    // Lấy đối tượng của cuộc trò truyện, nếu là bạn bè thì hiển thị trạng thái hoạt động
-    conversationUser() {
-      return this.isConversationActivating(this.conversation)
+    // Lấy đối tượng của cuộc trò truyện, phục vụ hiển thị trạng thái hoạt động
+    conversationTarget() {
+      return this.conversation.target == 'USER'
+        ? this.isConversationActivating(this.conversation)
+        : this.conversation
     },
   },
   watch: {
@@ -238,11 +248,11 @@ export default {
       // Nếu bây giờ không có giá trị và trước đó có giá trị => dừng phát sự kiện typing
       if (newValue && !oldValue) {
         socket.emit(me.$socketEvent.chat.typingStart, payload, (res) => {
-          this.log(res)
+          // this.debug(res)
         })
       } else if (!newValue && oldValue) {
         socket.emit(me.$socketEvent.chat.typingEnd, payload, (res) => {
-          this.log(res)
+          // this.debug(res)
         })
       }
     },
@@ -250,6 +260,11 @@ export default {
   mounted() {},
   updated() {},
   methods: {
+    /**
+     * Xử lý lấy danh sách tin nhắn dựa vào cuộc trò chuyện
+     * @param {*} page
+     * @param {*} size
+     */
     getCurrentConversation(page = 1, size = 20) {
       this.log('change conversation', this.conversation)
       const params = {
@@ -274,10 +289,14 @@ export default {
     insertEmoji(emoji) {
       this.messageInput.content += emoji
     },
-    async handleCtrlEnter() {
+    handleCtrlEnter() {
       this.messageInput.content += `
 `
     },
+    /**
+     * Xử lý gửi tin nhắn
+     * @param {*} event
+     */
     async sendMessage(event) {
       if (String(this.messageInput.content).trim() == '') return
 
@@ -303,12 +322,76 @@ export default {
         me.chatBoxScrollBottom()
       })
     },
+    /**
+     * Xử lý chọn ảnh hình ảnh
+     */
+    handleChooseImages(event) {
+      // Lấy file
+      const files = event.target.files
+
+      // Kiểm tra kích thước file
+      for (const file of files) {
+        if (file.size > 1 * 1024 * 1024) {
+          this.$snotify.error(`${file.name} phải nhỏ hơn 1MB.`)
+          return
+        }
+      }
+
+      // Thêm file vào form data
+      const fd = new FormData()
+      for (const file of files) {
+        fd.append('files', file)
+      }
+
+      // Gọi api upload ảnh
+      const p = this.$axios
+        .post(this.$api.uploadMultipleImage, fd)
+        .then((res) => this.sendImages(res.data.data))
+      this.axiosLoadError(p)
+    },
+
+    /**
+     * Gửi ảnh
+     */
+    sendImages(filePaths) {
+      const me = this
+      const socket = this.$store.getters.getSocket
+
+      // Lặp qua từng path và gửi tin nhắn
+      for (const item of filePaths) {
+        const payload = {
+          from: me.$auth.user.id,
+          to: this.conversation.targetId,
+          content: item.filePath,
+          status: null,
+          type: 'IMAGE',
+          target: this.conversation.target,
+        }
+        // this.log({ item, payload })
+        socket.emit(me.$socketEvent.chat.sendMessages, payload, (res) => {
+          me.appendChatMessages(res)
+          me.bubbleConversationUp(res)
+          me.chatBoxScrollBottom()
+        })
+      }
+    },
+
+    /**
+     * Kiểm tra 2 tin nhắn liền kề có cùng nguồn hay không
+     * Nếu cùng nguồn, ẩn thumbnail
+     * @param {*} index
+     */
     isMessagesSameSource(index) {
       if (index == 0) return false
       return (
         this.chatMessages[index].from.id == this.chatMessages[index - 1].from.id
       )
     },
+    /**
+     * Kiểm tra 2 tin nhắn liền kề có lệch giờ nhau nhiều hay không
+     * Nếu lệch nhiều, hiển thị info ngày giờ
+     * @param {*} index
+     */
     isMessagesTimeMilestone(index) {
       if (index == 0) return true
       const thisMessage = this.chatMessages[index]
@@ -320,9 +403,12 @@ export default {
       // Nếu khác ngày
       if (thisMoment.date() - previousMoment.date() > 0) return true
 
-      // Nếu cùng ngày và giờ cách nhau hơn 1 tiếng
-      return thisMoment.diff(previousMoment, 'hours') > 1
+      // Nếu cùng ngày và cách nhau hơn 30 phút
+      return thisMoment.diff(previousMoment, 'minutes') > 30
     },
+    /**
+     * Xử lý cuộn chuột xuống dưới
+     */
     chatBoxScrollBottom() {
       const chatBoxContent = this.$refs.chatBoxContent
       chatBoxContent.scrollTop = chatBoxContent.scrollHeight

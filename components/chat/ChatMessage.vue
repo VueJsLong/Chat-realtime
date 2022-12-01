@@ -18,7 +18,40 @@
         :title="getCreateTime"
       />
       <span class="chat-message__content">
-        <div class="content-container" :title="getCreateTime">
+        <!-- Hình ảnh -->
+        <div class="content-container" :title="getCreateTime" v-if="isImage">
+          <a
+            target="_blank"
+            :href="thumbnail(data.content)"
+            class="main-message link-message image-message"
+          >
+            <img
+              :src="thumbnail(data.content)"
+              alt=""
+              height="100"
+              referrerpolicy="no-referrer"
+            />
+          </a>
+        </div>
+        <!-- Liên kết -->
+        <div
+          class="content-container"
+          :title="getCreateTime"
+          v-else-if="isLink"
+        >
+          <p class="refer-to-message" v-if="data.referTo">
+            {{ data?.referTo?.content }}
+          </p>
+          <a
+            target="_blank"
+            :href="data.content"
+            class="main-message link-message"
+          >
+            {{ data.content }}
+          </a>
+        </div>
+        <!-- Văn bản -->
+        <div class="content-container" :title="getCreateTime" v-else>
           <p class="refer-to-message" v-if="data.referTo">
             {{ data?.referTo?.content }}
           </p>
@@ -26,6 +59,7 @@
             {{ data.content }}
           </p>
         </div>
+        <!-- Menu tin nhắn -->
         <div class="chat-message__context-menu">
           <div class="chat-context-menu__item">
             <button class="m-icon-btn" @click="handleReferTo">
@@ -117,6 +151,12 @@ export default {
     },
     isInfo() {
       return this.data.type == this.$constants.messagesType.info
+    },
+    isImage() {
+      return this.data.type == this.$constants.messagesType.image
+    },
+    isLink() {
+      return String(this.data.content).startsWith('http')
     },
     getCreateTime() {
       let now = this.$moment()

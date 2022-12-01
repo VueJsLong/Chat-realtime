@@ -74,7 +74,7 @@
             type="submit"
             variant="primary"
             v-show="false"
-            >Login</b-button
+            >Submit</b-button
           >
         </b-container>
       </b-form>

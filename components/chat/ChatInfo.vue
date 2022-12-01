@@ -49,12 +49,12 @@
               role="tabpanel"
             >
               <b-card-body>
-                <button
+                <!-- <button
                   class="chat-info-footer__ban-message m-btn m-btn-with-icon primary-btn --warning"
                 >
                   <i class="fi fi-rr-comment-xmark btn-icon"></i>
                   Ban message
-                </button>
+                </button> -->
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
                   @click="removeFriend"
