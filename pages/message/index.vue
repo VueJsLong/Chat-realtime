@@ -186,8 +186,7 @@ export default {
         return {
           ...conversation,
           targetName: 'Cloud',
-          targetThumbnail:
-            this.$config.NUXT_ENV_BASE_URL + '/img/chat/cloud.jpg',
+          targetThumbnail: this.$config.baseUrl + '/img/chat/cloud.jpg',
         }
       }
       return {

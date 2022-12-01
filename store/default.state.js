@@ -20,6 +20,7 @@ const defaultState = {
       title: null,
     },
   },
+  typing: {},
 }
 
 export default defaultState

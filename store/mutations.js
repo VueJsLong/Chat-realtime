@@ -31,6 +31,16 @@ const mutations = {
   setModal(state, payload) {
     state.modal = payload
   },
+  addTyping(state, payload) {
+    state.typing[payload.key] = payload.value
+    const newTyping = { ...state.typing }
+    state.typing = newTyping
+  },
+  removeTyping(state, payload) {
+    delete state.typing[payload.key]
+    const newTyping = { ...state.typing }
+    state.typing = newTyping
+  },
   resetStore(state) {
     state = { ...defaultState }
   },

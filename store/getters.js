@@ -29,6 +29,23 @@ const getters = {
   getModal(state) {
     return state.modal
   },
+  getTyping:
+    (state) =>
+    (key = null) => {
+      // Nếu truyền vào key, trả về value của key
+      if (key) return state.typing[key] || []
+
+      // Nếu không truyền vào key, trả về value của conversation hiện tại
+      const conversation = state.conversation
+      key =
+        conversation?.target == 'USER'
+          ? 'USER_' + conversation?.targetId
+          : 'GROUP_' + conversation?.targetId
+      return state.typing[key] || []
+    },
+  getAllTyping(state) {
+    return state.typing
+  },
 }
 
 export default getters

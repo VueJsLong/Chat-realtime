@@ -46,6 +46,9 @@ export default {
       this.listenAcceptFriendEvent()
       this.listenRemoveFriendEvent()
       this.listenReceiveMessageEvent()
+      this.listenTypingStartEvent()
+      this.listenTypingEndEvent()
+
       this.listenExceptionEvent()
       this.listenErrorEvent()
     },
@@ -95,6 +98,20 @@ export default {
         if (me.compareMessageVsActiveConversation(payload))
           me.appendChatMessages(payload)
         me.bubbleConversationUp(payload)
+      })
+    },
+    listenTypingStartEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.chat.typingStart, (payload) => {
+        me.debug('Listen typing start', payload)
+        this.$store.dispatch('startTyping', payload)
+      })
+    },
+    listenTypingEndEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.chat.typingEnd, (payload) => {
+        me.debug('Listen typing end', payload)
+        this.$store.dispatch('endTyping', payload)
       })
     },
     listenExceptionEvent() {

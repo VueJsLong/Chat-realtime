@@ -100,6 +100,11 @@
           :isTimeMilestone="isMessagesTimeMilestone(index)"
           @referTo="setReferTo(item)"
         ></ChatMessage>
+        <chat-typing
+          v-for="item in typing"
+          :key="`${item.from}_${item.to}`"
+          :data="item"
+        ></chat-typing>
       </div>
       <!-- content end -->
 
@@ -152,9 +157,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ChatTyping from './ChatTyping.vue'
 import EmojiBox from './EmojiBox.vue'
 export default {
-  components: { EmojiBox },
+  components: { EmojiBox, ChatTyping },
   data() {
     return {
       chatMessages: [],
@@ -163,6 +170,7 @@ export default {
         content: '',
         referTo: null,
       },
+      typing: [],
       isInfoShow: false,
       isSearchShow: false,
       searchInput: '',
@@ -173,22 +181,70 @@ export default {
     }
   },
   computed: {
+    // Lấy đối tượng của cuộc trò truyện, nếu là bạn bè thì hiển thị trạng thái hoạt động
     conversationUser() {
       return this.isConversationActivating(this.conversation)
     },
   },
   watch: {
+    /**
+     * Xử lý khi thay đổi cuộc trò truyện
+     */
     '$store.state.conversation'() {
       this.conversation = this.$store.getters.getConversation
       this.resetChat()
-      // this.chatBoxScrollBottom()
+
+      // Gọi api lấy danh sách tin nhắn
       this.getCurrentConversation()
+
+      // Xử lý cuộn xuống dưới
       this.$nextTick(() => {
         this.chatBoxScrollBottom()
       })
     },
+
+    /**
+     * Lắng nghe danh sách tin nhắn
+     */
     '$store.state.chatMessages'() {
       this.chatMessages = this.$store.getters.getChatMessages
+    },
+
+    /**
+     * Lắng nghe danh sách typing
+     */
+    '$store.state.typing': {
+      handler() {
+        this.typing = this.$store.getters.getTyping()
+      },
+      deep: true,
+    },
+
+    /**
+     * Xử lý phát, dừng phát sự kiện typing
+     */
+    'messageInput.content'(newValue, oldValue) {
+      // Chuẩn bị payload
+      const me = this
+      const socket = this.$store.getters.getSocket
+      const payload = {
+        ...this.$auth.user,
+        from: this.$auth.user.id,
+        to: this.conversation.targetId,
+        target: this.conversation.target,
+      }
+
+      // Nếu bây giờ có giá trị và trước đó không có giá trị => phát sự kiện typing
+      // Nếu bây giờ không có giá trị và trước đó có giá trị => dừng phát sự kiện typing
+      if (newValue && !oldValue) {
+        socket.emit(me.$socketEvent.chat.typingStart, payload, (res) => {
+          this.log(res)
+        })
+      } else if (!newValue && oldValue) {
+        socket.emit(me.$socketEvent.chat.typingEnd, payload, (res) => {
+          this.log(res)
+        })
+      }
     },
   },
   mounted() {},
@@ -227,7 +283,6 @@ export default {
 
       const me = this
       const socket = this.$store.getters.getSocket
-      // this.log(socket)
 
       const payload = {
         from: me.$auth.user.id,
@@ -320,6 +375,10 @@ export default {
     resetChat() {
       this.sizeCheck = false
       this.page = 1
+      this.messageInput = {
+        content: '',
+        referTo: null,
+      }
     },
     setReferTo(message) {
       this.messageInput.referTo = message
