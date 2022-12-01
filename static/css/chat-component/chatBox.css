@@ -180,6 +180,7 @@
 
 .chat-message__content .link-message {
   cursor: pointer;
+  word-break: break-all;
 }
 
 /* guest message */

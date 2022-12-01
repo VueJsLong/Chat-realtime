@@ -442,6 +442,12 @@ export default {
         page: this.page,
         size: size,
       }
+
+      // Tính toán scrollTop
+      const scrollHeight = this.$refs.chatBoxContent.scrollHeight
+      const scrollTop = (0.2 / this.page) * scrollHeight
+      // this.log(this.page, scrollTop, scrollHeight)
+
       this.$axios
         .get(`${this.$api.conversation}/${this.conversation.targetId}`, {
           params,
@@ -452,7 +458,7 @@ export default {
           if (res.data.data.length < 20) {
             this.sizeCheck = true
           }
-          $('.chat-box__content').scrollTop(50)
+          $('.chat-box__content').scrollTop(scrollTop)
         })
         .catch((err) => {
           this.log(err)
