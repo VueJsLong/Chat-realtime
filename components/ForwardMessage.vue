@@ -170,7 +170,7 @@ export default {
           me.bubbleConversationUp(res)
         })
       }
-      // this.hideModal()
+      this.hideModal()
     },
     async handleOk(bvModalEvent) {
       // Prevent modal from closing
@@ -180,7 +180,7 @@ export default {
     },
     hideModal() {
       this.$nextTick(() => {
-        this.$bvModal.hide('create-group')
+        this.$bvModal.hide('forward-message')
       })
     },
   },
