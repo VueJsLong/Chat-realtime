@@ -18,8 +18,18 @@
         :title="getCreateTime"
       />
       <span class="chat-message__content">
+        <!-- Tin nhắn bị thu hồi -->
+        <div class="content-container" :title="getCreateTime" v-if="isRecall">
+          <p class="main-message">
+            {{ recallContent }}
+          </p>
+        </div>
         <!-- Hình ảnh -->
-        <div class="content-container" :title="getCreateTime" v-if="isImage">
+        <div
+          class="content-container"
+          :title="getCreateTime"
+          v-else-if="isImage"
+        >
           <a
             target="_blank"
             :href="thumbnail(data.content)"
@@ -56,7 +66,7 @@
             {{ data?.referTo?.content }}
           </p>
           <p class="main-message">
-            {{ isRecall ? recallContent : data.content }}
+            {{ data.content }}
           </p>
         </div>
         <!-- Menu tin nhắn -->
