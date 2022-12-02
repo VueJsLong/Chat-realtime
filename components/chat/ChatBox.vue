@@ -92,14 +92,15 @@
         <div class="d-flex justify-content-center mb-3" v-if="loadingChat">
           <b-spinner label=""></b-spinner>
         </div>
-        <ChatMessage
+        <chat-message
           v-for="(item, index) in chatMessages"
           :key="item.id"
           :data="item"
           :isSameSource="isMessagesSameSource(index)"
           :isTimeMilestone="isMessagesTimeMilestone(index)"
           @referTo="setReferTo(item)"
-        ></ChatMessage>
+          @forwardMessage="setForwardMessage(item)"
+        ></chat-message>
         <chat-typing
           v-for="item in typing"
           :key="`${item.from}_${item.to}`"
@@ -155,6 +156,9 @@
     <!-- chat info start -->
     <chat-info v-if="isInfoShow" @hideChatInfo="toggleChatInfo"></chat-info>
     <!-- chat info end -->
+
+    <!-- forward message modal -->
+    <forward-message :data="forwardContent"></forward-message>
   </div>
 
   <!-- chat introduction start -->
@@ -177,6 +181,10 @@ export default {
       messageInput: {
         content: '',
         referTo: null,
+      },
+      forwardContent: {
+        content: null,
+        type: null,
       },
       typing: [],
       isInfoShow: false,
@@ -470,6 +478,13 @@ export default {
     },
     setReferTo(message) {
       this.messageInput.referTo = message
+    },
+    setForwardMessage(message) {
+      this.forwardContent = {
+        content: message.content,
+        type: message.type,
+      }
+      this.$bvModal.show('forward-message')
     },
   },
 }

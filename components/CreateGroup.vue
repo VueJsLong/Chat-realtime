@@ -2,6 +2,7 @@
   <div class="create-group-modal">
     <b-modal
       id="create-group"
+      class="modal"
       ref="modal"
       centered
       title="Create group"

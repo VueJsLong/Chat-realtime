@@ -8,8 +8,8 @@
 
     <!-- Popup -->
     <vue-snotify></vue-snotify>
-    <create-group></create-group>
     <base-modal></base-modal>
+    <create-group></create-group>
 
     <!-- Audio -->
     <audio ref="receiveMessageSound" src="/sound/receive-message.mp3"></audio>

@@ -9,7 +9,7 @@ p {
 
 
 /* modal */
-#create-group button.close {
+.modal button.close {
   outline: unset !important;
   border: unset !important;
   background: unset !important;

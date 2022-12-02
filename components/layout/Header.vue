@@ -66,7 +66,7 @@ export default {
       const payload = {
         targetId: this.$auth.user.id,
         targetName: 'Cloud',
-        targetThumbnail: '/img/chat/cloud.jpg',
+        targetThumbnail: this.$config.baseUrl + '/img/chat/cloud.jpg',
         target: 'USER',
       }
       this.$store.dispatch('setConversation', payload)

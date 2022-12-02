@@ -20,8 +20,8 @@
       <span class="chat-message__content">
         <!-- Tin nhắn bị thu hồi -->
         <div class="content-container" :title="getCreateTime" v-if="isRecall">
-          <p class="main-message">
-            {{ recallContent }}
+          <p class="main-message font-italic">
+            <i> {{ recallContent }}</i>
           </p>
         </div>
         <!-- Hình ảnh -->
@@ -78,7 +78,7 @@
             <span class="context-menu-item__tooltip">Trả lời</span>
           </div>
           <div class="chat-context-menu__item">
-            <button class="m-icon-btn">
+            <button class="m-icon-btn" @click="handleForwardMessage">
               <i class="fi fi-rs-inbox-out"></i>
             </button>
             <span class="context-menu-item__tooltip">Chuyển tiếp</span>
@@ -125,6 +125,8 @@ export default {
           },
           to: null,
           content: null,
+          type: null,
+          status: null,
           target: null,
           id: null,
           referTo: null,
@@ -188,6 +190,9 @@ export default {
   methods: {
     handleReferTo() {
       this.$emit('referTo')
+    },
+    handleForwardMessage() {
+      this.$emit('forwardMessage')
     },
     handleRecallMessage() {
       this.$store.dispatch('setModal', {
