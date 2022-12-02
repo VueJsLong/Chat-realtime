@@ -10,11 +10,11 @@
       </template>
 
       <template #modal-footer="{ ok, cancel }">
-        <b-button variant="primary" @click="cancel()">
-          {{ modal?.secondaryButton?.title || 'Hủy' }}
-        </b-button>
         <b-button variant="danger" @click="ok()">
           {{ modal?.primaryButton?.title || 'Tiếp tục' }}
+        </b-button>
+        <b-button variant="primary" @click="cancel()">
+          {{ modal?.secondaryButton?.title || 'Hủy' }}
         </b-button>
       </template>
     </b-modal>

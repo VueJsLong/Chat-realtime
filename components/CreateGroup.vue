@@ -78,6 +78,10 @@
           >
         </b-container>
       </b-form>
+      <template #modal-footer="{ ok, cancel }">
+        <b-button variant="success" @click="ok()"> Tạo nhóm </b-button>
+        <b-button variant="primary" @click="cancel()"> Hủy </b-button>
+      </template>
     </b-modal>
   </div>
 </template>

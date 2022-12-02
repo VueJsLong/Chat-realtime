@@ -248,7 +248,7 @@ export default {
     },
     handleRemoveGroupMember(member) {
       const p = this.$axios
-        .post(`${this.$api.uploadSingleImage}`, params)
+        .post(`${this.$api.uploadSingleImage}`)
         .then((res) => {
           this.log(res)
         })
@@ -292,10 +292,6 @@ export default {
       })
     },
     outGroup() {
-      const params = {
-        from: 10,
-        to: 20,
-      }
       this.$store.dispatch('setModal', {
         isShow: true,
         title: 'Bạn có chắc chắn muốn rời nhóm?',
@@ -303,7 +299,7 @@ export default {
 
         callback: async () => {
           const p = this.$axios
-            .post(`${this.$api.uploadSingleImage}`, params)
+            .post(`${this.$api.uploadSingleImage}`)
             .then((res) => {
               this.log(res)
             })
@@ -312,10 +308,6 @@ export default {
       })
     },
     deleteGroup() {
-      const params = {
-        from: 1,
-        to: 2,
-      }
       this.$store.dispatch('setModal', {
         isShow: true,
         title: 'Bạn có chắc chắn muốn xóa nhóm?',
@@ -323,7 +315,7 @@ export default {
 
         callback: async () => {
           const p = this.$axios
-            .post(`${this.$api.uploadMultipleImage}`, params)
+            .post(`${this.$api.uploadMultipleImage}`)
             .then((res) => {
               this.log(res)
             })
