@@ -144,14 +144,14 @@ export default {
     },
     async sendResetEmail() {
       this.toggleProcessing()
-      const responsePromise = this.$axios
+      const p = this.$axios
         .post('/mail/reset-password', { email: this.form.email })
         .then((res) => {
           this.log(res.data)
           this.setCurrentForm(this.listForm.emailSentForm)
         })
         .finally(() => this.toggleProcessing())
-      this.axiosLoadError(responsePromise)
+      this.axiosLoadError(p)
     },
     async resetPassword() {
       this.toggleProcessing()
@@ -161,14 +161,14 @@ export default {
         email: query.email,
         verify_token: query.verify_token,
       }
-      const responsePromise = this.$axios
+      const p = this.$axios
         .post('/auth/reset-password', payload)
         .then((res) => {
           this.log(res.data)
           this.setCurrentForm(this.listForm.resetPasswordDoneForm)
         })
         .finally(() => this.toggleProcessing())
-      this.axiosLoadError(responsePromise)
+      this.axiosLoadError(p)
     },
   },
 }

@@ -230,12 +230,12 @@ export default {
   },
   methods: {
     getGroupMembers() {
-      this.$axios
+      const p = this.$axios
         .get(`${this.$api.getGroupMembers}/${this.conversation.targetId}`)
         .then((res) => {
           this.groupMembers = res.data.data.groupMembers
         })
-        .catch()
+      this.axiosLoadError(p)
     },
     setConversation(member) {
       const { id, fullName, thumbnail } = member

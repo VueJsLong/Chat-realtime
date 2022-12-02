@@ -332,14 +332,14 @@ export default {
     },
     async register() {
       this.setCurrentForm('otp-form')
-      this.$axios
+      const p = this.$axios
         .post('/mail/otp', {
           email: this.form.email,
         })
         .then((res) => {
           this.log(res.data)
         })
-        .catch()
+      this.axiosLoadError(p)
     },
     nextDigit(event, current) {
       this.log(event)

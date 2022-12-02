@@ -136,14 +136,12 @@ export default {
         page: page,
         size: size,
       }
-      this.$axios
+      const p = this.$axios
         .get(this.$api.conversation, { params })
         .then((res) => {
           this.$store.dispatch('setUserConversations', res.data.data)
         })
-        .catch((err) => {
-          this.log(err)
-        })
+      this.axiosLoadError(p)
     },
     getGroupConversations(page = 1, size = 20) {
       this.currentPage = page
@@ -152,14 +150,12 @@ export default {
         page: page,
         size: size,
       }
-      this.$axios
+      const p = this.$axios
         .get(this.$api.conversation, { params })
         .then((res) => {
           this.$store.dispatch('setGroupConversations', res.data.data)
         })
-        .catch((err) => {
-          this.log(err)
-        })
+      this.axiosLoadError(p)
     },
     setConversation(conversation) {
       const { targetId, targetName, targetThumbnail, target } = conversation

@@ -190,28 +190,24 @@ export default {
         this.requests = this.$store.getters.getRequests
       }
       const params = {}
-      this.$axios
+      const p = this.$axios
         .get(this.$api.getRequests, { params })
         .then((res) => {
           this.$store.dispatch('setRequests', res.data.data)
         })
-        .catch((err) => {
-          this.debug(err)
-        })
+      this.axiosLoadError(p)
     },
     async getFriends() {
       if (this.$store.getters.getFriends.length > 0) {
         this.friends = this.$store.getters.getFriends
       }
       const params = {}
-      this.$axios
+      const p = this.$axios
         .get(this.$api.getFriends, { params })
         .then((res) => {
           this.$store.dispatch('setFriends', res.data.data)
         })
-        .catch((err) => {
-          this.debug(err)
-        })
+      this.axiosLoadError(p)
     },
     acceptFriend(fromId) {
       const me = this

@@ -272,7 +272,7 @@ export default {
         page: page,
         size: size,
       }
-      this.$axios
+      const p = this.$axios
         .get(`${this.$api.conversation}/${this.conversation.targetId}`, {
           params,
         })
@@ -282,9 +282,7 @@ export default {
             this.sizeCheck = true
           }
         })
-        .catch((err) => {
-          this.log(err)
-        })
+      this.axiosLoadError(p)
     },
     insertEmoji(emoji) {
       this.messageInput.content += emoji
@@ -448,7 +446,7 @@ export default {
       const scrollTop = (0.2 / this.page) * scrollHeight
       // this.log(this.page, scrollTop, scrollHeight)
 
-      this.$axios
+      const p = this.$axios
         .get(`${this.$api.conversation}/${this.conversation.targetId}`, {
           params,
         })
@@ -460,9 +458,7 @@ export default {
           }
           $('.chat-box__content').scrollTop(scrollTop)
         })
-        .catch((err) => {
-          this.log(err)
-        })
+      this.axiosLoadError(p)
     },
     resetChat() {
       this.sizeCheck = false

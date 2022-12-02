@@ -18,7 +18,10 @@ export default {
   },
   methods: {
     testAxios() {
-      this.$axios.get('/').then((res) => (this.axiosResponse = res.data))
+      const p = this.$axios
+        .get('/error')
+        .then((res) => (this.axiosResponse = res.data))
+      this.axiosLoadError(p)
     },
     async logout() {
       await this.$auth.logout('local')

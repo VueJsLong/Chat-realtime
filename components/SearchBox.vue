@@ -65,7 +65,7 @@ export default {
       this.searchResult = null
       this.searchInput = String(this.searchInput).trim()
       if (!this.searchInput) return
-      this.$axios
+      const p = this.$axios
         .get(this.$api.findUser, {
           params: {
             email: this.searchInput,
@@ -74,7 +74,7 @@ export default {
         .then((res) => {
           this.searchResult = res.data.data
         })
-        .catch()
+      this.axiosLoadError(p)
     },
     sendRequestFriend() {
       this.debug('Search result', this.searchResult)

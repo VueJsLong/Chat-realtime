@@ -129,14 +129,12 @@ export default {
       }
 
       const params = {}
-      this.$axios
+      const p = this.$axios
         .get(this.$api.getRequests, { params })
         .then((res) => {
           this.$store.dispatch('setRequests', res.data.data)
         })
-        .catch((err) => {
-          this.log(err)
-        })
+      this.axiosLoadError(p)
     },
     async getFriends() {
       if (this.$store.getters.getFriends.length > 0) {
@@ -144,14 +142,12 @@ export default {
       }
 
       const params = {}
-      this.$axios
+      const p = this.$axios
         .get(this.$api.getFriends, { params })
         .then((res) => {
           this.$store.dispatch('setFriends', res.data.data)
         })
-        .catch((err) => {
-          this.log(err)
-        })
+      this.axiosLoadError(p)
     },
     resetModal() {
       this.group = {
