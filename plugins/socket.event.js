@@ -9,6 +9,7 @@ const socketEvent = {
     typingEnd: 'TYPING_END',
     sendMessages: 'SEND_MESSAGES',
     receiveMessages: 'RECEIVE_MESSAGES',
+    updateMessages: 'UPDATE_MESSAGE',
   },
   friend: {
     online: 'ONLINE',

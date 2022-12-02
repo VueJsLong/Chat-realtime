@@ -7,7 +7,7 @@ import {
   messagesType,
   messagesTarget,
   friendStatus,
-} from './state'
+} from './status'
 import { gender } from '../enums/gender'
 import { ADMIN_ID } from './admin'
 

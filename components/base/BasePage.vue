@@ -45,7 +45,9 @@ export default {
       this.listenRequestFriendEvent()
       this.listenAcceptFriendEvent()
       this.listenRemoveFriendEvent()
+
       this.listenReceiveMessageEvent()
+      this.listenUpdateMessageEvent()
       this.listenTypingStartEvent()
       this.listenTypingEndEvent()
 
@@ -97,6 +99,17 @@ export default {
         // this.$snotify.success(me.$socketEvent.chat.receiveMessages)
         if (me.compareMessageVsActiveConversation(payload))
           me.appendChatMessages(payload)
+        me.bubbleConversationUp(payload)
+      })
+    },
+    listenUpdateMessageEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.chat.updateMessages, (payload) => {
+        me.debug('Listen update message', payload)
+        // notify
+        // this.$snotify.success(me.$socketEvent.chat.updateMessages)
+        if (me.compareMessageVsActiveConversation(payload))
+          me.updateChatMessages(payload)
         me.bubbleConversationUp(payload)
       })
     },

@@ -56,11 +56,11 @@
             {{ data?.referTo?.content }}
           </p>
           <p class="main-message">
-            {{ data.content }}
+            {{ isRecall ? recallContent : data.content }}
           </p>
         </div>
         <!-- Menu tin nhắn -->
-        <div class="chat-message__context-menu">
+        <div class="chat-message__context-menu" v-if="!isRecall">
           <div class="chat-context-menu__item">
             <button class="m-icon-btn" @click="handleReferTo">
               <i class="fi fi-rr-undo"></i>
@@ -86,7 +86,7 @@
               <span class="context-menu-item__tooltip">Dịch</span>
             </div> -->
               <div class="chat-context-menu__item recall_btn">
-                <button class="m-icon-btn" @click="handleRecall">
+                <button class="m-icon-btn" @click="handleRecallMessage">
                   <i class="fi fi-rr-trash"></i>
                 </button>
                 <span class="context-menu-item__tooltip">Thu hồi</span>
@@ -138,7 +138,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      recallContent: 'Tin nhắn đã bị thu hồi.',
+    }
   },
   computed: {
     isHost() {
@@ -158,6 +160,9 @@ export default {
     isLink() {
       return String(this.data.content).startsWith('http')
     },
+    isRecall() {
+      return this.data.status == this.$constants.messagesStatus.recall
+    },
     getCreateTime() {
       let now = this.$moment()
       let messageDate = this.$moment(this.data.createdAt)
@@ -174,24 +179,32 @@ export default {
     handleReferTo() {
       this.$emit('referTo')
     },
-    handleRecall() {
-      const params = {
-        from: 10,
-        to: 20,
-      }
+    handleRecallMessage() {
       this.$store.dispatch('setModal', {
         isShow: true,
         title: 'Bạn có chắc chắn muốn thu hồi tin nhắn?',
         description: 'Mọi người sẽ không thể nhìn thấy tin nhắn này nữa',
 
-        callback: async () => {
-          const p = this.$axios
-            .post(`${this.$api.uploadSingleImage}`, params)
-            .then((res) => {
-              this.log(res)
-            })
-          this.axiosLoadError(p)
-        },
+        callback: async () => this.recallMessage(),
+      })
+    },
+    recallMessage() {
+      const me = this
+      const socket = this.$store.getters.getSocket
+
+      const payload = {
+        id: this.data.id,
+        from: me.$auth.user.id,
+        to: this.data.to.id,
+        // content: this.data.content,
+        status: this.$constants.messagesStatus.recall,
+        target: this.data.target,
+      }
+      socket.emit(me.$socketEvent.chat.updateMessages, payload, (res) => {
+        // me.$snotify.success(me.$socketEvent.chat.sendMessages)
+        me.debug('update message', res)
+        me.updateChatMessages(res)
+        me.bubbleConversationUp(res)
       })
     },
   },

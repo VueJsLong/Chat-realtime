@@ -247,7 +247,12 @@ export default {
       })
     },
     handleRemoveGroupMember(member) {
-      this.debug('remove group member', member)
+      const p = this.$axios
+        .post(`${this.$api.uploadSingleImage}`, params)
+        .then((res) => {
+          this.log(res)
+        })
+      this.axiosLoadError(p)
     },
     hideChatInfo() {
       this.log('click')

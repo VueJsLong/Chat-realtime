@@ -152,6 +152,18 @@ if (!Vue.__my_mixin__) {
         storedChatMessages.push(chatMessage)
         this.$store.dispatch('setChatMessages', storedChatMessages)
       },
+      updateChatMessages(chatMessage) {
+        // update chat
+        const storedChatMessages = this.$store.getters.getChatMessages
+        storedChatMessages.find((message, index) => {
+          if (message.id == chatMessage.id) {
+            storedChatMessages[index].status = chatMessage.status
+            return true
+          }
+        })
+        this.debug({ chatMessage, storedChatMessages })
+        this.$store.dispatch('setChatMessages', storedChatMessages)
+      },
       bubbleConversationUp(chatMessage) {
         // lấy ra danh sách tin nhắn
         let storedTargetConversation = []
@@ -175,8 +187,8 @@ if (!Vue.__my_mixin__) {
             content: chatMessage.content,
             target: chatMessage.target,
             status: chatMessage.status,
-            to: chatMessage.to.id,
-            from: chatMessage.from.id,
+            to: chatMessage.to.id || chatMessage.to,
+            from: chatMessage.from.id || chatMessage.from,
             targetId: this.getFriend(chatMessage).id,
             targetName: this.getFriend(chatMessage).name,
             targetThumbnail: this.thumbnail(
