@@ -6,10 +6,14 @@
       <ChatBox></ChatBox>
     </div>
 
-    <create-group></create-group>
+    <!-- Popup -->
     <vue-snotify></vue-snotify>
+    <create-group></create-group>
     <base-modal></base-modal>
+
+    <!-- Audio -->
     <audio ref="receiveMessageSound" src="/sound/receive-message.mp3"></audio>
+    <audio ref="startTypingSound" src="/sound/start-typing-2.mp3"></audio>
   </div>
 </template>
 
@@ -21,19 +25,20 @@ export default {
     $store() {},
   },
   watch: {
-    '$store.state.userConversations'() {
-      this.playReceiveMessageSound()
-    },
-    '$store.state.groupConversations'() {
-      this.playReceiveMessageSound()
-    },
-    '$store.state.chatMessages'() {
-      this.playReceiveMessageSound()
+    '$store.state.event'(value) {
+      if (String(value).startsWith(this.$socketEvent.chat.receiveMessages)) {
+        this.playReceiveMessageSound()
+      } else if (String(value).startsWith(this.$socketEvent.chat.typingStart)) {
+        this.playStartTypingSound()
+      }
     },
   },
   methods: {
     playReceiveMessageSound() {
-      // this.$refs.receiveMessageSound.play()
+      this.$refs.receiveMessageSound.play()
+    },
+    playStartTypingSound() {
+      this.$refs.startTypingSound.play()
     },
   },
 }

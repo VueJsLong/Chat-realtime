@@ -80,5 +80,8 @@ const actions = {
       })
     } else vuexContext.commit('removeTyping', pair)
   },
+  setEvent(vuexContext, payload) {
+    vuexContext.commit('setEvent', `${payload}_${new Date().getMilliseconds()}`)
+  },
 }
 export default actions

@@ -2,12 +2,14 @@ const defaultState = {
   isLoading: false,
   language: '',
   socket: null,
+
   userConversations: [],
   groupConversations: [],
   conversation: null,
   chatMessages: [],
   requests: [],
   friends: [],
+
   modal: {
     isShow: false,
     title: null,
@@ -20,7 +22,9 @@ const defaultState = {
       title: null,
     },
   },
+
   typing: {},
+  event: '',
 }
 
 export default defaultState

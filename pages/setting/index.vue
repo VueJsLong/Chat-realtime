@@ -71,7 +71,17 @@
               role="tabpanel"
             >
               <b-card-body>
-                <b-card-text>{{ text }}</b-card-text>
+                <b-card-text>
+                  <div>
+                    <b-form-checkbox
+                      v-model="enableNotification"
+                      name="check-button"
+                      switch
+                    >
+                      Âm thanh thông báo
+                    </b-form-checkbox>
+                  </div>
+                </b-card-text>
               </b-card-body>
             </b-collapse>
           </b-card>
@@ -87,6 +97,7 @@ export default {
   data() {
     return {
       text: 'lorem',
+      enableNotification: false,
     }
   },
 }

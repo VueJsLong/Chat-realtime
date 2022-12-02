@@ -46,6 +46,9 @@ const getters = {
   getAllTyping(state) {
     return state.typing
   },
+  getEvent(state) {
+    return state.event
+  },
 }
 
 export default getters

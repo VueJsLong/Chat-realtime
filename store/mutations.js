@@ -41,6 +41,9 @@ const mutations = {
     const newTyping = { ...state.typing }
     state.typing = newTyping
   },
+  setEvent(state, payload) {
+    state.event = payload
+  },
   resetStore(state) {
     state = { ...defaultState }
   },

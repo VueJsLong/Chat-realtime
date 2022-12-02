@@ -95,6 +95,7 @@ export default {
       const me = this
       me.socket.on(me.$socketEvent.chat.receiveMessages, (payload) => {
         me.debug('Listen message receive', payload)
+        this.$store.dispatch('setEvent', me.$socketEvent.chat.receiveMessages)
         // notify
         // this.$snotify.success(me.$socketEvent.chat.receiveMessages)
         if (me.compareMessageVsActiveConversation(payload))
@@ -117,6 +118,7 @@ export default {
       const me = this
       me.socket.on(me.$socketEvent.chat.typingStart, (payload) => {
         me.debug('Listen typing start', payload)
+        this.$store.dispatch('setEvent', me.$socketEvent.chat.typingStart)
         this.$store.dispatch('startTyping', payload)
       })
     },
