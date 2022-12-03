@@ -163,7 +163,7 @@ export default {
         verify_token: query.verify_token,
       }
       const p = this.$axios
-        .patch('/auth/reset-password', payload)
+        .patch('/me/reset-password', payload)
         .then((res) => {
           this.log(res.data)
           this.setCurrentForm(this.listForm.resetPasswordDoneForm)
