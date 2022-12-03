@@ -54,7 +54,7 @@ export default {
   name: 'SearchBox',
   data() {
     return {
-      searchInput: '18020847@vnu.edu.vn',
+      searchInput: '',
       searchResult: null,
     }
   },

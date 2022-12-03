@@ -13,22 +13,22 @@
   >
     <!-- Slides with custom text -->
     <b-carousel-slide img-src="/img/carousel/Awards.png">
-      <h2 style="color: #333">The best!</h2>
+      <h2 style="color: #333">Tốt nhất!</h2>
     </b-carousel-slide>
 
     <!-- Slides with custom text -->
     <b-carousel-slide img-src="/img/carousel/Data.png">
-      <h2 style="color: #333">Convenient!</h2>
+      <h2 style="color: #333">Tiện ích!</h2>
     </b-carousel-slide>
 
     <!-- Slides with image only -->
     <b-carousel-slide img-src="/img/carousel/Product Launch.png">
-      <h2 style="color: #333">Fast!</h2>
+      <h2 style="color: #333">Nhanh chóng!</h2>
     </b-carousel-slide>
 
     <!-- Slides with image only -->
     <b-carousel-slide img-src="/img/carousel/Location.png">
-      <h2 style="color: #333">Multi-language!</h2>
+      <h2 style="color: #333">Đa ngôn ngữ!</h2>
     </b-carousel-slide>
   </b-carousel>
 </template>
