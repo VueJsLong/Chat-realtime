@@ -5,7 +5,7 @@
       class="modal"
       ref="modal"
       centered
-      title="Create group"
+      title="Tạo nhóm"
       @show="resetModal"
       @hidden="resetModal"
       @ok="handleOk"
@@ -14,13 +14,13 @@
         <b-container fluid>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="group-name">Name</label>
+              <label for="group-name">Tên nhóm</label>
             </b-col>
             <b-col sm="9">
               <b-form-input
                 id="group-name"
                 type="text"
-                placeholder="Group name"
+                placeholder="Nhập tên nhóm"
                 v-model="group.name"
                 required
               ></b-form-input>
@@ -28,14 +28,14 @@
           </b-row>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="group-thumbnail">Thumbnail</label>
+              <label for="group-thumbnail">Ảnh đại diện</label>
             </b-col>
             <b-col sm="9">
               <b-input-group>
                 <b-form-input
                   id="group-thumbnail"
                   type="text"
-                  placeholder="Thumbnail url"
+                  placeholder="Url ảnh đại diện"
                   v-model="group.thumbnail"
                   required
                 ></b-form-input>
@@ -49,14 +49,14 @@
           </b-row>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="group-members">Members</label>
+              <label for="group-members">Thành viên</label>
             </b-col>
             <b-col sm="9">
               <div class="group-members__selector">
                 <b-form-group>
                   <multiselect
                     v-model="group.members"
-                    placeholder="Choose member"
+                    placeholder="Chọn thành viên"
                     select-label=""
                     label="fullName"
                     track-by="id"

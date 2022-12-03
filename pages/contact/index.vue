@@ -8,7 +8,7 @@
             <b-card no-body class="mb-1">
               <b-card-header header-tag="header" class="p-1" role="tab">
                 <p block v-b-toggle.accordion-1 variant="info">
-                  My pending request ({{ myRequest.length }})
+                  Yêu cầu đang chờ chấp nhận ({{ myRequest.length }})
                 </p>
               </b-card-header>
               <b-collapse
@@ -52,7 +52,7 @@
             <b-card no-body class="mb-1">
               <b-card-header header-tag="header" class="p-1" role="tab">
                 <p block v-b-toggle.accordion-2 variant="info">
-                  Request friend ({{ peopleRequest.length }})
+                  Yêu cầu kết bạn ({{ peopleRequest.length }})
                 </p>
               </b-card-header>
               <b-collapse
@@ -107,7 +107,7 @@
     </div>
     <div class="recents">
       <div class="option">
-        <p>My friend</p>
+        <p>Bạn bè</p>
         <ul>
           <li>
             <div class="option-click">

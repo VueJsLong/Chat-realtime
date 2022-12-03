@@ -3,61 +3,53 @@
     <section class="form-section">
       <!-- login -->
       <b-form @submit.prevent="login">
-        <h1 class="text-center">Login and connect your friend</h1>
-        <b-form-group
-          id="input-group-1"
-          label="Email address:"
-          label-for="input-1"
-        >
+        <h1 class="text-center">Đăng nhập và trải nghiệm ứng dụng chat</h1>
+        <b-form-group id="input-group-1" label="Email:" label-for="input-1">
           <b-form-input
             id="input-1"
             v-model="form.email"
             type="email"
-            placeholder="Enter email"
+            placeholder="Nhập email"
             required
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="input-group-2" label="Password:" label-for="input-2">
+        <b-form-group id="input-group-2" label="Mật khẩu:" label-for="input-2">
           <b-form-input
             id="input-2"
             v-model="form.password"
             type="password"
-            placeholder="Enter password"
+            placeholder="Nhập mật khẩu"
             required
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Login</b-button>
+        <b-button type="submit" variant="primary">Đăng nhập</b-button>
         <div class="row g-2">
           <div class="col-12 col-md-6">
             <b-button
               class="btn-sm w-100 h-100"
-              variant="outline-secondary"
+              variant="outline-success"
               @click="loginWithGoogle"
-              >Continue with Google
+              >Tiếp tục với Google
               <img width="30" src="~/static/img/auth/google.svg" />
             </b-button>
           </div>
           <div class="col-12 col-md-6">
             <b-button
               class="btn-sm w-100 h-100"
-              variant="outline-secondary"
+              variant="outline-success"
               @click="loginWithFacebook"
-              >Continue with Facebook
+              >Tiếp tục với Facebook
               <img width="30" src="~/static/img/auth/facebook.svg"
             /></b-button>
           </div>
         </div>
         <div class="text-center">
-          <nuxt-link to="/auth/reset-password"
-            >Forget password? Reset here.</nuxt-link
-          >
+          <nuxt-link to="/auth/reset-password">Quên mật khẩu?</nuxt-link>
         </div>
         <div class="text-center">
-          <nuxt-link to="/auth/register"
-            >Don't have account? Register here.</nuxt-link
-          >
+          <nuxt-link to="/auth/register">Đăng ký</nuxt-link>
         </div>
       </b-form>
 

@@ -6,37 +6,34 @@
         @submit.prevent="sendResetEmail"
         v-show="isShow(listForm.emailEnterForm)"
       >
-        <h1 class="text-center">Enter your email to get reset link</h1>
-        <b-form-group
-          id="input-group-1"
-          label="Email address:"
-          label-for="input-1"
-        >
+        <h1 class="text-center">Nhập email để nhận link làm mới mật khẩu</h1>
+        <b-form-group id="input-group-1" label="Email:" label-for="input-1">
           <b-form-input
             id="input-1"
             v-model="form.email"
             type="email"
-            placeholder="Enter email"
+            placeholder="Nhập email"
             required
           ></b-form-input>
         </b-form-group>
         <b-button type="submit" :disabled="isProcessing" variant="primary"
-          >Send mail</b-button
+          >Gửi mail</b-button
         >
         <nuxt-link to="/auth/login" class="text-center"
-          >Back to login page</nuxt-link
+          >Quay trở lại trang đăng nhập</nuxt-link
         >
       </b-form>
 
       <!-- Email sent form -->
       <b-form v-show="isShow(listForm.emailSentForm)">
-        <h1 class="text-center">Please check your mail box</h1>
+        <h1 class="text-center">Vui lòng kiểm tra Email</h1>
+        <p class="text-center">{{ form.email }}</p>
         <div class="text-center">
           <img src="/img/auth/email-sent-icon.png" alt="" width="200" />
         </div>
         <div class="text-center">
           <a href="#" @click.prevent="sendResetEmail"
-            >Hasn't received reset password email? Receive again.</a
+            >Chưa nhận được email? Gửi lại.</a
           >
         </div>
         <nuxt-link to="/auth/login">
@@ -45,7 +42,7 @@
             :disabled="isProcessing"
             variant="primary"
             class="w-100"
-            >Back to login page</b-button
+            >Quay trở lại trang đăng nhập</b-button
           >
         </nuxt-link>
       </b-form>
@@ -55,40 +52,44 @@
         @submit.prevent="resetPassword"
         v-show="isShow(listForm.resetPasswordForm)"
       >
-        <h1 class="text-center">Enter your new password</h1>
+        <h1 class="text-center">Đặt mật khẩu mới</h1>
         <h4 class="text-center">{{ $route.query.email }}</h4>
-        <b-form-group id="input-group-2" label="Password:" label-for="input-2">
+        <b-form-group
+          id="input-group-2"
+          label="Mật khẩu mới"
+          label-for="input-2"
+        >
           <b-form-input
             id="input-2"
             v-model="form.password"
             type="password"
-            placeholder="Enter password"
+            placeholder="Nhập mật khẩu"
             required
           ></b-form-input>
         </b-form-group>
 
         <b-form-group
           id="input-group-2"
-          label="Re-password:"
+          label="Nhập lại mật khẩu"
           label-for="input-2"
         >
           <b-form-input
             id="input-2"
             v-model="form.rePassword"
             type="password"
-            placeholder="Re-enter password"
+            placeholder="Nhập lại mật khẩu"
             required
           ></b-form-input>
         </b-form-group>
 
         <b-button type="submit" :disabled="isProcessing" variant="primary"
-          >Save password</b-button
+          >Lưu mật khẩu</b-button
         >
       </b-form>
 
       <!-- Reset password done form -->
       <b-form v-show="isShow(listForm.resetPasswordDoneForm)">
-        <h1 class="text-center">Your password has been saved</h1>
+        <h1 class="text-center">Mật khẩu mới của bạn đã đuuợc lưu</h1>
         <div class="text-center">
           <img src="/img/auth/done.png" alt="" width="200" />
         </div>
@@ -98,7 +99,7 @@
             :disabled="isProcessing"
             variant="primary"
             class="w-100"
-            >Back to login page</b-button
+            >Quay trở lại trang đăng nhập</b-button
           >
         </nuxt-link>
       </b-form>

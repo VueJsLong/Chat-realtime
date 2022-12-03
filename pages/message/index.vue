@@ -3,7 +3,7 @@
     <search-box></search-box>
     <div class="groups">
       <div class="option">
-        <p>Groups</p>
+        <p>Tin nhắn nhóm</p>
         <ul>
           <li>
             <div class="option-click">
@@ -41,7 +41,7 @@
     </div>
     <div class="recents">
       <div class="option">
-        <p>Recents</p>
+        <p>Tin nhắn bạn bè</p>
       </div>
       <div class="recent-contacts scroll-y">
         <div

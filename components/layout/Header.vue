@@ -33,7 +33,7 @@
             <i class="fi fi-rr-cloud-upload-alt"></i>
             <span class="nav-item__tooltip">Cloud</span>
           </li>
-          <nuxt-link to="/setting" tag="li" class="nav-item">
+          <nuxt-link to="/setting" tag="li" class="nav-item" v-if="false">
             <i class="fi fi-rr-settings"></i>
             <span class="nav-item__tooltip">Cài đặt</span>
           </nuxt-link>

@@ -2,9 +2,13 @@
   <!-- chat user info -->
   <div class="chat-info" v-if="conversation.target == 'USER'">
     <div class="chat-info-header">
-      <div class="chat-info-header__back-btn m-icon-btn" @click="hideChatInfo">
+      <div
+        class="chat-info-header__back-btn m-icon-btn"
+        @click="hideChatInfo"
+        v-show="false"
+      >
         <i class="fi fi-rs-arrow-circle-left"></i>
-        Back
+        Quay lại
       </div>
     </div>
     <div class="chat-info-main">
@@ -23,14 +27,14 @@
         >
           <i class="fi fi-rs-bell"></i>
           <!-- <i class="fi fi-rs-bell-ring"></i> -->
-          Notify
+          Thông báo
         </div>
         <div
           class="main-toolbar__search m-icon-btn d-flex g-2 flex-column align-items-center"
           title="search"
         >
           <i class="fi fi-rr-search"></i>
-          Search
+          Tìm kiếm
         </div>
       </div>
 
@@ -40,7 +44,7 @@
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
               <div block v-b-toggle.user-accordion-1 variant="info">
-                Actions
+                Hành động
               </div>
             </b-card-header>
             <b-collapse
@@ -60,7 +64,7 @@
                   @click="removeFriend"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
-                  Unfriend
+                  Xóa bạn
                 </button>
               </b-card-body>
             </b-collapse>
@@ -74,9 +78,13 @@
   <!-- chat group info -->
   <div class="chat-info" v-else>
     <div class="chat-info-header">
-      <div class="chat-info-header__back-btn m-icon-btn" @click="hideChatInfo">
+      <div
+        class="chat-info-header__back-btn m-icon-btn"
+        @click="hideChatInfo"
+        v-show="false"
+      >
         <i class="fi fi-rs-arrow-circle-left"></i>
-        Back
+        Quay lại
       </div>
     </div>
     <div class="chat-info-main">
@@ -95,14 +103,14 @@
         >
           <i class="fi fi-rs-bell"></i>
           <!-- <i class="fi fi-rs-bell-ring"></i> -->
-          Notify
+          Thông báo
         </div>
         <div
           class="main-toolbar__search m-icon-btn d-flex g-2 flex-column align-items-center"
           title="search"
         >
           <i class="fi fi-rr-search"></i>
-          Search
+          Tìm kiếm
         </div>
       </div>
 
@@ -112,7 +120,7 @@
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
               <div block v-b-toggle.accordion-1 variant="info">
-                Members ({{ groupMembers.length }})
+                Thành viên ({{ groupMembers.length }})
               </div>
             </b-card-header>
             <b-collapse
@@ -155,7 +163,7 @@
 
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <div block v-b-toggle.accordion-2 variant="info">Actions</div>
+              <div block v-b-toggle.accordion-2 variant="info">Hành động</div>
             </b-card-header>
             <b-collapse
               id="accordion-2"
@@ -168,7 +176,7 @@
                   v-if="isLeader"
                 >
                   <i class="btn-icon fi fi-rr-user-add"></i>
-                  Add member
+                  Thêm thành viên
                 </button>
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
@@ -176,7 +184,7 @@
                   @click="deleteGroup"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
-                  Delete group
+                  Xóa nhóm
                 </button>
                 <button
                   class="chat-info-footer__remove-friend m-btn m-btn-with-icon primary-btn --danger"
@@ -184,7 +192,7 @@
                   @click="outGroup"
                 >
                   <i class="fi fi-rr-remove-user btn-icon"></i>
-                  Out group
+                  Rời nhóm
                 </button>
               </b-card-body>
             </b-collapse>

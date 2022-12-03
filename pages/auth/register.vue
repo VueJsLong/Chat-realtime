@@ -2,47 +2,41 @@
   <div id="login-page" class="page-middle-form">
     <section class="form-section">
       <div v-show="isShow(listForm.accountInfoForm, listForm.personalInfoForm)">
-        <h1 class="text-center">Register to joining us right now</h1>
+        <h1 class="text-center">
+          Đăng ký tài khoản và trải nghiệm ngay hôm nay
+        </h1>
         <!-- Account info form -->
         <b-form v-show="isShow(listForm.accountInfoForm)">
-          <b-form-group
-            id="input-group-1"
-            label="Email address:"
-            label-for="input-1"
-          >
+          <b-form-group id="input-group-1" label="Email" label-for="input-1">
             <b-form-input
               id="input-1"
               v-model="form.email"
               type="email"
-              placeholder="Enter email"
+              placeholder="Nhập email"
               required
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group
-            id="input-group-2"
-            label="Password:"
-            label-for="input-2"
-          >
+          <b-form-group id="input-group-2" label="Mật khẩu" label-for="input-2">
             <b-form-input
               id="input-2"
               v-model="form.password"
               type="password"
-              placeholder="Enter password"
+              placeholder="Nhập mật khẩu"
               required
             ></b-form-input>
           </b-form-group>
 
           <b-form-group
             id="input-group-2"
-            label="Re-password:"
+            label="Nhập lại mật khẩu"
             label-for="input-2"
           >
             <b-form-input
               id="input-2"
               v-model="form.rePassword"
               type="password"
-              placeholder="Re-enter password"
+              placeholder="Nhập lại mật khẩu"
               required
             ></b-form-input>
           </b-form-group>
@@ -50,7 +44,7 @@
             type="button"
             variant="primary"
             @click="setCurrentForm(listForm.personalInfoForm)"
-            >Next</b-button
+            >Tiếp tục</b-button
           >
         </b-form>
 
@@ -61,71 +55,71 @@
         >
           <b-form-group
             id="input-group-1"
-            label="Fullname:"
+            label="Họ và tên:"
             label-for="input-fullName"
           >
             <b-form-input
               id="input-fullName"
               v-model="form.fullName"
               type="text"
-              placeholder="Enter your name"
+              placeholder="Nhập họ tên"
               required
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group label="Gender" v-slot="{ ariaDescribedby }">
+          <b-form-group label="Giới tính" v-slot="{ ariaDescribedby }">
             <b-form-radio
               v-model="form.gender"
               :aria-describedby="ariaDescribedby"
               name="some-radios"
               value="1"
-              >Male</b-form-radio
+              >Nam</b-form-radio
             >
             <b-form-radio
               v-model="form.gender"
               :aria-describedby="ariaDescribedby"
               name="some-radios"
               value="0"
-              >Female</b-form-radio
+              >Nữ</b-form-radio
             >
           </b-form-group>
 
           <b-form-group
             id="input-group-1"
-            label="Birthday:"
+            label="Ngày sinh:"
             label-for="input-1"
           >
             <b-form-input
               id="input-1"
               v-model="form.birthday"
               type="date"
-              placeholder="Enter birthday"
+              placeholder="Nhập ngày sinh"
               required
             ></b-form-input>
           </b-form-group>
 
           <b-form-group
             id="input-group-1"
-            label="Phone number:"
+            label="Số điện thoại:"
             label-for="input-1"
           >
             <b-form-input
               id="input-1"
               v-model="form.phoneNumber"
               type="number"
-              placeholder="Enter phone number"
+              placeholder="Nhập số điện thoại"
             ></b-form-input>
           </b-form-group>
 
           <b-form-group
             id="input-group-1"
-            label="Thumbnail:"
+            label="Ảnh đại diện:"
             label-for="input-thumbnail"
           >
             <b-input-group class="thumbnail-group">
               <b-form-input
                 type="text"
-                placeholder="Thumbnail url"
+                placeholder="Url ảnh đại diện"
                 v-model="form.thumbnail"
                 required
               ></b-form-input>
@@ -135,24 +129,24 @@
             </b-input-group>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Next</b-button>
+          <b-button type="submit" variant="primary">Tiếp tục</b-button>
         </b-form>
         <div class="row g-2">
           <div class="col-12 col-md-6">
             <b-button
               class="btn-sm w-100 h-100"
-              variant="outline-secondary"
+              variant="outline-success"
               @click="loginWithGoogle"
-              >Continue with Google
+              >Tiếp tục với Google
               <img width="30" src="~/static/img/auth/google.svg" />
             </b-button>
           </div>
           <div class="col-12 col-md-6">
             <b-button
               class="btn-sm w-100 h-100"
-              variant="outline-secondary"
+              variant="outline-success"
               @click="loginWithFacebook"
-              >Continue with Facebook
+              >Tiếp tục với Facebook
               <img width="30" src="~/static/img/auth/facebook.svg" />
             </b-button>
           </div>
@@ -166,7 +160,7 @@
 
       <!-- OTP -->
       <div class="otp-container" v-show="isShow(listForm.otpForm)">
-        <h1 class="text-center">Please check mail box to get OTP</h1>
+        <h1 class="text-center">Vui lòng kiểm tra email để lấy OTP</h1>
         <h2 class="text-center">{{ form.email }}</h2>
         <div class="userInput">
           <div>
@@ -220,30 +214,30 @@
         </div>
         <div class="text-center">
           <a href="#" @click.prevent="register"
-            >Hasn't received otp yet? Receive again.</a
+            >Chưa nhận được email? Gửi lại</a
           >
         </div>
         <div class="text-center">
-          <a href="#" @click.prevent="goBack">Go back</a>
+          <a href="#" @click.prevent="goBack">Quay về</a>
         </div>
         <b-button
           class="otp-submit-button"
           variant="primary"
           @click="submitOtp"
           :disabled="isSendOTPButtonDisable"
-          >Register</b-button
+          >Đăng ký</b-button
         >
       </div>
 
       <!-- Register success -->
       <b-form v-show="isShow(listForm.registerSuccessForm)">
-        <h1 class="text-center">Register account done</h1>
+        <h1 class="text-center">Chúc mừng bạn đã đăng ký thành công</h1>
         <div class="text-center">
           <img src="/img/auth/done.png" alt="" width="200" />
         </div>
         <nuxt-link to="/auth/login">
           <b-button type="button" variant="primary" class="w-100"
-            >Back to login page</b-button
+            >Quay trở lại trang đăng nhập</b-button
           >
         </nuxt-link>
       </b-form>
