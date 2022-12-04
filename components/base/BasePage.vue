@@ -46,6 +46,9 @@ export default {
       this.listenAcceptFriendEvent()
       this.listenRemoveFriendEvent()
 
+      this.listenAddMemberEvent()
+      this.listenRemoveMemberEvent()
+
       this.listenReceiveMessageEvent()
       this.listenUpdateMessageEvent()
       this.listenTypingStartEvent()
@@ -89,6 +92,31 @@ export default {
           me.$socketEvent.friend.removeFriend,
           me.getFriend(payload).fullName
         )
+      })
+    },
+    listenAddMemberEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.group.addMember, (payload) => {
+        me.debug('Listen add member', payload)
+        // notify
+        // this.$snotify.success(me.$socketEvent.group.addMember, payload?.content)
+        if (me.compareMessageVsActiveConversation(payload))
+          me.appendChatMessages(payload)
+        me.bubbleConversationUp(payload)
+      })
+    },
+    listenRemoveMemberEvent() {
+      const me = this
+      me.socket.on(me.$socketEvent.group.removeMember, (payload) => {
+        me.debug('Listen remove member', payload)
+        // notify
+        // this.$snotify.success(
+        //   me.$socketEvent.group.removeMember,
+        //   payload?.content
+        // )
+        if (me.compareMessageVsActiveConversation(payload))
+          me.appendChatMessages(payload)
+        me.bubbleConversationUp(payload)
       })
     },
     listenReceiveMessageEvent() {
