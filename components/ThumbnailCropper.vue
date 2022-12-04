@@ -15,15 +15,15 @@
       @crop-upload-success="cropUploadSuccess"
       @crop-upload-fail="cropUploadFail"
       v-model="show"
-      :width="36"
-      :height="36"
+      :width="100"
+      :height="100"
       :url="url"
       lang-type="vi"
       :params="params"
       :headers="headers"
       img-format="png"
     ></my-upload>
-    <img :src="imgDataUrl" />
+    <img :src="imgDataUrl" width="36" height="36" v-show="imgDataUrl != ''" />
   </div>
 </template>
 
