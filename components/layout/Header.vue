@@ -1,12 +1,24 @@
 <template>
   <div class="header">
-    <img
-      :src="thumbnail($auth.user?.thumbnail)"
-      alt=""
-      class="thumbnail"
-      :title="fullName"
-      referrerpolicy="no-referrer"
-    />
+    <div class="option">
+      <div class="option-click">
+        <button class="option-btn --button-reset">
+          <img
+            :src="thumbnail($auth.user?.thumbnail)"
+            alt=""
+            class="thumbnail"
+            :title="fullName"
+            referrerpolicy="no-referrer"
+          />
+        </button>
+        <ul class="menu">
+          <li v-b-modal.update-profile><a href="#">Hồ sơ cá nhân</a></li>
+          <li v-b-modal.change-password><a href="#">Đổi mật khẩu</a></li>
+        </ul>
+        <update-profile></update-profile>
+        <change-password></change-password>
+      </div>
+    </div>
     <nav class="header-nav">
       <ul>
         <div>
@@ -48,8 +60,11 @@
 </template>
 
 <script>
+import UpdateProfile from '../popup/UpdateProfile.vue'
+import ChangePassword from '../popup/ChangePassword.vue'
 export default {
   name: 'Header',
+  components: { UpdateProfile, ChangePassword },
   computed: {
     fullName() {
       return this.$auth.user.fullName ? this.$auth.user.fullName : 'profile'
@@ -70,6 +85,9 @@ export default {
         target: 'USER',
       }
       this.$store.dispatch('setConversation', payload)
+    },
+    modalProfile() {
+      this.$refs.profile.show()
     },
   },
 }

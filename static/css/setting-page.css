@@ -1,9 +1,9 @@
 .setting {
   display: grid;
   grid-template-areas:
-    "navbar  search search "
-    "navbar  profile account"
-    "navbar profile  account";
+    'navbar  search search '
+    'navbar  profile account'
+    'navbar profile  account';
   grid-template-rows: 70px auto;
   grid-template-columns: 100px auto;
   gap: 1rem;
@@ -56,38 +56,8 @@
   width: 25px;
 }
 
-.modal-content {
-  position: fixed;
-  width: 350px;
-  border-radius: 5px;
-  bottom: 5vh;
-  top: 50%;
-  left: 50%;
-  margin-top: -45vh;
-  /* Negative half of height. */
-  margin-left: -175px;
-  /* Negative half of width. */
-  background: #e5e7eb;
-  box-shadow: yellowgreen;
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.5s;
-  animation-name: zoom;
-  animation-duration: 0.5s;
-  overflow: auto;
-}
-
 .update {
   z-index: 1000001;
-}
-
-.modal {
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation: fade 0.5s linear;
 }
 
 .profile-introduct {
@@ -123,7 +93,6 @@
   margin-top: 5rem;
   background-color: #ffffff;
 }
-
 @-webkit-keyframes top {
   from {
     -webkit-transform: translateY(-100%);

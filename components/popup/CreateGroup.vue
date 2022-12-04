@@ -89,7 +89,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-import ThumbnailCropper from './ThumbnailCropper.vue'
+import ThumbnailCropper from '../ThumbnailCropper.vue'
 export default {
   name: 'CreateGroup',
   components: { Multiselect, ThumbnailCropper },
@@ -169,7 +169,9 @@ export default {
       // emit event
       socket.emit(me.$socketEvent.group.create, params, (res) => {
         me.debug(res)
-        this.$snotify.success(me.$socketEvent.group.create)
+
+        // Notify
+        this.$snotify.success('Tạo nhóm chat thành công')
 
         // Hide the modal manually
         this.$nextTick(() => {

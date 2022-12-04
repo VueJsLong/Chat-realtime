@@ -170,10 +170,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ForwardMessage from '../popup/ForwardMessage.vue'
 import ChatTyping from './ChatTyping.vue'
 import EmojiBox from './EmojiBox.vue'
+
 export default {
-  components: { EmojiBox, ChatTyping },
+  components: { EmojiBox, ChatTyping, ForwardMessage },
   data() {
     return {
       chatMessages: [],

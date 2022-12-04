@@ -14,6 +14,7 @@ p {
   border: unset !important;
   background: unset !important;
   font-size: 2rem !important;
+  padding: 0 8px;
 }
 
 

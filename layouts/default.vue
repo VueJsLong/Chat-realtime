@@ -19,8 +19,10 @@
 
 <script>
 import Header from '~/components/layout/Header.vue'
+import CreateGroup from '~/components/popup/CreateGroup.vue'
+
 export default {
-  components: { Header },
+  components: { Header, CreateGroup },
   watch: {
     $store() {},
   },

@@ -58,6 +58,19 @@
   z-index: 1000;
 }
 
+.header .option {
+  width: 100%;
+  border-bottom: unset;
+}
+
+.header .option .option-click {
+  width: 100%;
+}
+
+.header .option img {
+  width: unset;
+}
+
 .thumbnail {
   width: var(--header-thumbnail-height);
   height: var(--header-thumbnail-height);
