@@ -35,6 +35,7 @@
                 v-model="form.oldPassword"
                 type="password"
                 placeholder="Nhập mật khẩu cũ"
+                autocomplete="on"
                 required
               ></b-form-input>
             </b-col>
@@ -49,6 +50,7 @@
                 v-model="form.newPassword"
                 type="password"
                 placeholder="Nhập mật khẩu mới"
+                autocomplete="on"
                 required
               ></b-form-input>
             </b-col>
@@ -63,6 +65,7 @@
                 v-model="form.rePassword"
                 type="password"
                 placeholder="Nhập lại mật khẩu"
+                autocomplete="on"
                 required
               ></b-form-input>
             </b-col>

@@ -151,8 +151,16 @@
                   <button
                     class="member__remove-member m-icon-btn --danger"
                     title="Remove"
-                    @click.stop="removeGroupMember(item)"
-                    v-if="isLeader"
+                    @click.stop="removeGroupMember(item.member)"
+                    v-if="isLeader && !isItemIsLeader(item.member)"
+                  >
+                    <i class="fi fi-rr-remove-user btn-icon"></i>
+                  </button>
+                  <button
+                    class="member__remove-member m-icon-btn --danger"
+                    title="Remove"
+                    style="opacity: 0"
+                    v-else
                   >
                     <i class="fi fi-rr-remove-user btn-icon"></i>
                   </button>
@@ -174,6 +182,7 @@
                 <button
                   class="chat-info-footer__ban-message m-btn m-btn-with-icon primary-btn"
                   v-if="isLeader"
+                  v-b-modal.add-group-member
                 >
                   <i class="btn-icon fi fi-rr-user-add"></i>
                   Thêm thành viên
@@ -201,11 +210,20 @@
       </div>
     </div>
     <div class="chat-info-footer"></div>
+
+    <!-- pop up -->
+    <add-group-member
+      :groupMembers="groupMembers"
+      @addMembersDone="() => this.getGroupMembers()"
+    ></add-group-member>
   </div>
 </template>
 
 <script>
+import AddGroupMember from '../popup/AddGroupMember.vue'
+
 export default {
+  components: { AddGroupMember },
   emits: ['hideChatInfo'],
   data() {
     return {
@@ -254,13 +272,28 @@ export default {
         target: 'USER',
       })
     },
+    isItemIsLeader(member) {
+      return member.id == this.$auth.user.id
+    },
     handleRemoveGroupMember(member) {
-      const p = this.$axios
-        .post(`${this.$api.uploadSingleImage}`)
-        .then((res) => {
-          this.log(res)
-        })
-      this.axiosLoadError(p)
+      const me = this
+      const socket = this.$store.getters.getSocket
+
+      const payload = {
+        groupId: this.conversation.targetId,
+        memberId: member.id,
+      }
+      socket.emit(me.$socketEvent.group.removeMember, payload, (res) => {
+        me.debug(res)
+        me.appendChatMessages(res)
+        me.bubbleConversationUp(res)
+        this.$snotify.success(res.content)
+
+        // Xoá UI
+        this.groupMembers = this.groupMembers.filter(
+          (item) => item.member.id != member.id
+        )
+      })
     },
     hideChatInfo() {
       this.log('click')

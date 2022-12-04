@@ -130,6 +130,7 @@
   background-color: var(--main-color-200);
   color: var(--wcag-white-color);
   text-align: center;
+  word-break: break-all;
 
   display: flex;
   flex-flow: column wrap;

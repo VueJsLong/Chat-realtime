@@ -1,49 +1,68 @@
 <template>
   <div class="forward-message-modal">
     <b-modal
-      id="forward-message"
+      :id="modalId"
       class="modal"
       ref="modal"
       centered
-      title="Chuyển tiếp tin nhắn"
+      title="Thêm thành viên"
       @show="resetModal"
       @hidden="resetModal"
       @ok="handleOk"
     >
-      <b-form @submit.prevent="handleForwardMessage">
+      <b-form @submit.prevent="handleAddMembers">
         <b-container fluid>
           <b-row class="my-1">
             <b-col sm="3">
-              <label for="content">Nội dung</label>
+              <label for="content">Nhóm</label>
             </b-col>
             <b-col sm="9">
-              <b-form-textarea
-                id="content"
-                size="md"
-                type="text"
-                placeholder="Nhập nội dung"
-                v-model="data.content"
-                disabled
-              ></b-form-textarea>
-              <!-- <b-form-input
-                id="content"
-                type="text"
-                placeholder="Nhập nội dung"
-                v-model="group.name"
-                required
-              ></b-form-input> -->
+              <div class="item">
+                <div class="m-thumbnail">
+                  <img
+                    :src="thumbnail(conversation?.targetThumbnail)"
+                    alt=""
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="content">
+                  <div class="friend-name">{{ conversation?.targetName }}</div>
+                </div>
+              </div>
             </b-col>
           </b-row>
-          <b-row class="my-1">
+          <!-- <b-row class="my-1">
             <b-col sm="3">
-              <label for="forward-to">Gửi đến</label>
+              <label for="forward-to">Danh sách thành viên</label>
             </b-col>
             <b-col sm="9">
               <div class="forward-to__selector">
                 <b-form-group>
                   <multiselect
-                    v-model="forwardTargets"
-                    placeholder="Chọn người nhận"
+                    placeholder="Tìm thành viên"
+                    select-label=""
+                    label="member.fullName"
+                    track-by="id"
+                    :options="groupMembers"
+                    :searchable="true"
+                    :multiple="true"
+                    :hide-selected="true"
+                  >
+                  </multiselect>
+                </b-form-group>
+              </div>
+            </b-col>
+          </b-row> -->
+          <b-row class="my-1">
+            <b-col sm="3">
+              <label for="forward-to">Người cần thêm</label>
+            </b-col>
+            <b-col sm="9">
+              <div class="forward-to__selector">
+                <b-form-group>
+                  <multiselect
+                    v-model="members"
+                    placeholder="Chọn bạn bè"
                     select-label=""
                     label="key"
                     track-by="key"
@@ -67,7 +86,7 @@
         </b-container>
       </b-form>
       <template #modal-footer="{ ok, cancel }">
-        <b-button variant="success" @click="ok()"> Gửi </b-button>
+        <b-button variant="success" @click="ok()"> Thêm </b-button>
         <b-button variant="primary" @click="cancel()"> Hủy </b-button>
       </template>
     </b-modal>
@@ -79,23 +98,22 @@ import { mapState } from 'vuex'
 import Multiselect from 'vue-multiselect'
 
 export default {
-  name: 'ForwardMessage',
+  name: 'AddGroupMember',
   components: { Multiselect },
+  emits: ['addMembersDone'],
   props: {
-    data: {
-      type: Object,
+    groupMembers: {
+      type: Array,
       required: true,
       default() {
-        return {
-          content: null,
-          type: null,
-        }
+        return []
       },
     },
   },
   data() {
     return {
-      forwardTargets: [],
+      modalId: 'add-group-member',
+      members: [],
     }
   },
   computed: {
@@ -103,38 +121,31 @@ export default {
       conversation: (state) => state.conversation,
       friends: (state) => state.friends,
       requests: (state) => state.requests,
-      userConversations: (state) => state.userConversations,
-      groupConversations: (state) => state.groupConversations,
     }),
 
     // Tạo dữ liệu cho select box
-    // Format dữ liệu: target, targetId, targetName, targetThumbnail
+    // Format dữ liệu: id, fullName, thumbnail, key
     options() {
       const friendsData = [...this.friends, ...this.requests].map((item) => {
         const friend = this.getFriend(item)
         return {
-          target: 'USER',
-          targetId: friend.id,
-          targetName: friend.fullName,
-          targetThumbnail: friend.thumbnail,
+          id: friend.id,
+          fullName: friend.fullName,
+          thumbnail: friend.thumbnail,
+          key: friend.fullName,
         }
       })
 
-      const tempResult = [
-        ...friendsData,
-        ...this.userConversations,
-        ...this.groupConversations,
-      ]
-
-      // Loại bỏ trùng lặp
+      // Chuyển danh sách bạn bè thành map
       const map = new Map()
-      tempResult.forEach((item) => {
-        map.set(`${item.target}_${item.targetName}`, item)
+      friendsData.forEach((item) => {
+        map.set(item.id, item)
       })
 
-      // Loại bỏ this conversation
-      const key = `${this.conversation.target}_${this.conversation.targetName}`
-      map.delete(key)
+      // Loại bỏ những người đã là thành viên
+      this.groupMembers.forEach((item) => {
+        map.delete(item.member.id)
+      })
 
       // Chuyển đổi map thành array và trả về
       return Array.from(map, ([key, value]) => ({ key, ...value })).sort(
@@ -142,35 +153,29 @@ export default {
       )
     },
   },
-  watch: {
-    data() {
-      this.log(this.friends)
-    },
-  },
+  watch: {},
   mounted() {},
   methods: {
     resetModal() {
-      this.forwardTargets = []
+      this.members = []
     },
-    async handleForwardMessage() {
+    async handleAddMembers() {
       const me = this
       const socket = this.$store.getters.getSocket
 
-      for (const item of this.forwardTargets) {
+      for (const item of this.members) {
         const payload = {
-          from: me.$auth.user.id,
-          to: item.targetId,
-          content: this.data.content,
-          status: null,
-          type: this.data.type,
-          target: item.target,
+          groupId: this.conversation.targetId,
+          memberId: item.id,
         }
-        socket.emit(me.$socketEvent.chat.sendMessages, payload, (res) => {
-          // me.debug(res)
+        socket.emit(me.$socketEvent.group.addMember, payload, (res) => {
+          me.debug(res)
+          me.appendChatMessages(res)
           me.bubbleConversationUp(res)
+          this.$snotify.success(res.content)
         })
       }
-      this.$snotify.success('Tin nhắn đã được chuyển tiếp')
+      this.$emit('addMembersDone')
       this.hideModal()
     },
     async handleOk(bvModalEvent) {
@@ -181,7 +186,7 @@ export default {
     },
     hideModal() {
       this.$nextTick(() => {
-        this.$bvModal.hide('forward-message')
+        this.$bvModal.hide(this.modalId)
       })
     },
   },
