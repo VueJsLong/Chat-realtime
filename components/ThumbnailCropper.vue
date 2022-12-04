@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex g-4" style="gap: 4px">
     <button
       type="button"
       class="m-btn icon-btn h-100"
@@ -33,6 +33,9 @@ export default {
   components: {
     'my-upload': myUpload,
   },
+  props: {
+    value: String,
+  },
   data() {
     return {
       show: false,
@@ -48,6 +51,10 @@ export default {
     url() {
       return this.$config.apiUrl + this.$api.uploadSingleImage
     },
+  },
+  mounted() {
+    // this.log('Thumbnail cropper mounted')
+    this.imgDataUrl = this.value ? this.thumbnail(this.value) : ''
   },
   methods: {
     toggleShow() {
